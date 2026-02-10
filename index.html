@@ -392,8 +392,7 @@
           </div>
 
           <div class="two">
-            <button class="btn" id="sendPhotosBtn" type="button">Enviar fotos agora no WhatsApp</button>
-            <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
+                       <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
           </div>
 
           <div class="footer">
@@ -622,6 +621,44 @@ ${servicesBlock}
 }
 
 function sendWhatsApp(){
+
+  const name = el("name").value.trim();
+  const phone = el("phone").value.trim();
+  const place = el("place").value.trim();
+  const details = el("details").value.trim();
+  const selected = getSelectedServices();
+
+  // 🔒 VALIDAÇÃO
+  if(selected.length === 0){
+    alert("Selecione pelo menos um serviço.");
+    return;
+  }
+
+  if(!name){
+    alert("Preencha seu nome.");
+    return;
+  }
+
+  if(!phone){
+    alert("Preencha o telefone.");
+    return;
+  }
+
+  if(!place){
+    alert("Preencha cidade / bairro.");
+    return;
+  }
+
+  if(!details){
+    alert("Descreva o serviço.");
+    return;
+  }
+
+  // ✅ Se passou na validação → envia
+  const msg = buildWhatsAppMessage(false);
+  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+
   const selected = getSelectedServices();
   if(selected.length === 0){
     if(!confirm("Você não marcou nenhum serviço. Deseja enviar mesmo assim?")) return;
@@ -711,7 +748,6 @@ function cssEscape(str){
 });
 
 el("sendBtn").onclick = sendWhatsApp;
-el("sendPhotosBtn").onclick = sendPhotosNow;
 el("stickyBtn").onclick = scrollToForm;
 el("goFormBtn").onclick = scrollToForm;
 el("clearSaved").onclick = clearSaved;
