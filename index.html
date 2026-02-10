@@ -1,1 +1,716 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <title>AS Andrade Serralheria | BH</title>
+
+  <style>
+    :root{
+      /* Base */
+      --bg:#0b0b0c;
+      --card:#121214;
+      --card2:#17171a;
+      --text:#f4f4f5;
+      --muted:#a1a1aa;
+      --line:#242428;
+
+      /* Cores do logo (vermelho + prata) */
+      --brand-red:#d11b22;     /* vermelho principal */
+      --brand-red2:#ff2a32;    /* brilho */
+      --silver:#c7c7c7;        /* prata */
+      --silver2:#efefef;       /* prata clara */
+
+      --shadow: 0 18px 48px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 680px at 12% -10%, rgba(209,27,34,.22), transparent 55%),
+        radial-gradient(900px 520px at 110% 10%, rgba(199,199,199,.10), transparent 55%),
+        var(--bg);
+    }
+
+    a{color:inherit}
+    .wrap{max-width:1150px;margin:0 auto;padding:18px 16px 90px}
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,11,12,.92), rgba(11,11,12,.55));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar .inner{max-width:1150px;margin:0 auto;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center;min-width:0}
+    .logoBox{
+      width:46px;height:46px;border-radius:14px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      display:grid;place-items:center;
+      box-shadow: 0 12px 26px rgba(0,0,0,.35);
+      flex:0 0 auto;
+    }
+    .logoBox img{width:100%;height:100%;object-fit:cover;display:none}
+    .logoFallback{
+      font-weight:900; letter-spacing:.8px;
+      background: linear-gradient(135deg, var(--brand-red2), var(--brand-red));
+      -webkit-background-clip: text; background-clip:text; color:transparent;
+      font-size:18px;
+    }
+    .brandText{min-width:0}
+    .brandText h1{margin:0;font-size:15.5px;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brandText p{margin:2px 0 0;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .actions{display:flex;gap:10px;align-items:center}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(18,18,20,.7);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(18,18,20,.85);
+      color:var(--text);
+      padding:10px 12px;border-radius:14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.15s ease;
+      display:inline-flex;align-items:center;gap:10px;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.22)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(255,42,50,.95), rgba(209,27,34,.78));
+      border-color: rgba(209,27,34,.45);
+      box-shadow: 0 18px 40px rgba(209,27,34,.18);
+    }
+    .btn.ghost{background:transparent}
+    .badge{
+      min-width:20px;height:20px;padding:0 6px;border-radius:999px;
+      background: rgba(255,255,255,.10);
+      display:inline-grid;place-items:center;
+      font-size:12px;font-weight:900;
+    }
+
+    /* Hero */
+    .hero{padding:18px 0 8px;display:grid;gap:14px}
+    .heroCard{
+      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: var(--shadow);
+      display:grid;gap:12px;
+    }
+    .headline{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+    .headline h2{margin:0;font-size:18px;letter-spacing:.2px}
+    .headline .sub{margin-top:6px;color:var(--muted);font-size:13px;max-width:720px;line-height:1.35}
+    .kpis{display:flex;gap:10px;flex-wrap:wrap}
+    .kpi{
+      padding:10px 12px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(18,18,20,.55);
+      color:var(--muted);
+      font-size:12px;
+      display:grid;gap:2px;
+      min-width: 170px;
+    }
+    .kpi b{color:var(--text);font-size:13px}
+
+    /* Tabs serviços (igual LP Grill) */
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .tabs{display:flex;gap:10px;flex-wrap:wrap}
+    .tab{
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(18,18,20,.55);
+      color:var(--muted);
+      font-weight:900;font-size:13px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .tab.active{
+      color:var(--text);
+      border-color: rgba(209,27,34,.55);
+      background: rgba(209,27,34,.12);
+    }
+
+    /* Layout */
+    .grid{display:grid;grid-template-columns: 1.15fr .85fr;gap:16px;margin-top:12px}
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} .stickyPanel{position:relative;top:0} }
+
+    .card{
+      background: linear-gradient(180deg, rgba(18,18,20,.92), rgba(18,18,20,.70));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding:14px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.25);
+    }
+    .sectionTitle{margin:0 0 10px;font-size:15px}
+
+    /* Serviço detalhado */
+    .serviceBlock{display:grid;gap:10px}
+    .serviceBlock h3{margin:0;font-size:16px}
+    .serviceBlock p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .chip{
+      padding:8px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(23,23,26,.55);
+      color: var(--silver2);
+      font-size:12px;
+    }
+
+    /* Galeria */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    @media (max-width: 720px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+    .shot{
+      border-radius:16px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      position:relative;
+    }
+    .shot img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio: 4/3}
+    .shot:after{
+      content:"";
+      position:absolute;inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.55), transparent 55%);
+      opacity:.0; transition:.15s ease;
+    }
+    .shot:hover:after{opacity:.9}
+
+    /* Modal imagem */
+    .modal{
+      position:fixed; inset:0; z-index:80;
+      background: rgba(0,0,0,.70);
+      display:none;
+      align-items:center; justify-content:center;
+      padding:18px;
+    }
+    .modal .box{
+      width:min(980px, 96vw);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(18,18,20,.92);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modalTop{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .modalTop b{font-size:13px;color:var(--silver2)}
+    .modalTop button{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .modalImg{width:100%;display:block;max-height:72vh;object-fit:contain;background:#0b0b0c}
+
+    /* Painel lateral */
+    .stickyPanel{position:sticky;top:78px;height:fit-content}
+    .form{display:grid;gap:10px}
+    .field{display:grid;gap:6px}
+    .field label{font-size:12px;color:var(--muted);font-weight:900}
+    .field input, .field textarea, .field select{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(18,18,20,.65);
+      color:var(--text);
+      padding:10px 12px;
+      outline:none;
+      font-size:14px;
+    }
+    textarea{min-height:74px;resize:vertical}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:560px){.two{grid-template-columns:1fr}}
+
+    /* Depoimentos */
+    .quotes{display:grid;gap:10px}
+    .quote{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(23,23,26,.45);
+      padding:12px;
+    }
+    .quote p{margin:0;color:var(--silver2);font-size:13px;line-height:1.45}
+    .quote small{display:block;margin-top:6px;color:var(--muted);font-weight:800}
+
+    /* Área atendida */
+    .areas{display:flex;flex-wrap:wrap;gap:8px}
+    .area{padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background: rgba(23,23,26,.45);color:var(--muted);font-size:12px;font-weight:900}
+
+    /* WhatsApp flutuante */
+    .fab{
+      position:fixed; right:14px; bottom:14px; z-index:90;
+      border-radius:999px;
+      padding:12px 14px;
+      border:1px solid rgba(209,27,34,.45);
+      background: linear-gradient(135deg, rgba(255,42,50,.95), rgba(209,27,34,.78));
+      box-shadow: 0 18px 44px rgba(209,27,34,.18);
+      font-weight:900;
+      cursor:pointer;
+      display:flex;align-items:center;gap:10px;
+    }
+
+    .footer{
+      margin-top:14px;color:var(--muted);font-size:12px;
+      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
+    }
+    .divider{height:1px;background:rgba(255,255,255,.08);margin:12px 0}
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="inner">
+      <div class="brand">
+        <div class="logoBox" id="logoBox" title="AS Andrade Serralheria">
+          <span class="logoFallback" id="logoFallback">AS</span>
+          <img id="logoImg" alt="Logo AS Andrade Serralheria" />
+        </div>
+        <div class="brandText">
+          <h1>AS Andrade Serralheria & Caldeiraria</h1>
+          <p>Belo Horizonte - MG • Orçamento rápido no WhatsApp</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <span class="pill">📍 BH e região</span>
+        <button class="btn primary" id="ctaTop" type="button">Pedir orçamento <span class="badge">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="heroCard">
+        <div class="headline">
+          <div>
+            <h2>Metal sob medida, acabamento profissional e entrega no prazo.</h2>
+            <div class="sub">
+              Portões, grades, estruturas metálicas e caldeiraria. Atendimento residencial, comercial e obras médias.
+              Você manda medidas/fotos, a gente responde com orçamento e prazo.
+            </div>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><b>Atendimento rápido</b><span>WhatsApp direto</span></div>
+            <div class="kpi"><b>Obra e reforma</b><span>Residencial e empresas</span></div>
+            <div class="kpi"><b>BH e região</b><span>Consulte bairros</span></div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:6px">
+          <div class="tabs" id="tabs"></div>
+          <span class="pill" id="servicePill">Serviço: Todos</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <!-- ESQUERDA -->
+      <div class="list" style="display:grid;gap:16px">
+        <!-- Serviço (página separada via hash) -->
+        <div class="card">
+          <h2 class="sectionTitle" id="serviceTitle">Serviços</h2>
+          <div class="serviceBlock" id="serviceBlock"></div>
+        </div>
+
+        <!-- Portfólio -->
+        <div class="card">
+          <h2 class="sectionTitle">Portfólio (obras reais)</h2>
+          <div class="gallery" id="gallery"></div>
+          <div class="footer" style="margin-top:10px">
+            <span>Dica: fotos reais vendem. Suba suas imagens no repositório com os nomes abaixo.</span>
+          </div>
+        </div>
+
+        <!-- Depoimentos -->
+        <div class="card">
+          <h2 class="sectionTitle">Depoimentos</h2>
+          <div class="quotes" id="quotes"></div>
+        </div>
+
+        <!-- Área atendida -->
+        <div class="card">
+          <h2 class="sectionTitle">Área atendida</h2>
+          <div class="areas" id="areas"></div>
+          <div class="divider"></div>
+          <div class="footer">
+            <span><b>WhatsApp:</b> (31) 98391-3499</span>
+            <span><b>Horário:</b> Seg a Sáb • 08:00–18:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIREITA (ORÇAMENTO) -->
+      <aside class="card stickyPanel" id="formPanel">
+        <h2 class="sectionTitle">Pedir orçamento</h2>
+
+        <div class="form">
+          <div class="two">
+            <div class="field">
+              <label>Seu nome</label>
+              <input id="name" placeholder="Ex: Paulo" />
+            </div>
+            <div class="field">
+              <label>Telefone</label>
+              <input id="phone" placeholder="(31) 9xxxx-xxxx" />
+            </div>
+          </div>
+
+          <div class="two">
+            <div class="field">
+              <label>Serviço</label>
+              <select id="serviceSelect"></select>
+            </div>
+            <div class="field">
+              <label>Cidade / Bairro</label>
+              <input id="place" placeholder="Ex: BH - Barreiro" />
+            </div>
+          </div>
+
+          <div class="two">
+            <div class="field">
+              <label>Medidas (se tiver)</label>
+              <input id="measures" placeholder="Ex: 2,40m x 1,80m" />
+            </div>
+            <div class="field">
+              <label>Prazo (urgente?)</label>
+              <select id="deadline">
+                <option value="Sem urgência">Sem urgência</option>
+                <option value="Até 7 dias">Até 7 dias</option>
+                <option value="Até 15 dias">Até 15 dias</option>
+                <option value="Urgente (explicar)">Urgente (explicar)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Detalhes do serviço</label>
+            <textarea id="details" placeholder="Explique o que precisa: tipo, material, local, se é instalação, etc."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Fotos/Projeto</label>
+            <input id="filesHint" value="Envie fotos depois no WhatsApp (após abrir a conversa)" disabled />
+          </div>
+
+          <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
+
+          <div class="footer">
+            <span style="color:var(--muted)">Atendimento em BH e região • Residencial / Comercial / Obras</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <!-- Modal imagem -->
+  <div class="modal" id="modal">
+    <div class="box">
+      <div class="modalTop">
+        <b id="modalTitle">Imagem</b>
+        <button type="button" id="closeModal">Fechar ✕</button>
+      </div>
+      <img class="modalImg" id="modalImg" alt="Obra" />
+    </div>
+  </div>
+
+  <!-- WhatsApp flutuante -->
+  <button class="fab" id="fab" type="button">📞 WhatsApp</button>
+
+<script>
+  const CONFIG = {
+    company: "AS Andrade Serralheria & Caldeiraria",
+    city: "Belo Horizonte - MG",
+    whatsapp: "553183913499",
+    logoFile: "LOGO.png"
+  };
+
+  const SERVICES = [
+    {
+      key:"todos",
+      title:"Serviços",
+      short:"Todos",
+      desc:"Atendimento residencial, comercial e obras médias. Clique em um serviço para ver detalhes e pedir orçamento.",
+      bullets:["Orçamento rápido", "Acabamento profissional", "Instalação sob medida", "BH e região"]
+    },
+    {
+      key:"portoes",
+      title:"Portões sob medida",
+      short:"Portões",
+      desc:"Portões de correr, basculante e social. Fabricação e instalação com reforço, alinhamento e acabamento.",
+      bullets:["Portão de correr", "Basculante", "Portão social", "Automação (preparação)"]
+    },
+    {
+      key:"grades",
+      title:"Grades e proteção",
+      short:"Grades",
+      desc:"Grades para janelas/portas, proteção e segurança com visual limpo e pintura resistente.",
+      bullets:["Grades residenciais", "Grades comerciais", "Pintura/esmaltado", "Instalação"]
+    },
+    {
+      key:"estruturas",
+      title:"Estruturas metálicas",
+      short:"Estruturas",
+      desc:"Estruturas para cobertura, galpões, reforços e obras. Produção e montagem.",
+      bullets:["Coberturas", "Reforços", "Mezaninos", "Montagem"]
+    },
+    {
+      key:"caldeiraria",
+      title:"Caldeiraria sob medida",
+      short:"Caldeiraria",
+      desc:"Peças, suportes, bases e soluções metálicas conforme projeto/foto/medida.",
+      bullets:["Peças e suportes", "Corte e solda", "Conserto e reforço", "Sob medida"]
+    },
+    {
+      key:"coberturas",
+      title:"Coberturas e telhados",
+      short:"Coberturas",
+      desc:"Cobertura de garagem e área externa com estrutura metálica e fechamento conforme necessidade.",
+      bullets:["Garagem", "Área externa", "Estrutura metálica", "Fechamento"]
+    },
+    {
+      key:"sobmedida",
+      title:"Projetos sob medida",
+      short:"Sob medida",
+      desc:"Você manda referência/foto. A gente define material, medida, prazo e orçamento.",
+      bullets:["Personalizado", "Melhor custo-benefício", "Prazo combinado", "Execução profissional"]
+    }
+  ];
+
+  // Galeria “pesada” (você sobe essas fotos com esses nomes)
+  const PORTFOLIO = [
+    { src:"obra-01.jpg", title:"Portão de correr" },
+    { src:"obra-02.jpg", title:"Grade residencial" },
+    { src:"obra-03.jpg", title:"Estrutura metálica" },
+    { src:"obra-04.jpg", title:"Cobertura" },
+    { src:"obra-05.jpg", title:"Caldeiraria sob medida" },
+    { src:"obra-06.jpg", title:"Corrimão / guarda-corpo" },
+  ];
+
+  const TESTIMONIALS = [
+    { text:"Serviço muito bem feito, rápido e com acabamento ótimo. Recomendo!", by:"Cliente residencial • BH" },
+    { text:"Orçamento claro e entrega no prazo. Fechamos mais serviços depois.", by:"Cliente comercial • BH" },
+    { text:"Estrutura ficou firme e alinhada. Equipe caprichosa.", by:"Obra média • Região BH" },
+  ];
+
+  const AREAS = ["Belo Horizonte", "Contagem", "Betim", "Santa Luzia", "Ibirité", "Ribeirão das Neves", "Venda Nova", "Barreiro"];
+
+  const el = (id)=>document.getElementById(id);
+
+  const state = { serviceKey: "todos" };
+
+  function setHash(key){
+    location.hash = `servico=${encodeURIComponent(key)}`;
+  }
+  function readHash(){
+    const h = (location.hash || "").replace("#","");
+    if(!h) return null;
+    const [k,v] = h.split("=");
+    if(k === "servico" && v) return decodeURIComponent(v);
+    return null;
+  }
+
+  function renderTabs(){
+    const tabs = el("tabs");
+    tabs.innerHTML = "";
+    SERVICES.filter(s=>s.key!=="todos").forEach(s=>{
+      const t = document.createElement("div");
+      t.className = "tab" + (state.serviceKey===s.key ? " active" : "");
+      t.textContent = s.short;
+      t.onclick = ()=>{ state.serviceKey = s.key; setHash(s.key); renderAll(); };
+      tabs.appendChild(t);
+    });
+
+    // Botão “Todos” como primeira opção
+    const all = document.createElement("div");
+    all.className = "tab" + (state.serviceKey==="todos" ? " active" : "");
+    all.textContent = "Todos";
+    all.onclick = ()=>{ state.serviceKey = "todos"; setHash("todos"); renderAll(); };
+    tabs.prepend(all);
+  }
+
+  function renderService(){
+    const svc = SERVICES.find(s=>s.key===state.serviceKey) || SERVICES[0];
+    el("serviceTitle").textContent = svc.title;
+    el("servicePill").textContent = "Serviço: " + svc.short;
+
+    const box = el("serviceBlock");
+    box.innerHTML = `
+      <h3>${svc.title}</h3>
+      <p>${svc.desc}</p>
+      <div class="chips">
+        ${svc.bullets.map(b=>`<span class="chip">• ${b}</span>`).join("")}
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <button class="btn primary" type="button" id="svcCta">Pedir orçamento deste serviço</button>
+        <button class="btn" type="button" id="toForm">Preencher formulário</button>
+      </div>
+    `;
+
+    // CTA serviço
+    el("svcCta").onclick = ()=>{
+      el("serviceSelect").value = svc.short;
+      scrollToForm();
+      openWhats("Quero orçamento para: " + svc.title);
+    };
+    el("toForm").onclick = scrollToForm;
+  }
+
+  function renderSelect(){
+    const sel = el("serviceSelect");
+    sel.innerHTML = "";
+    SERVICES.filter(s=>s.key!=="todos").forEach(s=>{
+      const op = document.createElement("option");
+      op.value = s.short;
+      op.textContent = s.short;
+      sel.appendChild(op);
+    });
+
+    const svc = SERVICES.find(s=>s.key===state.serviceKey);
+    if(svc && svc.key!=="todos") sel.value = svc.short;
+  }
+
+  function renderGallery(){
+    const g = el("gallery");
+    g.innerHTML = "";
+
+    PORTFOLIO.forEach(p=>{
+      const d = document.createElement("div");
+      d.className = "shot";
+      d.innerHTML = `<img src="${p.src}" alt="${p.title}" />`;
+      d.onclick = ()=> openModal(p.src, p.title);
+
+      // Se imagem não existir, troca por placeholder visual (não quebra o site)
+      const img = d.querySelector("img");
+      img.onerror = ()=>{
+        img.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+            <rect width="100%" height="100%" fill="#121214"/>
+            <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" fill="#c7c7c7" font-size="28" font-family="Arial">Envie ${p.src}</text>
+            <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="#a1a1aa" font-size="18" font-family="Arial">${p.title}</text>
+          </svg>
+        `);
+      };
+
+      g.appendChild(d);
+    });
+  }
+
+  function renderTestimonials(){
+    const q = el("quotes");
+    q.innerHTML = "";
+    TESTIMONIALS.forEach(t=>{
+      const d = document.createElement("div");
+      d.className = "quote";
+      d.innerHTML = `<p>“${t.text}”</p><small>— ${t.by}</small>`;
+      q.appendChild(d);
+    });
+  }
+
+  function renderAreas(){
+    const a = el("areas");
+    a.innerHTML = "";
+    AREAS.forEach(x=>{
+      const s = document.createElement("span");
+      s.className = "area";
+      s.textContent = x;
+      a.appendChild(s);
+    });
+  }
+
+  function openModal(src, title){
+    el("modalTitle").textContent = title;
+    el("modalImg").src = src;
+    el("modal").style.display = "flex";
+  }
+  function closeModal(){
+    el("modal").style.display = "none";
+    el("modalImg").src = "";
+  }
+
+  function scrollToForm(){
+    el("formPanel").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  function openWhats(prefill){
+    const msg = `Olá, vim pelo site da ${CONFIG.company}.\n${prefill}\n\nPode me passar orçamento e prazo?`;
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+  }
+
+  function sendForm(){
+    const name = el("name").value.trim();
+    const phone = el("phone").value.trim();
+    const service = el("serviceSelect").value;
+    const place = el("place").value.trim();
+    const measures = el("measures").value.trim();
+    const deadline = el("deadline").value;
+    const details = el("details").value.trim();
+
+    const msg =
+`*ORÇAMENTO - ${CONFIG.company}*
+*Nome:* ${name || "(não informado)"}
+*Telefone:* ${phone || "(não informado)"}
+*Serviço:* ${service}
+*Local:* ${place || "(não informado)"}
+*Medidas:* ${measures || "(não informado)"}
+*Prazo:* ${deadline}
+*Detalhes:* ${details || "(não informado)"}
+
+*Obs:* Vou enviar fotos/projeto na sequência aqui no WhatsApp.`;
+
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+  }
+
+  function tryLoadLogo(){
+    const img = el("logoImg");
+    img.src = CONFIG.logoFile + "?v=" + Date.now(); // evita cache
+    img.onload = ()=>{
+      img.style.display = "block";
+      el("logoFallback").style.display = "none";
+    };
+  }
+
+  function renderAll(){
+    renderTabs();
+    renderSelect();
+    renderService();
+    renderGallery();
+    renderTestimonials();
+    renderAreas();
+  }
+
+  // Eventos
+  el("closeModal").onclick = closeModal;
+  el("modal").addEventListener("click", (e)=>{ if(e.target.id==="modal") closeModal(); });
+  el("ctaTop").onclick = scrollToForm;
+  el("sendBtn").onclick = sendForm;
+  el("fab").onclick = ()=> openWhats("Quero um orçamento.");
+
+  // Iniciar
+  const hk = readHash();
+  if(hk && SERVICES.some(s=>s.key===hk)) state.serviceKey = hk;
+  tryLoadLogo();
+  renderAll();
+</script>
+</body>
+</html>
 
