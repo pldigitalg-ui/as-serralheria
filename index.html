@@ -337,7 +337,17 @@
           <div class="two">
             <div class="field">
               <label>Serviço</label>
-              <select id="serviceSelect"></select>
+            <div id="serviceCheckList" style="
+display:grid;
+gap:8px;
+max-height:180px;
+overflow:auto;
+padding:6px;
+border:1px solid var(--line);
+border-radius:12px;
+background:rgba(255,255,255,.7);
+"></div>
+
             </div>
             <div class="field">
               <label>Cidade / Bairro</label>
@@ -448,6 +458,31 @@ function renderServices(){
   const container = el("services");
   container.innerHTML = "";
   const items = filteredServices();
+  function renderServiceChecklist(){
+  const box = el("serviceCheckList");
+  box.innerHTML = "";
+
+  SERVICES.forEach(sec=>{
+    sec.items.forEach(it=>{
+      const id = "chk_" + it.id;
+
+      const row = document.createElement("label");
+      row.style.display = "flex";
+      row.style.gap = "8px";
+      row.style.alignItems = "center";
+      row.style.cursor = "pointer";
+      row.style.fontSize = "13px";
+
+      row.innerHTML = `
+        <input type="checkbox" value="${sec.cat} — ${it.name}" id="${id}">
+        <span>${sec.cat} — ${it.name}</span>
+      `;
+
+      box.appendChild(row);
+    });
+  });
+}
+
 
   items.forEach(it=>{
     const row = document.createElement("div");
@@ -537,7 +572,9 @@ function scrollToForm(){
 function buildWhatsAppMessage(){
   const name = el("name").value.trim();
   const phone = el("phone").value.trim();
-  const service = el("serviceSelect").value;
+const selectedServices = Array.from(
+  document.querySelectorAll("#serviceCheckList input:checked")
+).map(c=>c.value);
   const place = el("place").value.trim();
   const measures = el("measures").value.trim();
   const deadline = el("deadline").value;
@@ -546,7 +583,8 @@ function buildWhatsAppMessage(){
   return `*ORÇAMENTO - ${CONFIG.company}*
 *Nome:* ${name || "(não informado)"}
 *Telefone:* ${phone || "(não informado)"}
-*Serviço:* ${service || "(não informado)"}
+*Serviços:*
+${selectedServices.length ? selectedServices.map(s=>"• "+s).join("\n") : "(não informado)"}
 *Local:* ${place || "(não informado)"}
 *Medidas:* ${measures || "(não informado)"}
 *Prazo:* ${deadline}
@@ -575,7 +613,8 @@ el("serviceSelect").addEventListener("change", updateSticky);
 
 /* Start */
 tryLoadLogo();
-render();
+render();renderServiceChecklist();
+
 
 function render(){
   renderTabs();
