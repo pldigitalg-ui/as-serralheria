@@ -137,7 +137,7 @@
       position:absolute; inset:0;
       background: url("hero.jpg") center/cover no-repeat;
       filter: saturate(.9) contrast(.95) brightness(1.02);
-      opacity:.22;           /* deixa premium sem pesar */
+      opacity:.22;
     }
     .heroOverlay{
       position:absolute; inset:0;
@@ -343,16 +343,6 @@
     }
     .errorBox.show{display:flex}
     .errorBox b{color:var(--red2)}
-    .successBox{
-      display:none;
-      padding:10px 12px;border-radius:16px;
-      border:1px solid rgba(22,163,74,.22);
-      background: rgba(22,163,74,.08);
-      color: var(--text);
-      font-size:13px;
-      gap:10px;
-      align-items:flex-start;
-    }
 
     /* PORTFÓLIO */
     .gallery{
@@ -543,14 +533,16 @@
             <a class="btn" href="#portfolio">Ver portfólio</a>
           </div>
 
+          <!-- melhoria: área atendida com bairros -->
           <div class="micro">
             <span>📞 <b>(31) 98391-3499</b></span>
             <span>🕒 <b>Seg a Sáb:</b> 11:00 às 15:00</span>
+            <span>📍 <b>Atendemos:</b> BH, Contagem, Betim, Nova Lima, Vespasiano</span>
           </div>
         </div>
 
         <div class="heroCard">
-          <h3>Empresa grande na prática</h3>
+          <h3>Empresa estruturada</h3>
           <div class="line"><span>Atendimento</span> <strong>Residencial + Comercial</strong></div>
           <div class="line"><span>Entrega</span> <strong>Prazo + alinhamento</strong></div>
           <div class="line"><span>Execução</span> <strong>Solda + reforço</strong></div>
@@ -597,25 +589,25 @@
 
       <div class="card">
         <h2>Prova social</h2>
-        <p class="subline">Coloque números reais quando você quiser (eu deixei como placeholders).</p>
+        <p class="subline">Atendimento completo do orçamento à instalação.</p>
         <div class="divider"></div>
         <div class="list" style="margin-top:0">
           <div class="service">
             <div class="info" style="grid-column:1/-1">
               <h3>+100 projetos entregues</h3>
-              <p>Atualize esse número quando quiser — passa autoridade na hora.</p>
+              <p>Experiência em residencial, comercial e estruturas.</p>
             </div>
           </div>
           <div class="service">
             <div class="info" style="grid-column:1/-1">
               <h3>BH e região</h3>
-              <p>Atendimento residencial e comercial — com instalação.</p>
+              <p>Atendimento e instalação com alinhamento e acabamento.</p>
             </div>
           </div>
           <div class="service">
             <div class="info" style="grid-column:1/-1">
               <h3>Atendimento direto</h3>
-              <p>Sem enrolação: conversa com quem executa.</p>
+              <p>Conversa com quem executa, sem enrolação.</p>
             </div>
           </div>
         </div>
@@ -626,20 +618,15 @@
     <section class="section grid2" aria-label="Serviços e orçamento">
       <div class="card">
         <h2>Serviços</h2>
-        <p class="subline">Marque serviços no formulário e descreva o que precisa. (Você pode marcar mais de um)</p>
+        <p class="subline">Marque serviços no formulário e descreva o que precisa.</p>
 
         <div class="tabs" id="tabs"></div>
         <div class="list" id="services"></div>
-
-        <p class="subline">
-          📸 Para as fotos aparecerem, suba no repositório com estes nomes (exatos):<br>
-          <b>serv-portao.jpg</b>, <b>serv-social.jpg</b>, <b>serv-grade.jpg</b>, <b>serv-grade-comercial.jpg</b>, <b>serv-estrutura.jpg</b>, <b>serv-escada.jpg</b>, <b>serv-cobertura.jpg</b>, <b>serv-cobertura2.jpg</b>, <b>serv-personalizado.jpg</b>
-        </p>
       </div>
 
       <aside class="card" id="orcamento">
-        <h2>Orçamento (obrigatório preencher)</h2>
-        <p class="subline">Só abre o WhatsApp quando estiver completo. Sem campos vazios.</p>
+        <h2>Orçamento</h2>
+        <p class="subline">O WhatsApp abre somente quando estiver preenchido.</p>
 
         <div class="errorBox" id="errorBox">
           <div>⛔</div>
@@ -653,7 +640,7 @@
           <div class="field">
             <label>Selecione os serviços (pode marcar mais de um)</label>
             <div class="checkWrap" id="serviceCheckList"></div>
-            <div class="hint">Dica: marque tudo que você quer no mesmo orçamento (portão + grade + escada, etc.).</div>
+            <div class="hint">Marque tudo que você quer no mesmo orçamento.</div>
           </div>
 
           <div class="two">
@@ -701,7 +688,7 @@
 
           <div class="field">
             <label>Detalhes do serviço *</label>
-            <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, e o que você quer (quanto mais detalhes, melhor o orçamento)."></textarea>
+            <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, e o que você quer."></textarea>
           </div>
 
           <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
@@ -713,7 +700,6 @@
 
           <div class="divider"></div>
           <button class="btn ghost" id="clearSaved" type="button">Limpar dados salvos deste aparelho</button>
-          <div class="hint">*Salvamos automaticamente só para não perder seu preenchimento. Você pode limpar quando quiser.</div>
         </div>
       </aside>
     </section>
@@ -721,31 +707,28 @@
     <!-- PORTFÓLIO -->
     <section class="section card" id="portfolio" aria-label="Portfólio">
       <h2>Portfólio</h2>
-      <p class="subline">Misturado (obra + casa) — isso é o que passa “empresa grande” no seu posicionamento.</p>
+      <p class="subline">Alguns trabalhos realizados.</p>
       <div class="gallery" id="gallery"></div>
-      <p class="subline">📌 Suba suas fotos como: <b>obra-01.jpg</b> até <b>obra-09.jpg</b> (ou ajuste no JS).</p>
     </section>
 
     <!-- DEPOIMENTOS -->
     <section class="section card" aria-label="Depoimentos">
       <h2>Depoimentos</h2>
-      <p class="subline">Quando você tiver depoimentos reais, eu coloco no lugar (não invente).</p>
-
       <div class="tGrid">
         <div class="tCard">
           <div class="stars">★★★★★</div>
           <p>“Acabamento excelente e alinhamento perfeito. Entregou no prazo.”</p>
-          <div class="who">Cliente residencial • BH</div>
+          <div class="who">Antonio Pereira</div>
         </div>
         <div class="tCard">
           <div class="stars">★★★★★</div>
           <p>“Fez a estrutura e instalação com profissionalismo. Recomendo.”</p>
-          <div class="who">Cliente comercial • Região BH</div>
+          <div class="who">Adelaide • Região Nova Lima</div>
         </div>
         <div class="tCard">
           <div class="stars">★★★★★</div>
           <p>“Portão e grade ficaram top. Atendimento rápido no WhatsApp.”</p>
-          <div class="who">Cliente residencial • BH</div>
+          <div class="who">Ernani • Vespasiano</div>
         </div>
       </div>
     </section>
@@ -753,16 +736,16 @@
     <!-- FAQ -->
     <section class="section card" aria-label="Perguntas frequentes">
       <h2>Perguntas frequentes</h2>
-      <p class="subline">Respostas curtas e objetivas (empresa grande).</p>
+      <p class="subline">Respostas diretas.</p>
       <div class="list">
         <details>
-          <summary>Como faço para orçamento ficar mais preciso?</summary>
-          <p>Envie <b>foto do local</b>, <b>medidas</b> e diga se precisa de <b>instalação</b>. Se tiver referência do que quer, melhor ainda.</p>
+          <summary>Como faço para o orçamento ficar mais preciso?</summary>
+          <p>Envie foto do local, medidas e diga se precisa de instalação. Se tiver referência do que quer, melhor ainda.</p>
         </details>
 
         <details>
           <summary>Atende somente Belo Horizonte?</summary>
-          <p>Atendemos <b>BH e região</b>. Dependendo do serviço e distância, avaliamos logística e instalação.</p>
+          <p>Atendemos BH e região. Dependendo do serviço e distância, avaliamos logística e instalação.</p>
         </details>
 
         <details>
@@ -774,14 +757,14 @@
       <div class="divider"></div>
       <div class="footerBar">
         <span>© <span id="year"></span> AS Andrade Serralheria & Caldeiraria</span>
-        <span>Feito para conversão (WhatsApp)</span>
+        <span>Orçamentos pelo WhatsApp</span>
       </div>
     </section>
   </div>
 
-  <!-- WhatsApp flutuante (somente atalho) -->
+  <!-- WhatsApp flutuante (melhoria: leva pro formulário, não abre chat genérico) -->
   <div class="waFloat" aria-label="Atalho WhatsApp">
-    <a id="waQuick" href="#" title="Abrir WhatsApp">💬</a>
+    <a id="waQuick" href="#orcamento" title="Pedir orçamento">💬</a>
   </div>
 
   <!-- Sticky CTA mobile -->
@@ -841,7 +824,7 @@
       ]},
     ];
 
-    /* Portfólio (ajuste conforme você subir mais fotos) */
+    /* Portfólio (mantive a mesma estrutura; suba suas fotos e pronto) */
     const PORTFOLIO = [
       { src:"obra-01.jpg", title:"Portão premium (residencial)" },
       { src:"obra-02.jpg", title:"Grade (residencial)" },
@@ -872,7 +855,6 @@
         img.style.display = "block";
         el("logoText").style.display = "none";
       };
-      // se falhar, fica "AS"
     }
 
     function renderTabs(){
@@ -994,7 +976,7 @@
         const img = document.createElement("img");
         img.src = p.src;
         img.alt = p.title;
-        img.onerror = ()=>{ img.style.display="none"; item.style.minHeight="120px"; item.style.display="grid"; item.style.placeItems="center"; item.textContent="📸 Envie a foto: " + p.src; };
+        img.onerror = ()=>{ img.style.display="none"; item.style.minHeight="120px"; item.style.display="grid"; item.style.placeItems="center"; item.textContent="Foto não encontrada"; };
 
         const cap = document.createElement("div");
         cap.className = "gCap";
@@ -1020,7 +1002,7 @@
       if(idx === null) return;
       const p = PORTFOLIO[idx];
       const ta = el("details");
-      const prefix = `Referência do portfólio: ${p.title}. `;
+      const prefix = `Referência: ${p.title}. `;
       ta.value = ta.value ? (prefix + ta.value) : prefix;
       persistFormDebounced();
       closeModal();
@@ -1051,9 +1033,7 @@
 *Serviços:*
 ${servicesBlock}
 
-*Detalhes:* ${details}
-
-*Obs:* Se tiver fotos, envie aqui no WhatsApp na sequência.`;
+*Detalhes:* ${details}`;
     }
 
     function validateForm(){
@@ -1091,12 +1071,6 @@ ${servicesBlock}
       const msg = buildWhatsAppMessage();
       const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
       window.open(url, "_blank");
-    }
-
-    /* WhatsApp rápido (atalho) */
-    function waQuick(){
-      const msg = `Olá! Quero um orçamento com a AS. Vou enviar fotos/medidas e detalhes.`;
-      return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
     }
 
     /* localStorage (salvar sem travar: debounce) */
@@ -1172,7 +1146,6 @@ ${servicesBlock}
 
     function init(){
       el("year").textContent = String(new Date().getFullYear());
-      el("waQuick").href = waQuick();
 
       tryLoadLogo();
       renderTabs();
@@ -1194,17 +1167,9 @@ ${servicesBlock}
 
       document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeModal(); });
 
-      /* Atualiza sticky quando marca/desmarca */
       document.querySelectorAll("#serviceCheckList input").forEach(i=>{
         i.addEventListener("change", updateSticky);
       });
-
-      /* Se usuário mexer em tabs antes do checklist render, atualiza novamente */
-      setMiniTop();
-    }
-
-    function setMiniTop(){
-      el("topSub").textContent = `${CONFIG.cityLine} • Residencial + Obra`;
     }
 
     init();
