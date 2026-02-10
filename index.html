@@ -8,17 +8,14 @@
 
   <style>
     :root{
-      /* FUNDO CLARO */
       --bg:#f6f7f9;
       --card: rgba(255,255,255,.92);
-      --card2: rgba(255,255,255,.75);
+      --card2: rgba(255,255,255,.78);
 
-      /* TEXTO (agora escuro) */
       --text:#101114;
       --muted:#5b616a;
       --line: rgba(0,0,0,.10);
 
-      /* CORES DO LOGO */
       --brandRed:#d11b22;
       --brandRed2:#ff2a32;
       --silver:#c7c7c7;
@@ -30,7 +27,6 @@
 
     *{box-sizing:border-box}
     html,body{height:100%}
-
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
@@ -40,7 +36,7 @@
       overflow-x:hidden;
     }
 
-    /* FUNDO COM mockup.png BEM SUAVE (marca d’água) */
+    /* FUNDO mockup.png BEM SUAVE */
     body::before{
       content:"";
       position:fixed;
@@ -49,7 +45,7 @@
         radial-gradient(1200px 700px at 10% -10%, rgba(209,27,34,.10), transparent 60%),
         radial-gradient(900px 600px at 110% 10%, rgba(0,0,0,.05), transparent 60%),
         url("mockup.png") center/cover no-repeat;
-      opacity:.14;              /* <<< controla o quanto aparece o mockup */
+      opacity:.10; /* <<< ajuste: 0.05 mais suave | 0.14 mais forte */
       filter: saturate(.9) contrast(.95) brightness(1.05);
       pointer-events:none;
       z-index:-1;
@@ -101,7 +97,7 @@
       background: rgba(255,255,255,.92);
       color:var(--text);
       padding:10px 12px;border-radius:14px;
-      font-weight:800;
+      font-weight:900;
       cursor:pointer;
       transition:.15s ease;
       display:inline-flex;align-items:center;gap:10px;
@@ -114,6 +110,7 @@
       color: #fff;
       box-shadow: 0 16px 34px rgba(209,27,34,.18);
     }
+    .btn.ghost{background:transparent;box-shadow:none}
 
     .badge{
       min-width:20px;height:20px;padding:0 6px;border-radius:999px;
@@ -196,14 +193,33 @@
     .service h3{margin:0;font-size:15px}
     .service p{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.35}
 
-    .tagRight{
-      font-weight:900;
-      color: var(--text);
-      letter-spacing:.2px;
-      font-size:12.5px;
-      text-align:right;
+    .right{display:grid;gap:10px;justify-items:end}
+    .tagRight{font-weight:900;color:var(--text);font-size:12.5px;text-align:right}
+
+    /* CHECKLIST */
+    .checkWrap{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(255,255,255,.86);
+      padding:10px;
+      max-height: 220px;
+      overflow:auto;
+      display:grid;
+      gap:8px;
     }
-    .service .right{display:grid;gap:10px;justify-items:end}
+    .chk{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,.07);
+      background: rgba(255,255,255,.86);
+      cursor:pointer;
+    }
+    .chk input{margin-top:2px;transform: scale(1.08)}
+    .chk b{font-size:13px}
+    .chk small{display:block;color:var(--muted);margin-top:2px;line-height:1.25}
 
     /* PAINEL DIREITO */
     .rightPanel{position:sticky;top:78px;height:fit-content}
@@ -238,6 +254,7 @@
       margin-top:16px;color:var(--muted);font-size:12px;
       display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
     }
+    .divider{height:1px;background:rgba(0,0,0,.08);margin:12px 0}
 
     /* BOTÃO FIXO NO CELULAR */
     .stickyOrder{
@@ -293,7 +310,7 @@
           <div>
             <div style="font-weight:900;font-size:18px;letter-spacing:.2px">Metal sob medida com acabamento profissional</div>
             <div class="mini" style="margin-top:6px">
-              Envie fotos/medidas e receba <b>valor + prazo</b>. Residencial, comercial e obras médias.
+              Marque os serviços que precisa, preencha as informações e envie no WhatsApp.
             </div>
           </div>
           <div class="tabs" id="tabs"></div>
@@ -318,11 +335,16 @@
           <div>⚙️</div>
           <div>
             <b>Orçamento em 3 passos</b><br />
-            <small>1) você manda foto/medida • 2) enviamos valor + prazo • 3) agendamos produção/instalação</small>
+            <small>1) marque serviços + mande foto/medida • 2) enviamos valor + prazo • 3) agendamos produção/instalação</small>
           </div>
         </div>
 
         <div class="form">
+          <div class="field">
+            <label>Selecione os serviços (pode marcar mais de um)</label>
+            <div class="checkWrap" id="serviceCheckList"></div>
+          </div>
+
           <div class="two">
             <div class="field">
               <label>Seu nome</label>
@@ -336,30 +358,16 @@
 
           <div class="two">
             <div class="field">
-              <label>Serviço</label>
-            <div id="serviceCheckList" style="
-display:grid;
-gap:8px;
-max-height:180px;
-overflow:auto;
-padding:6px;
-border:1px solid var(--line);
-border-radius:12px;
-background:rgba(255,255,255,.7);
-"></div>
-
-            </div>
-            <div class="field">
               <label>Cidade / Bairro</label>
               <input id="place" placeholder="Ex: BH - Barreiro" />
             </div>
-          </div>
-
-          <div class="two">
             <div class="field">
               <label>Medidas (se tiver)</label>
               <input id="measures" placeholder="Ex: 2,40m x 1,80m" />
             </div>
+          </div>
+
+          <div class="two">
             <div class="field">
               <label>Prazo</label>
               <select id="deadline">
@@ -369,6 +377,13 @@ background:rgba(255,255,255,.7);
                 <option value="Urgente (explicar)">Urgente (explicar)</option>
               </select>
             </div>
+            <div class="field">
+              <label>Tenho foto do projeto?</label>
+              <select id="hasPhoto">
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+              </select>
+            </div>
           </div>
 
           <div class="field">
@@ -376,12 +391,21 @@ background:rgba(255,255,255,.7);
             <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, etc."></textarea>
           </div>
 
-          <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
+          <div class="two">
+            <button class="btn" id="sendPhotosBtn" type="button">Enviar fotos agora no WhatsApp</button>
+            <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
+          </div>
 
           <div class="footer">
             <span><b>WhatsApp:</b> (31) 98391-3499</span>
             <span><b>Cidade:</b> Belo Horizonte - MG</span>
           </div>
+
+          <div class="divider"></div>
+
+          <button class="btn ghost" id="clearSaved" type="button" title="Limpar dados salvos">
+            Limpar dados salvos deste aparelho
+          </button>
         </div>
       </aside>
     </section>
@@ -392,7 +416,7 @@ background:rgba(255,255,255,.7);
     <div class="bar">
       <div class="left">
         <b>Pedir orçamento</b>
-        <span id="stickySub">Escolha um serviço e envie as informações</span>
+        <span id="stickySub">Marque os serviços e envie as informações</span>
       </div>
       <button class="btn primary" id="stickyBtn" type="button">Pedir orçamento</button>
     </div>
@@ -406,7 +430,7 @@ const CONFIG = {
   logoFile: "LOGO.png",
 };
 
-/* ✅ SOMENTE OS ITENS QUE VOCÊ TEM (pelo que aparece na sua lista) */
+/* SOMENTE OS ITENS */
 const SERVICES = [
   { cat: "Portões", items: [
     { id:"p1", name:"Portão", desc:"Fabricação e instalação sob medida.", thumb:"serv-portao.jpg" },
@@ -430,6 +454,8 @@ const SERVICES = [
 ];
 
 const el = (id)=>document.getElementById(id);
+const LS_KEY = "as_serralheria_form_v1";
+
 const state = { cat: "Todos" };
 
 function getAllCats(){ return ["Todos", ...SERVICES.map(s=>s.cat)]; }
@@ -441,7 +467,7 @@ function renderTabs(){
     const b = document.createElement("div");
     b.className = "tab" + (state.cat===c ? " active" : "");
     b.textContent = c;
-    b.onclick = ()=>{ state.cat=c; render(); };
+    b.onclick = ()=>{ state.cat=c; renderServices(); };
     tabs.appendChild(b);
   });
 }
@@ -458,31 +484,6 @@ function renderServices(){
   const container = el("services");
   container.innerHTML = "";
   const items = filteredServices();
-  function renderServiceChecklist(){
-  const box = el("serviceCheckList");
-  box.innerHTML = "";
-
-  SERVICES.forEach(sec=>{
-    sec.items.forEach(it=>{
-      const id = "chk_" + it.id;
-
-      const row = document.createElement("label");
-      row.style.display = "flex";
-      row.style.gap = "8px";
-      row.style.alignItems = "center";
-      row.style.cursor = "pointer";
-      row.style.fontSize = "13px";
-
-      row.innerHTML = `
-        <input type="checkbox" value="${sec.cat} — ${it.name}" id="${id}">
-        <span>${sec.cat} — ${it.name}</span>
-      `;
-
-      box.appendChild(row);
-    });
-  });
-}
-
 
   items.forEach(it=>{
     const row = document.createElement("div");
@@ -516,11 +517,15 @@ function renderServices(){
     const btn = document.createElement("button");
     btn.className = "btn primary";
     btn.type = "button";
-    btn.textContent = "Orçar";
+    btn.textContent = "Marcar";
     btn.onclick = ()=>{
-      el("serviceSelect").value = it.cat + " — " + it.name;
-      updateSticky();
-      scrollToForm();
+      const checkbox = document.querySelector(`#serviceCheckList input[value="${cssEscape(it.cat + " — " + it.name)}"]`);
+      if(checkbox){
+        checkbox.checked = true;
+        persistForm();
+        updateSticky();
+        scrollToForm();
+      }
     };
 
     right.append(tag, btn);
@@ -529,31 +534,41 @@ function renderServices(){
   });
 }
 
-function renderServiceSelect(){
-  const sel = el("serviceSelect");
-  const current = sel.value;
-  sel.innerHTML = "";
-
-  const opt0 = document.createElement("option");
-  opt0.value = "";
-  opt0.textContent = "Selecione um serviço…";
-  sel.appendChild(opt0);
+function renderChecklist(){
+  const box = el("serviceCheckList");
+  box.innerHTML = "";
 
   SERVICES.forEach(sec=>{
     sec.items.forEach(it=>{
-      const op = document.createElement("option");
-      op.value = sec.cat + " — " + it.name;
-      op.textContent = sec.cat + " — " + it.name;
-      sel.appendChild(op);
+      const value = sec.cat + " — " + it.name;
+      const id = "chk_" + it.id;
+
+      const label = document.createElement("label");
+      label.className = "chk";
+      label.setAttribute("for", id);
+
+      label.innerHTML = `
+        <input type="checkbox" id="${id}" value="${escapeHtml(value)}">
+        <div>
+          <b>${escapeHtml(value)}</b>
+          <small>${escapeHtml(it.desc)}</small>
+        </div>
+      `;
+
+      const input = label.querySelector("input");
+      input.addEventListener("change", ()=>{ persistForm(); updateSticky(); });
+
+      box.appendChild(label);
     });
   });
+}
 
-  if(current) sel.value = current;
+function getSelectedServices(){
+  return Array.from(document.querySelectorAll("#serviceCheckList input:checked")).map(i=>i.value);
 }
 
 function setMiniInfo(){
-  el("miniInfo").textContent =
-    `${CONFIG.cityLine} • Orçamento via WhatsApp • Portões, grades, estruturas e coberturas`;
+  el("miniInfo").textContent = `${CONFIG.cityLine} • Orçamento via WhatsApp • Marque 1 ou mais serviços`;
 }
 
 function tryLoadLogo(){
@@ -569,60 +584,146 @@ function scrollToForm(){
   el("formPanel").scrollIntoView({behavior:"smooth", block:"start"});
 }
 
-function buildWhatsAppMessage(){
+function buildWhatsAppMessage(includePhotosRequest){
   const name = el("name").value.trim();
   const phone = el("phone").value.trim();
-const selectedServices = Array.from(
-  document.querySelectorAll("#serviceCheckList input:checked")
-).map(c=>c.value);
   const place = el("place").value.trim();
   const measures = el("measures").value.trim();
   const deadline = el("deadline").value;
+  const hasPhoto = el("hasPhoto").value;
   const details = el("details").value.trim();
+  const selected = getSelectedServices();
 
-  return `*ORÇAMENTO - ${CONFIG.company}*
+  const servicesBlock = selected.length
+    ? selected.map(s=>"• " + s).join("\n")
+    : "(nenhum marcado)";
+
+  let msg =
+`*ORÇAMENTO - ${CONFIG.company}*
 *Nome:* ${name || "(não informado)"}
 *Telefone:* ${phone || "(não informado)"}
-*Serviços:*
-${selectedServices.length ? selectedServices.map(s=>"• "+s).join("\n") : "(não informado)"}
 *Local:* ${place || "(não informado)"}
 *Medidas:* ${measures || "(não informado)"}
 *Prazo:* ${deadline}
-*Detalhes:* ${details || "(não informado)"}
+*Tenho foto do projeto?* ${hasPhoto}
 
-*Obs:* Vou enviar fotos/projeto na sequência aqui no WhatsApp.`;
+*Serviços:*
+${servicesBlock}
+
+*Detalhes:* ${details || "(não informado)"}`;
+
+  if(includePhotosRequest){
+    msg += `\n\n*Agora vou enviar as fotos do projeto aqui no WhatsApp.*`;
+  } else {
+    msg += `\n\n*Obs:* Vou enviar fotos/projeto na sequência aqui no WhatsApp.`;
+  }
+
+  return msg;
 }
 
 function sendWhatsApp(){
-  const msg = buildWhatsAppMessage();
+  const selected = getSelectedServices();
+  if(selected.length === 0){
+    if(!confirm("Você não marcou nenhum serviço. Deseja enviar mesmo assim?")) return;
+  }
+  const msg = buildWhatsAppMessage(false);
   window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
-function updateSticky(){
-  const svc = el("serviceSelect").value;
-  el("stickySub").textContent = svc
-    ? `Serviço selecionado: ${svc}`
-    : "Escolha um serviço e envie as informações";
+function sendPhotosNow(){
+  const msg = buildWhatsAppMessage(true);
+  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
-/* Eventos */
+/* ====== localStorage ====== */
+function persistForm(){
+  const data = {
+    name: el("name").value,
+    phone: el("phone").value,
+    place: el("place").value,
+    measures: el("measures").value,
+    deadline: el("deadline").value,
+    hasPhoto: el("hasPhoto").value,
+    details: el("details").value,
+    checked: getSelectedServices(),
+  };
+  localStorage.setItem(LS_KEY, JSON.stringify(data));
+}
+
+function restoreForm(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+
+    el("name").value = data.name || "";
+    el("phone").value = data.phone || "";
+    el("place").value = data.place || "";
+    el("measures").value = data.measures || "";
+    el("deadline").value = data.deadline || "Sem urgência";
+    el("hasPhoto").value = data.hasPhoto || "Sim";
+    el("details").value = data.details || "";
+
+    const checked = new Set(data.checked || []);
+    document.querySelectorAll("#serviceCheckList input").forEach(i=>{
+      i.checked = checked.has(i.value);
+    });
+  } catch {}
+}
+
+function clearSaved(){
+  localStorage.removeItem(LS_KEY);
+  // limpa UI
+  el("name").value = "";
+  el("phone").value = "";
+  el("place").value = "";
+  el("measures").value = "";
+  el("deadline").value = "Sem urgência";
+  el("hasPhoto").value = "Sim";
+  el("details").value = "";
+  document.querySelectorAll("#serviceCheckList input").forEach(i=> i.checked = false);
+  updateSticky();
+}
+
+/* Sticky */
+function updateSticky(){
+  const count = getSelectedServices().length;
+  el("stickySub").textContent = count === 0
+    ? "Marque os serviços e envie as informações"
+    : `${count} serviço(s) selecionado(s)`;
+}
+
+/* Helpers */
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, s => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[s]));
+}
+function cssEscape(str){
+  // para achar checkbox pelo value sem quebrar selector
+  return String(str).replace(/\\/g,"\\\\").replace(/"/g,'\\"');
+}
+
+/* Eventos: salvar sempre que digitar */
+["name","phone","place","measures","deadline","hasPhoto","details"].forEach(id=>{
+  el(id).addEventListener("input", persistForm);
+  el(id).addEventListener("change", persistForm);
+});
+
 el("sendBtn").onclick = sendWhatsApp;
+el("sendPhotosBtn").onclick = sendPhotosNow;
 el("stickyBtn").onclick = scrollToForm;
 el("goFormBtn").onclick = scrollToForm;
-el("serviceSelect").addEventListener("change", updateSticky);
+el("clearSaved").onclick = clearSaved;
 
 /* Start */
 tryLoadLogo();
-render();renderServiceChecklist();
-
-
-function render(){
-  renderTabs();
-  renderServices();
-  renderServiceSelect();
-  setMiniInfo();
-  updateSticky();
-}
+renderTabs();
+renderChecklist();
+restoreForm();
+renderServices();
+setMiniInfo();
+updateSticky();
 </script>
 </body>
 </html>
