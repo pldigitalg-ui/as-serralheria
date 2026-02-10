@@ -4,11 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0b0b0c" />
-  <title>AS Andrade Serralheria | BH</title>
+  <title>AS Andrade Serralheria — Orçamentos</title>
 
   <style>
     :root{
-      /* Base */
       --bg:#0b0b0c;
       --card:#121214;
       --card2:#17171a;
@@ -16,13 +15,15 @@
       --muted:#a1a1aa;
       --line:#242428;
 
-      /* Cores do logo (vermelho + prata) */
-      --brand-red:#d11b22;     /* vermelho principal */
-      --brand-red2:#ff2a32;    /* brilho */
-      --silver:#c7c7c7;        /* prata */
-      --silver2:#efefef;       /* prata clara */
+      /* CORES DO LOGO (vermelho + prata) */
+      --brandRed:#d11b22;
+      --brandRed2:#ff2a32;
+      --silver:#c7c7c7;
+      --silver2:#efefef;
 
-      --shadow: 0 18px 48px rgba(0,0,0,.45);
+      --ok:#22c55e;
+      --warn:#f59e0b;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
       --radius: 18px;
     }
 
@@ -30,46 +31,44 @@
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
       background:
-        radial-gradient(1100px 680px at 12% -10%, rgba(209,27,34,.22), transparent 55%),
-        radial-gradient(900px 520px at 110% 10%, rgba(199,199,199,.10), transparent 55%),
+        radial-gradient(1200px 700px at 10% -10%, rgba(209,27,34,.22), transparent 55%),
+        radial-gradient(900px 600px at 110% 10%, rgba(199,199,199,.10), transparent 55%),
         var(--bg);
+      color:var(--text);
     }
 
-    a{color:inherit}
-    .wrap{max-width:1150px;margin:0 auto;padding:18px 16px 90px}
+    .wrap{max-width:1120px;margin:0 auto;padding:18px 16px 110px}
 
-    /* Topbar */
     .topbar{
-      position:sticky; top:0; z-index:50;
+      position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
       background: linear-gradient(to bottom, rgba(11,11,12,.92), rgba(11,11,12,.55));
-      border-bottom:1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .topbar .inner{max-width:1150px;margin:0 auto;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .topbar .inner{
+      max-width:1120px;margin:0 auto;padding:14px 16px;
+      display:flex;gap:12px;align-items:center;justify-content:space-between
+    }
+
     .brand{display:flex;gap:12px;align-items:center;min-width:0}
-    .logoBox{
-      width:46px;height:46px;border-radius:14px;overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+    .logo{
+      width:44px;height:44px;border-radius:14px;
       display:grid;place-items:center;
+      background: radial-gradient(120px 60px at 30% 20%, rgba(209,27,34,.35), transparent 60%), #101012;
+      border:1px solid rgba(255,255,255,.10);
       box-shadow: 0 12px 26px rgba(0,0,0,.35);
+      overflow:hidden;
       flex:0 0 auto;
     }
-    .logoBox img{width:100%;height:100%;object-fit:cover;display:none}
-    .logoFallback{
-      font-weight:900; letter-spacing:.8px;
-      background: linear-gradient(135deg, var(--brand-red2), var(--brand-red));
-      -webkit-background-clip: text; background-clip:text; color:transparent;
-      font-size:18px;
+    .logo img{width:100%;height:100%;object-fit:cover;display:none}
+    .brand h1{
+      margin:0;font-size:16px;line-height:1.1;letter-spacing:.3px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
-    .brandText{min-width:0}
-    .brandText h1{margin:0;font-size:15.5px;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .brandText p{margin:2px 0 0;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand p{margin:2px 0 0;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-    .actions{display:flex;gap:10px;align-items:center}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
       padding:8px 10px;border-radius:999px;
@@ -79,6 +78,8 @@
       font-size:12px;
       white-space:nowrap;
     }
+
+    .actions{display:flex;gap:10px;align-items:center}
     .btn{
       border:1px solid rgba(255,255,255,.12);
       background: rgba(18,18,20,.85);
@@ -90,20 +91,15 @@
       display:inline-flex;align-items:center;gap:10px;
     }
     .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.22)}
+
+    /* BOTÃO PRINCIPAL NO VERMELHO DO LOGO */
     .btn.primary{
       background: linear-gradient(135deg, rgba(255,42,50,.95), rgba(209,27,34,.78));
       border-color: rgba(209,27,34,.45);
-      box-shadow: 0 18px 40px rgba(209,27,34,.18);
+      box-shadow: 0 16px 34px rgba(209,27,34,.18);
     }
     .btn.ghost{background:transparent}
-    .badge{
-      min-width:20px;height:20px;padding:0 6px;border-radius:999px;
-      background: rgba(255,255,255,.10);
-      display:inline-grid;place-items:center;
-      font-size:12px;font-weight:900;
-    }
 
-    /* Hero */
     .hero{padding:18px 0 8px;display:grid;gap:14px}
     .heroCard{
       background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
@@ -113,30 +109,16 @@
       box-shadow: var(--shadow);
       display:grid;gap:12px;
     }
-    .headline{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
-    .headline h2{margin:0;font-size:18px;letter-spacing:.2px}
-    .headline .sub{margin-top:6px;color:var(--muted);font-size:13px;max-width:720px;line-height:1.35}
-    .kpis{display:flex;gap:10px;flex-wrap:wrap}
-    .kpi{
-      padding:10px 12px;border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(18,18,20,.55);
-      color:var(--muted);
-      font-size:12px;
-      display:grid;gap:2px;
-      min-width: 170px;
-    }
-    .kpi b{color:var(--text);font-size:13px}
 
-    /* Tabs serviços (igual LP Grill) */
     .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+
     .tabs{display:flex;gap:10px;flex-wrap:wrap}
     .tab{
       padding:10px 12px;border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(18,18,20,.55);
       color:var(--muted);
-      font-weight:900;font-size:13px;
+      font-weight:800;font-size:13px;
       cursor:pointer;
       user-select:none;
     }
@@ -146,10 +128,12 @@
       background: rgba(209,27,34,.12);
     }
 
-    /* Layout */
-    .grid{display:grid;grid-template-columns: 1.15fr .85fr;gap:16px;margin-top:12px}
-    @media (max-width: 980px){ .grid{grid-template-columns:1fr} .stickyPanel{position:relative;top:0} }
+    .mini{font-size:12px;color:var(--muted)}
 
+    .grid{display:grid;grid-template-columns: 1.2fr .8fr;gap:16px;margin-top:12px}
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} .rightPanel{position:relative;top:0} }
+
+    .list{display:grid;gap:12px}
     .card{
       background: linear-gradient(180deg, rgba(18,18,20,.92), rgba(18,18,20,.70));
       border:1px solid rgba(255,255,255,.10);
@@ -157,143 +141,135 @@
       padding:14px;
       box-shadow: 0 10px 26px rgba(0,0,0,.25);
     }
-    .sectionTitle{margin:0 0 10px;font-size:15px}
 
-    /* Serviço detalhado */
-    .serviceBlock{display:grid;gap:10px}
-    .serviceBlock h3{margin:0;font-size:16px}
-    .serviceBlock p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .chip{
-      padding:8px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+    /* BLOCO DE SERVIÇO (estilo item do cardápio) */
+    .service{
+      display:grid;
+      grid-template-columns: 86px 1fr auto;
+      gap:12px;
+      align-items:center;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
       background: rgba(23,23,26,.55);
-      color: var(--silver2);
-      font-size:12px;
+    }
+    @media (max-width: 520px){
+      .service{grid-template-columns: 78px 1fr; grid-template-areas:
+        "img info"
+        "ctrl ctrl";
+      }
+      .service .thumb{grid-area:img}
+      .service .info{grid-area:info}
+      .service .right{grid-area:ctrl; justify-items:stretch}
     }
 
-    /* Galeria */
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    @media (max-width: 720px){ .gallery{grid-template-columns:repeat(2,1fr)} }
-    .shot{
-      border-radius:16px; overflow:hidden;
+    .thumb{
+      width:86px;height:86px;border-radius:16px; overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
-      cursor:pointer;
-      position:relative;
+      display:grid;place-items:center;
     }
-    .shot img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio: 4/3}
-    .shot:after{
-      content:"";
-      position:absolute;inset:0;
-      background: linear-gradient(to top, rgba(0,0,0,.55), transparent 55%);
-      opacity:.0; transition:.15s ease;
-    }
-    .shot:hover:after{opacity:.9}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .thumb .ph{font-size:22px;opacity:.85}
 
-    /* Modal imagem */
-    .modal{
-      position:fixed; inset:0; z-index:80;
-      background: rgba(0,0,0,.70);
-      display:none;
-      align-items:center; justify-content:center;
-      padding:18px;
-    }
-    .modal .box{
-      width:min(980px, 96vw);
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(18,18,20,.92);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .modalTop{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .modalTop b{font-size:13px;color:var(--silver2)}
-    .modalTop button{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
+    .service h3{margin:0;font-size:15px}
+    .service p{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.35}
+
+    .priceTag{
       font-weight:900;
+      color: var(--silver2);
+      letter-spacing:.2px;
+      font-size:12.5px;
+      text-align:right;
     }
-    .modalImg{width:100%;display:block;max-height:72vh;object-fit:contain;background:#0b0b0c}
 
-    /* Painel lateral */
-    .stickyPanel{position:sticky;top:78px;height:fit-content}
-    .form{display:grid;gap:10px}
+    .service .right{display:grid;gap:10px;justify-items:end}
+
+    /* PAINEL DIREITO (form) */
+    .rightPanel{position:sticky;top:78px;height:fit-content}
+    .form{display:grid;gap:10px;margin-top:12px}
     .field{display:grid;gap:6px}
-    .field label{font-size:12px;color:var(--muted);font-weight:900}
+    .field label{font-size:12px;color:var(--muted);font-weight:800}
     .field input, .field textarea, .field select{
       border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(18,18,20,.65);
       color:var(--text);
       padding:10px 12px;
-      outline:none;
+      outline: none;
       font-size:14px;
     }
     textarea{min-height:74px;resize:vertical}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .two{display:grid;grid-template-columns: 1fr 1fr;gap:10px}
     @media (max-width:560px){.two{grid-template-columns:1fr}}
 
-    /* Depoimentos */
-    .quotes{display:grid;gap:10px}
-    .quote{
-      border-radius:16px;
+    .notice{
+      padding:10px 12px;border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(23,23,26,.45);
-      padding:12px;
+      background: rgba(199,199,199,.08);
+      color: var(--text);
+      font-size:13px;
+      display:flex;gap:10px;align-items:flex-start;
     }
-    .quote p{margin:0;color:var(--silver2);font-size:13px;line-height:1.45}
-    .quote small{display:block;margin-top:6px;color:var(--muted);font-weight:800}
-
-    /* Área atendida */
-    .areas{display:flex;flex-wrap:wrap;gap:8px}
-    .area{padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background: rgba(23,23,26,.45);color:var(--muted);font-size:12px;font-weight:900}
-
-    /* WhatsApp flutuante */
-    .fab{
-      position:fixed; right:14px; bottom:14px; z-index:90;
-      border-radius:999px;
-      padding:12px 14px;
-      border:1px solid rgba(209,27,34,.45);
-      background: linear-gradient(135deg, rgba(255,42,50,.95), rgba(209,27,34,.78));
-      box-shadow: 0 18px 44px rgba(209,27,34,.18);
-      font-weight:900;
-      cursor:pointer;
-      display:flex;align-items:center;gap:10px;
-    }
+    .notice b{color:var(--silver2)}
+    .notice small{color:var(--muted)}
 
     .footer{
-      margin-top:14px;color:var(--muted);font-size:12px;
+      margin-top:16px;color:var(--muted);font-size:12px;
       display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
     }
     .divider{height:1px;background:rgba(255,255,255,.08);margin:12px 0}
+
+    /* BOTÃO FIXO NO CELULAR */
+    .stickyOrder{
+      position:fixed;
+      left:12px; right:12px; bottom:12px;
+      z-index:50;
+      display:none;
+    }
+    .stickyOrder .bar{
+      max-width:1120px;
+      margin:0 auto;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(18,18,20,.88);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
+      padding:10px;
+    }
+    .stickyOrder .left{
+      display:grid; gap:2px;
+      min-width:0;
+    }
+    .stickyOrder .left b{font-size:13px}
+    .stickyOrder .left span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw}
+    @media (max-width: 980px){
+      .stickyOrder{display:block;}
+    }
   </style>
 </head>
-
 <body>
+
   <div class="topbar">
     <div class="inner">
       <div class="brand">
-        <div class="logoBox" id="logoBox" title="AS Andrade Serralheria">
-          <span class="logoFallback" id="logoFallback">AS</span>
-          <img id="logoImg" alt="Logo AS Andrade Serralheria" />
+        <div class="logo" id="logoBox" title="AS Andrade Serralheria">
+          <span style="font-weight:900;letter-spacing:.8px;background:linear-gradient(135deg,var(--brandRed2),var(--brandRed));-webkit-background-clip:text;background-clip:text;color:transparent;">AS</span>
+          <img id="logoImg" alt="AS logo" />
         </div>
-        <div class="brandText">
+        <div>
           <h1>AS Andrade Serralheria & Caldeiraria</h1>
-          <p>Belo Horizonte - MG • Orçamento rápido no WhatsApp</p>
+          <p id="subtitle">Belo Horizonte - MG • Orçamento rápido no WhatsApp</p>
         </div>
       </div>
 
       <div class="actions">
-        <span class="pill">📍 BH e região</span>
-        <button class="btn primary" id="ctaTop" type="button">Pedir orçamento <span class="badge">→</span></button>
+        <span class="pill" title="Área atendida">📍 BH e região</span>
+
+        <button class="btn primary" id="goFormBtn" type="button" title="Ir para orçamento">
+          Pedir orçamento <span class="badge">→</span>
+        </button>
       </div>
     </div>
   </div>
@@ -301,67 +277,47 @@
   <div class="wrap">
     <section class="hero">
       <div class="heroCard">
-        <div class="headline">
+        <div class="row">
           <div>
-            <h2>Metal sob medida, acabamento profissional e entrega no prazo.</h2>
-            <div class="sub">
-              Portões, grades, estruturas metálicas e caldeiraria. Atendimento residencial, comercial e obras médias.
-              Você manda medidas/fotos, a gente responde com orçamento e prazo.
-            </div>
+            <div style="font-weight:900;font-size:18px;letter-spacing:.2px">Metal sob medida com acabamento profissional</div>
+            <div class="mini" style="margin-top:6px">Envie fotos/medidas e receba <b style="color:var(--silver2)">valor + prazo</b>. Atendimento residencial, comercial e obras médias.</div>
           </div>
-          <div class="kpis">
-            <div class="kpi"><b>Atendimento rápido</b><span>WhatsApp direto</span></div>
-            <div class="kpi"><b>Obra e reforma</b><span>Residencial e empresas</span></div>
-            <div class="kpi"><b>BH e região</b><span>Consulte bairros</span></div>
-          </div>
+
+          <div class="tabs" id="tabs"></div>
         </div>
 
-        <div class="row" style="margin-top:6px">
-          <div class="tabs" id="tabs"></div>
-          <span class="pill" id="servicePill">Serviço: Todos</span>
-        </div>
+        <div class="mini" id="miniInfo"></div>
       </div>
     </section>
 
     <section class="grid">
-      <!-- ESQUERDA -->
-      <div class="list" style="display:grid;gap:16px">
-        <!-- Serviço (página separada via hash) -->
+      <div class="list">
         <div class="card">
-          <h2 class="sectionTitle" id="serviceTitle">Serviços</h2>
-          <div class="serviceBlock" id="serviceBlock"></div>
-        </div>
+          <h2 style="margin:0 0 10px;font-size:15px">Serviços</h2>
+          <div class="list" id="services"></div>
 
-        <!-- Portfólio -->
-        <div class="card">
-          <h2 class="sectionTitle">Portfólio (obras reais)</h2>
-          <div class="gallery" id="gallery"></div>
-          <div class="footer" style="margin-top:10px">
-            <span>Dica: fotos reais vendem. Suba suas imagens no repositório com os nomes abaixo.</span>
+          <div class="mini" style="margin-top:10px">
+            📸 Para o portfólio com fotos: envie imagens no repositório com os nomes indicados (ex: <b>obra-01.jpg</b>).
           </div>
         </div>
 
-        <!-- Depoimentos -->
         <div class="card">
-          <h2 class="sectionTitle">Depoimentos</h2>
-          <div class="quotes" id="quotes"></div>
-        </div>
-
-        <!-- Área atendida -->
-        <div class="card">
-          <h2 class="sectionTitle">Área atendida</h2>
-          <div class="areas" id="areas"></div>
-          <div class="divider"></div>
-          <div class="footer">
-            <span><b>WhatsApp:</b> (31) 98391-3499</span>
-            <span><b>Horário:</b> Seg a Sáb • 08:00–18:00</span>
+          <h2 style="margin:0 0 10px;font-size:15px">Portfólio (obras reais)</h2>
+          <div class="list" id="portfolio"></div>
+          <div class="mini" style="margin-top:10px">
+            Dica real: fotos boas fecham contrato. Suba 6 a 12 fotos leves (JPG ~ 1200px).
           </div>
         </div>
       </div>
 
-      <!-- DIREITA (ORÇAMENTO) -->
-      <aside class="card stickyPanel" id="formPanel">
-        <h2 class="sectionTitle">Pedir orçamento</h2>
+      <aside class="card rightPanel" id="formPanel">
+        <div class="notice">
+          <div>⚙️</div>
+          <div>
+            <b>Orçamento em 3 passos</b><br />
+            <small>1) você manda foto/medida • 2) enviamos valor + prazo • 3) agendamos produção/instalação</small>
+          </div>
+        </div>
 
         <div class="form">
           <div class="two">
@@ -392,7 +348,7 @@
               <input id="measures" placeholder="Ex: 2,40m x 1,80m" />
             </div>
             <div class="field">
-              <label>Prazo (urgente?)</label>
+              <label>Prazo</label>
               <select id="deadline">
                 <option value="Sem urgência">Sem urgência</option>
                 <option value="Até 7 dias">Até 7 dias</option>
@@ -404,272 +360,268 @@
 
           <div class="field">
             <label>Detalhes do serviço</label>
-            <textarea id="details" placeholder="Explique o que precisa: tipo, material, local, se é instalação, etc."></textarea>
+            <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, etc."></textarea>
           </div>
 
-          <div class="field">
-            <label>Fotos/Projeto</label>
-            <input id="filesHint" value="Envie fotos depois no WhatsApp (após abrir a conversa)" disabled />
-          </div>
-
-          <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
+          <button class="btn primary" id="sendBtn" type="button">
+            Enviar orçamento no WhatsApp
+          </button>
 
           <div class="footer">
-            <span style="color:var(--muted)">Atendimento em BH e região • Residencial / Comercial / Obras</span>
+            <span><b style="color:var(--silver2)">WhatsApp:</b> (31) 98391-3499</span>
+            <span><b style="color:var(--silver2)">Cidade:</b> Belo Horizonte - MG</span>
           </div>
         </div>
       </aside>
     </section>
   </div>
 
-  <!-- Modal imagem -->
-  <div class="modal" id="modal">
-    <div class="box">
-      <div class="modalTop">
-        <b id="modalTitle">Imagem</b>
-        <button type="button" id="closeModal">Fechar ✕</button>
+  <!-- BOTÃO FIXO NO CELULAR -->
+  <div class="stickyOrder" id="stickyOrder">
+    <div class="bar">
+      <div class="left">
+        <b id="stickyTitle">Pedir orçamento</b>
+        <span id="stickySub">Escolha um serviço e envie as informações</span>
       </div>
-      <img class="modalImg" id="modalImg" alt="Obra" />
+      <button class="btn primary" id="stickyBtn" type="button">Pedir orçamento</button>
     </div>
   </div>
 
-  <!-- WhatsApp flutuante -->
-  <button class="fab" id="fab" type="button">📞 WhatsApp</button>
-
 <script>
-  const CONFIG = {
-    company: "AS Andrade Serralheria & Caldeiraria",
-    city: "Belo Horizonte - MG",
-    whatsapp: "553183913499",
-    logoFile: "LOGO.png"
-  };
+/** =========================
+ *  CONFIG
+ *  ========================= */
+const CONFIG = {
+  company: "AS Andrade Serralheria & Caldeiraria",
+  cityLine: "Belo Horizonte - MG",
+  whatsappNumber: "553183913499",
+  logoFile: "LOGO.png",
+};
 
-  const SERVICES = [
-    {
-      key:"todos",
-      title:"Serviços",
-      short:"Todos",
-      desc:"Atendimento residencial, comercial e obras médias. Clique em um serviço para ver detalhes e pedir orçamento.",
-      bullets:["Orçamento rápido", "Acabamento profissional", "Instalação sob medida", "BH e região"]
-    },
-    {
-      key:"portoes",
-      title:"Portões sob medida",
-      short:"Portões",
-      desc:"Portões de correr, basculante e social. Fabricação e instalação com reforço, alinhamento e acabamento.",
-      bullets:["Portão de correr", "Basculante", "Portão social", "Automação (preparação)"]
-    },
-    {
-      key:"grades",
-      title:"Grades e proteção",
-      short:"Grades",
-      desc:"Grades para janelas/portas, proteção e segurança com visual limpo e pintura resistente.",
-      bullets:["Grades residenciais", "Grades comerciais", "Pintura/esmaltado", "Instalação"]
-    },
-    {
-      key:"estruturas",
-      title:"Estruturas metálicas",
-      short:"Estruturas",
-      desc:"Estruturas para cobertura, galpões, reforços e obras. Produção e montagem.",
-      bullets:["Coberturas", "Reforços", "Mezaninos", "Montagem"]
-    },
-    {
-      key:"caldeiraria",
-      title:"Caldeiraria sob medida",
-      short:"Caldeiraria",
-      desc:"Peças, suportes, bases e soluções metálicas conforme projeto/foto/medida.",
-      bullets:["Peças e suportes", "Corte e solda", "Conserto e reforço", "Sob medida"]
-    },
-    {
-      key:"coberturas",
-      title:"Coberturas e telhados",
-      short:"Coberturas",
-      desc:"Cobertura de garagem e área externa com estrutura metálica e fechamento conforme necessidade.",
-      bullets:["Garagem", "Área externa", "Estrutura metálica", "Fechamento"]
-    },
-    {
-      key:"sobmedida",
-      title:"Projetos sob medida",
-      short:"Sob medida",
-      desc:"Você manda referência/foto. A gente define material, medida, prazo e orçamento.",
-      bullets:["Personalizado", "Melhor custo-benefício", "Prazo combinado", "Execução profissional"]
-    }
-  ];
+/** =========================
+ *  SERVIÇOS (TABS)
+ *  ========================= */
+const SERVICES = [
+  {
+    cat: "Portões",
+    items: [
+      { id:"s1", name:"Portão de correr", desc:"Fabricação e instalação sob medida.", thumb:"serv-portao.jpg" },
+      { id:"s2", name:"Portão basculante", desc:"Reforço, alinhamento e acabamento.", thumb:"serv-basculante.jpg" },
+      { id:"s3", name:"Portão social", desc:"Entrada social com visual limpo.", thumb:"serv-social.jpg" },
+    ]
+  },
+  {
+    cat: "Grades",
+    items: [
+      { id:"s4", name:"Grades residenciais", desc:"Proteção para janelas e portas.", thumb:"serv-grade.jpg" },
+      { id:"s5", name:"Grades comerciais", desc:"Segurança para lojas e empresas.", thumb:"serv-grade-comercial.jpg" },
+    ]
+  },
+  {
+    cat: "Estruturas",
+    items: [
+      { id:"s6", name:"Estruturas metálicas", desc:"Obras médias, reforços e montagem.", thumb:"serv-estrutura.jpg" },
+      { id:"s7", name:"Mezanino / reforço", desc:"Estrutura sob medida para ampliação.", thumb:"serv-mezanino.jpg" },
+    ]
+  },
+  {
+    cat: "Caldeiraria",
+    items: [
+      { id:"s8", name:"Caldeiraria sob medida", desc:"Peças, suportes e soluções metálicas.", thumb:"serv-caldeiraria.jpg" },
+      { id:"s9", name:"Solda e reparos", desc:"Reparo, reforço e conserto.", thumb:"serv-solda.jpg" },
+    ]
+  },
+  {
+    cat: "Coberturas",
+    items: [
+      { id:"s10", name:"Cobertura garagem", desc:"Estrutura metálica para cobertura.", thumb:"serv-cobertura.jpg" },
+      { id:"s11", name:"Cobertura área externa", desc:"Sob medida para sua necessidade.", thumb:"serv-cobertura2.jpg" },
+    ]
+  },
+  {
+    cat: "Sob medida",
+    items: [
+      { id:"s12", name:"Projeto personalizado", desc:"Você manda referência/foto e a gente executa.", thumb:"serv-personalizado.jpg" },
+    ]
+  },
+];
 
-  // Galeria “pesada” (você sobe essas fotos com esses nomes)
-  const PORTFOLIO = [
-    { src:"obra-01.jpg", title:"Portão de correr" },
-    { src:"obra-02.jpg", title:"Grade residencial" },
-    { src:"obra-03.jpg", title:"Estrutura metálica" },
-    { src:"obra-04.jpg", title:"Cobertura" },
-    { src:"obra-05.jpg", title:"Caldeiraria sob medida" },
-    { src:"obra-06.jpg", title:"Corrimão / guarda-corpo" },
-  ];
+/** =========================
+ *  PORTFÓLIO (fotos reais)
+ *  Suba no repo: obra-01.jpg, obra-02.jpg...
+ *  ========================= */
+const PORTFOLIO = [
+  { src:"obra-01.jpg", title:"Portão de correr" },
+  { src:"obra-02.jpg", title:"Grade residencial" },
+  { src:"obra-03.jpg", title:"Estrutura metálica" },
+  { src:"obra-04.jpg", title:"Cobertura" },
+  { src:"obra-05.jpg", title:"Caldeiraria sob medida" },
+  { src:"obra-06.jpg", title:"Corrimão / guarda-corpo" },
+];
 
-  const TESTIMONIALS = [
-    { text:"Serviço muito bem feito, rápido e com acabamento ótimo. Recomendo!", by:"Cliente residencial • BH" },
-    { text:"Orçamento claro e entrega no prazo. Fechamos mais serviços depois.", by:"Cliente comercial • BH" },
-    { text:"Estrutura ficou firme e alinhada. Equipe caprichosa.", by:"Obra média • Região BH" },
-  ];
+const el = (id)=>document.getElementById(id);
 
-  const AREAS = ["Belo Horizonte", "Contagem", "Betim", "Santa Luzia", "Ibirité", "Ribeirão das Neves", "Venda Nova", "Barreiro"];
+const state = {
+  cat: "Todos",
+};
 
-  const el = (id)=>document.getElementById(id);
+function getAllCats(){ return ["Todos", ...SERVICES.map(s=>s.cat)]; }
 
-  const state = { serviceKey: "todos" };
+function renderTabs(){
+  const tabs = el("tabs");
+  tabs.innerHTML = "";
+  getAllCats().forEach(c=>{
+    const b = document.createElement("div");
+    b.className = "tab" + (state.cat===c ? " active" : "");
+    b.textContent = c;
+    b.onclick = ()=>{ state.cat=c; render(); };
+    tabs.appendChild(b);
+  });
+}
 
-  function setHash(key){
-    location.hash = `servico=${encodeURIComponent(key)}`;
-  }
-  function readHash(){
-    const h = (location.hash || "").replace("#","");
-    if(!h) return null;
-    const [k,v] = h.split("=");
-    if(k === "servico" && v) return decodeURIComponent(v);
-    return null;
-  }
-
-  function renderTabs(){
-    const tabs = el("tabs");
-    tabs.innerHTML = "";
-    SERVICES.filter(s=>s.key!=="todos").forEach(s=>{
-      const t = document.createElement("div");
-      t.className = "tab" + (state.serviceKey===s.key ? " active" : "");
-      t.textContent = s.short;
-      t.onclick = ()=>{ state.serviceKey = s.key; setHash(s.key); renderAll(); };
-      tabs.appendChild(t);
+function filteredServices(){
+  let sections = SERVICES;
+  if(state.cat !== "Todos") sections = SERVICES.filter(s=>s.cat===state.cat);
+  const out = [];
+  sections.forEach(sec=>{
+    sec.items.forEach(it=>{
+      out.push({ ...it, cat: sec.cat });
     });
+  });
+  return out;
+}
 
-    // Botão “Todos” como primeira opção
-    const all = document.createElement("div");
-    all.className = "tab" + (state.serviceKey==="todos" ? " active" : "");
-    all.textContent = "Todos";
-    all.onclick = ()=>{ state.serviceKey = "todos"; setHash("todos"); renderAll(); };
-    tabs.prepend(all);
-  }
+function renderServices(){
+  const container = el("services");
+  container.innerHTML = "";
 
-  function renderService(){
-    const svc = SERVICES.find(s=>s.key===state.serviceKey) || SERVICES[0];
-    el("serviceTitle").textContent = svc.title;
-    el("servicePill").textContent = "Serviço: " + svc.short;
+  const items = filteredServices();
+  items.forEach(it=>{
+    const row = document.createElement("div");
+    row.className = "service";
 
-    const box = el("serviceBlock");
-    box.innerHTML = `
-      <h3>${svc.title}</h3>
-      <p>${svc.desc}</p>
-      <div class="chips">
-        ${svc.bullets.map(b=>`<span class="chip">• ${b}</span>`).join("")}
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    if(it.thumb){
+      const img = document.createElement("img");
+      img.src = it.thumb;
+      img.alt = it.name;
+      img.onerror = ()=>{ thumb.innerHTML = `<div class="ph">⚙️</div>`; };
+      thumb.appendChild(img);
+    }else{
+      thumb.innerHTML = `<div class="ph">⚙️</div>`;
+    }
+
+    const info = document.createElement("div");
+    info.className = "info";
+    info.innerHTML = `
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <h3>${it.name}</h3>
+        <span class="pill" style="padding:6px 10px"> ${it.cat} </span>
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-        <button class="btn primary" type="button" id="svcCta">Pedir orçamento deste serviço</button>
-        <button class="btn" type="button" id="toForm">Preencher formulário</button>
-      </div>
+      <p>${it.desc}</p>
     `;
 
-    // CTA serviço
-    el("svcCta").onclick = ()=>{
-      el("serviceSelect").value = svc.short;
+    const right = document.createElement("div");
+    right.className = "right";
+
+    const tag = document.createElement("div");
+    tag.className = "priceTag";
+    tag.innerHTML = `Resposta rápida<br><span style="color:var(--muted);font-weight:800">WhatsApp</span>`;
+
+    const btn = document.createElement("button");
+    btn.className = "btn primary";
+    btn.type = "button";
+    btn.textContent = "Orçar";
+    btn.onclick = ()=>{
+      el("serviceSelect").value = it.cat + " — " + it.name;
       scrollToForm();
-      openWhats("Quero orçamento para: " + svc.title);
     };
-    el("toForm").onclick = scrollToForm;
-  }
 
-  function renderSelect(){
-    const sel = el("serviceSelect");
-    sel.innerHTML = "";
-    SERVICES.filter(s=>s.key!=="todos").forEach(s=>{
-      const op = document.createElement("option");
-      op.value = s.short;
-      op.textContent = s.short;
-      sel.appendChild(op);
-    });
+    right.append(tag, btn);
 
-    const svc = SERVICES.find(s=>s.key===state.serviceKey);
-    if(svc && svc.key!=="todos") sel.value = svc.short;
-  }
+    row.append(thumb, info, right);
+    container.appendChild(row);
+  });
+}
 
-  function renderGallery(){
-    const g = el("gallery");
-    g.innerHTML = "";
+function renderPortfolio(){
+  const container = el("portfolio");
+  container.innerHTML = "";
 
-    PORTFOLIO.forEach(p=>{
-      const d = document.createElement("div");
-      d.className = "shot";
-      d.innerHTML = `<img src="${p.src}" alt="${p.title}" />`;
-      d.onclick = ()=> openModal(p.src, p.title);
+  PORTFOLIO.forEach(p=>{
+    const row = document.createElement("div");
+    row.className = "service";
+    row.style.gridTemplateColumns = "86px 1fr auto";
 
-      // Se imagem não existir, troca por placeholder visual (não quebra o site)
-      const img = d.querySelector("img");
-      img.onerror = ()=>{
-        img.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
-          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
-            <rect width="100%" height="100%" fill="#121214"/>
-            <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" fill="#c7c7c7" font-size="28" font-family="Arial">Envie ${p.src}</text>
-            <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="#a1a1aa" font-size="18" font-family="Arial">${p.title}</text>
-          </svg>
-        `);
-      };
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    const img = document.createElement("img");
+    img.src = p.src;
+    img.alt = p.title;
+    img.onerror = ()=>{ thumb.innerHTML = `<div class="ph">📸</div>`; };
+    thumb.appendChild(img);
 
-      g.appendChild(d);
-    });
-  }
+    const info = document.createElement("div");
+    info.className = "info";
+    info.innerHTML = `
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <h3>${p.title}</h3>
+        <span class="pill" style="padding:6px 10px">Portfólio</span>
+      </div>
+      <p>Envie uma foto parecida para orçamento mais preciso.</p>
+    `;
 
-  function renderTestimonials(){
-    const q = el("quotes");
-    q.innerHTML = "";
-    TESTIMONIALS.forEach(t=>{
-      const d = document.createElement("div");
-      d.className = "quote";
-      d.innerHTML = `<p>“${t.text}”</p><small>— ${t.by}</small>`;
-      q.appendChild(d);
-    });
-  }
+    const right = document.createElement("div");
+    right.className = "right";
 
-  function renderAreas(){
-    const a = el("areas");
-    a.innerHTML = "";
-    AREAS.forEach(x=>{
-      const s = document.createElement("span");
-      s.className = "area";
-      s.textContent = x;
-      a.appendChild(s);
-    });
-  }
+    const btn = document.createElement("button");
+    btn.className = "btn";
+    btn.type = "button";
+    btn.textContent = "Usar como referência";
+    btn.onclick = ()=>{
+      el("details").value = `Referência do portfólio: ${p.title}. `;
+      scrollToForm();
+    };
 
-  function openModal(src, title){
-    el("modalTitle").textContent = title;
-    el("modalImg").src = src;
-    el("modal").style.display = "flex";
-  }
-  function closeModal(){
-    el("modal").style.display = "none";
-    el("modalImg").src = "";
-  }
+    right.append(btn);
 
-  function scrollToForm(){
-    el("formPanel").scrollIntoView({behavior:"smooth", block:"start"});
-  }
+    row.append(thumb, info, right);
+    container.appendChild(row);
+  });
+}
 
-  function openWhats(prefill){
-    const msg = `Olá, vim pelo site da ${CONFIG.company}.\n${prefill}\n\nPode me passar orçamento e prazo?`;
-    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
-  }
+function setMiniInfo(){
+  el("miniInfo").textContent = `${CONFIG.cityLine} • Orçamento via WhatsApp • Portões, grades, estruturas e caldeiraria`;
+}
 
-  function sendForm(){
-    const name = el("name").value.trim();
-    const phone = el("phone").value.trim();
-    const service = el("serviceSelect").value;
-    const place = el("place").value.trim();
-    const measures = el("measures").value.trim();
-    const deadline = el("deadline").value;
-    const details = el("details").value.trim();
+function tryLoadLogo(){
+  const img = el("logoImg");
+  img.src = CONFIG.logoFile + "?v=" + Date.now();
+  img.onload = ()=>{
+    img.style.display = "block";
+    el("logoBox").querySelector("span").style.display = "none";
+  };
+}
 
-    const msg =
+function scrollToForm(){
+  el("formPanel").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function buildWhatsAppMessage(){
+  const name = el("name").value.trim();
+  const phone = el("phone").value.trim();
+  const service = el("serviceSelect").value;
+  const place = el("place").value.trim();
+  const measures = el("measures").value.trim();
+  const deadline = el("deadline").value;
+  const details = el("details").value.trim();
+
+  const msg =
 `*ORÇAMENTO - ${CONFIG.company}*
 *Nome:* ${name || "(não informado)"}
 *Telefone:* ${phone || "(não informado)"}
-*Serviço:* ${service}
+*Serviço:* ${service || "(não informado)"}
 *Local:* ${place || "(não informado)"}
 *Medidas:* ${measures || "(não informado)"}
 *Prazo:* ${deadline}
@@ -677,40 +629,60 @@
 
 *Obs:* Vou enviar fotos/projeto na sequência aqui no WhatsApp.`;
 
-    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
-  }
+  return msg;
+}
 
-  function tryLoadLogo(){
-    const img = el("logoImg");
-    img.src = CONFIG.logoFile + "?v=" + Date.now(); // evita cache
-    img.onload = ()=>{
-      img.style.display = "block";
-      el("logoFallback").style.display = "none";
-    };
-  }
+function sendWhatsApp(){
+  const message = buildWhatsAppMessage();
+  const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+}
 
-  function renderAll(){
-    renderTabs();
-    renderSelect();
-    renderService();
-    renderGallery();
-    renderTestimonials();
-    renderAreas();
-  }
+function updateSticky(){
+  const svc = el("serviceSelect").value;
+  el("stickySub").textContent = svc ? `Serviço selecionado: ${svc}` : "Escolha um serviço e envie as informações";
+}
 
-  // Eventos
-  el("closeModal").onclick = closeModal;
-  el("modal").addEventListener("click", (e)=>{ if(e.target.id==="modal") closeModal(); });
-  el("ctaTop").onclick = scrollToForm;
-  el("sendBtn").onclick = sendForm;
-  el("fab").onclick = ()=> openWhats("Quero um orçamento.");
+/** Events */
+el("sendBtn").onclick = sendWhatsApp;
+el("stickyBtn").onclick = ()=>{ scrollToForm(); };
+el("goFormBtn").onclick = scrollToForm;
+el("serviceSelect").addEventListener("change", updateSticky);
 
-  // Iniciar
-  const hk = readHash();
-  if(hk && SERVICES.some(s=>s.key===hk)) state.serviceKey = hk;
-  tryLoadLogo();
-  renderAll();
+/** Start */
+tryLoadLogo();
+render();
+
+function render(){
+  renderTabs();
+  renderServices();
+  renderPortfolio();
+  setMiniInfo();
+  renderServiceSelect();
+  updateSticky();
+}
+
+function renderServiceSelect(){
+  const sel = el("serviceSelect");
+  const current = sel.value;
+  sel.innerHTML = "";
+
+  const opt0 = document.createElement("option");
+  opt0.value = "";
+  opt0.textContent = "Selecione um serviço…";
+  sel.appendChild(opt0);
+
+  SERVICES.forEach(sec=>{
+    sec.items.forEach(it=>{
+      const op = document.createElement("option");
+      op.value = sec.cat + " — " + it.name;
+      op.textContent = sec.cat + " — " + it.name;
+      sel.appendChild(op);
+    });
+  });
+
+  if(current) sel.value = current;
+}
 </script>
 </body>
 </html>
-
