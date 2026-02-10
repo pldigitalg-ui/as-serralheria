@@ -3,40 +3,56 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="theme-color" content="#f6f7f9" />
   <title>AS Andrade Serralheria — Orçamentos</title>
 
   <style>
     :root{
-      --bg:#0b0b0c;
-      --card:#121214;
-      --card2:#17171a;
-      --text:#f4f4f5;
-      --muted:#a1a1aa;
-      --line:#242428;
+      /* FUNDO CLARO */
+      --bg:#f6f7f9;
+      --card: rgba(255,255,255,.92);
+      --card2: rgba(255,255,255,.75);
 
-      /* CORES DO LOGO (vermelho + prata) */
+      /* TEXTO (agora escuro) */
+      --text:#101114;
+      --muted:#5b616a;
+      --line: rgba(0,0,0,.10);
+
+      /* CORES DO LOGO */
       --brandRed:#d11b22;
       --brandRed2:#ff2a32;
       --silver:#c7c7c7;
       --silver2:#efefef;
 
-      --ok:#22c55e;
-      --warn:#f59e0b;
-      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --shadow: 0 18px 42px rgba(0,0,0,.10);
       --radius: 18px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 700px at 10% -10%, rgba(209,27,34,.22), transparent 55%),
-        radial-gradient(900px 600px at 110% 10%, rgba(199,199,199,.10), transparent 55%),
-        var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
+      background: var(--bg);
+      position:relative;
+      overflow-x:hidden;
+    }
+
+    /* FUNDO COM mockup.png BEM SUAVE (marca d’água) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(209,27,34,.10), transparent 60%),
+        radial-gradient(900px 600px at 110% 10%, rgba(0,0,0,.05), transparent 60%),
+        url("mockup.png") center/cover no-repeat;
+      opacity:.14;              /* <<< controla o quanto aparece o mockup */
+      filter: saturate(.9) contrast(.95) brightness(1.05);
+      pointer-events:none;
+      z-index:-1;
     }
 
     .wrap{max-width:1120px;margin:0 auto;padding:18px 16px 110px}
@@ -44,8 +60,8 @@
     .topbar{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(11,11,12,.92), rgba(11,11,12,.55));
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(246,247,249,.72);
+      border-bottom: 1px solid var(--line);
     }
     .topbar .inner{
       max-width:1120px;margin:0 auto;padding:14px 16px;
@@ -56,15 +72,15 @@
     .logo{
       width:44px;height:44px;border-radius:14px;
       display:grid;place-items:center;
-      background: radial-gradient(120px 60px at 30% 20%, rgba(209,27,34,.35), transparent 60%), #101012;
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: 0 12px 26px rgba(0,0,0,.35);
+      background: rgba(255,255,255,.75);
+      border:1px solid var(--line);
+      box-shadow: 0 12px 26px rgba(0,0,0,.10);
       overflow:hidden;
       flex:0 0 auto;
     }
     .logo img{width:100%;height:100%;object-fit:cover;display:none}
     .brand h1{
-      margin:0;font-size:16px;line-height:1.1;letter-spacing:.3px;
+      margin:0;font-size:16px;line-height:1.1;letter-spacing:.2px;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
     .brand p{margin:2px 0 0;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -72,8 +88,8 @@
     .pill{
       display:inline-flex;align-items:center;gap:8px;
       padding:8px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(18,18,20,.7);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.72);
       color:var(--muted);
       font-size:12px;
       white-space:nowrap;
@@ -81,29 +97,35 @@
 
     .actions{display:flex;gap:10px;align-items:center}
     .btn{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(18,18,20,.85);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.92);
       color:var(--text);
       padding:10px 12px;border-radius:14px;
       font-weight:800;
       cursor:pointer;
       transition:.15s ease;
       display:inline-flex;align-items:center;gap:10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.06);
     }
-    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.22)}
-
-    /* BOTÃO PRINCIPAL NO VERMELHO DO LOGO */
+    .btn:hover{transform: translateY(-1px)}
     .btn.primary{
-      background: linear-gradient(135deg, rgba(255,42,50,.95), rgba(209,27,34,.78));
-      border-color: rgba(209,27,34,.45);
+      background: linear-gradient(135deg, rgba(255,42,50,.98), rgba(209,27,34,.85));
+      border-color: rgba(209,27,34,.35);
+      color: #fff;
       box-shadow: 0 16px 34px rgba(209,27,34,.18);
     }
-    .btn.ghost{background:transparent}
+
+    .badge{
+      min-width:20px;height:20px;padding:0 6px;border-radius:999px;
+      background: rgba(255,255,255,.20);
+      display:inline-grid;place-items:center;
+      font-size:12px;font-weight:900;
+    }
 
     .hero{padding:18px 0 8px;display:grid;gap:14px}
     .heroCard{
-      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.10);
+      background: var(--card);
+      border:1px solid var(--line);
       border-radius: var(--radius);
       padding:16px;
       box-shadow: var(--shadow);
@@ -111,21 +133,20 @@
     }
 
     .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-
     .tabs{display:flex;gap:10px;flex-wrap:wrap}
     .tab{
       padding:10px 12px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(18,18,20,.55);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.78);
       color:var(--muted);
-      font-weight:800;font-size:13px;
+      font-weight:900;font-size:13px;
       cursor:pointer;
       user-select:none;
     }
     .tab.active{
       color:var(--text);
-      border-color: rgba(209,27,34,.55);
-      background: rgba(209,27,34,.12);
+      border-color: rgba(209,27,34,.35);
+      background: rgba(209,27,34,.10);
     }
 
     .mini{font-size:12px;color:var(--muted)}
@@ -135,14 +156,14 @@
 
     .list{display:grid;gap:12px}
     .card{
-      background: linear-gradient(180deg, rgba(18,18,20,.92), rgba(18,18,20,.70));
-      border:1px solid rgba(255,255,255,.10);
+      background: var(--card);
+      border:1px solid var(--line);
       border-radius: var(--radius);
       padding:14px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.25);
+      box-shadow: var(--shadow);
     }
 
-    /* BLOCO DE SERVIÇO (estilo item do cardápio) */
+    /* BLOCO DE SERVIÇO */
     .service{
       display:grid;
       grid-template-columns: 86px 1fr auto;
@@ -150,8 +171,8 @@
       align-items:center;
       padding:12px;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(23,23,26,.55);
+      border:1px solid var(--line);
+      background: var(--card2);
     }
     @media (max-width: 520px){
       .service{grid-template-columns: 78px 1fr; grid-template-areas:
@@ -165,8 +186,8 @@
 
     .thumb{
       width:86px;height:86px;border-radius:16px; overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.04);
       display:grid;place-items:center;
     }
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
@@ -175,25 +196,24 @@
     .service h3{margin:0;font-size:15px}
     .service p{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.35}
 
-    .priceTag{
+    .tagRight{
       font-weight:900;
-      color: var(--silver2);
+      color: var(--text);
       letter-spacing:.2px;
       font-size:12.5px;
       text-align:right;
     }
-
     .service .right{display:grid;gap:10px;justify-items:end}
 
-    /* PAINEL DIREITO (form) */
+    /* PAINEL DIREITO */
     .rightPanel{position:sticky;top:78px;height:fit-content}
     .form{display:grid;gap:10px;margin-top:12px}
     .field{display:grid;gap:6px}
-    .field label{font-size:12px;color:var(--muted);font-weight:800}
+    .field label{font-size:12px;color:var(--muted);font-weight:900}
     .field input, .field textarea, .field select{
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(18,18,20,.65);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.92);
       color:var(--text);
       padding:10px 12px;
       outline: none;
@@ -205,71 +225,63 @@
 
     .notice{
       padding:10px 12px;border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(199,199,199,.08);
+      border:1px solid var(--line);
+      background: rgba(209,27,34,.08);
       color: var(--text);
       font-size:13px;
       display:flex;gap:10px;align-items:flex-start;
     }
-    .notice b{color:var(--silver2)}
+    .notice b{color:var(--brandRed)}
     .notice small{color:var(--muted)}
 
     .footer{
       margin-top:16px;color:var(--muted);font-size:12px;
       display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
     }
-    .divider{height:1px;background:rgba(255,255,255,.08);margin:12px 0}
 
     /* BOTÃO FIXO NO CELULAR */
     .stickyOrder{
-      position:fixed;
-      left:12px; right:12px; bottom:12px;
-      z-index:50;
-      display:none;
+      position:fixed; left:12px; right:12px; bottom:12px;
+      z-index:50; display:none;
     }
     .stickyOrder .bar{
       max-width:1120px;
       margin:0 auto;
       border-radius: 18px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(18,18,20,.88);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.86);
       backdrop-filter: blur(10px);
-      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+      box-shadow: 0 18px 40px rgba(0,0,0,.12);
       display:flex; gap:10px; align-items:center; justify-content:space-between;
       padding:10px;
     }
-    .stickyOrder .left{
-      display:grid; gap:2px;
-      min-width:0;
-    }
+    .stickyOrder .left{display:grid; gap:2px; min-width:0;}
     .stickyOrder .left b{font-size:13px}
-    .stickyOrder .left span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw}
-    @media (max-width: 980px){
-      .stickyOrder{display:block;}
+    .stickyOrder .left span{
+      font-size:12px;color:var(--muted);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw
     }
+    @media (max-width: 980px){ .stickyOrder{display:block;} }
   </style>
 </head>
-<body>
 
+<body>
   <div class="topbar">
     <div class="inner">
       <div class="brand">
         <div class="logo" id="logoBox" title="AS Andrade Serralheria">
-          <span style="font-weight:900;letter-spacing:.8px;background:linear-gradient(135deg,var(--brandRed2),var(--brandRed));-webkit-background-clip:text;background-clip:text;color:transparent;">AS</span>
+          <span id="logoText" style="font-weight:900;letter-spacing:.8px;background:linear-gradient(135deg,var(--brandRed2),var(--brandRed));-webkit-background-clip:text;background-clip:text;color:transparent;">AS</span>
           <img id="logoImg" alt="AS logo" />
         </div>
         <div>
           <h1>AS Andrade Serralheria & Caldeiraria</h1>
-          <p id="subtitle">Belo Horizonte - MG • Orçamento rápido no WhatsApp</p>
+          <p>Belo Horizonte - MG • Orçamento rápido no WhatsApp</p>
         </div>
       </div>
 
       <div class="actions">
-        <span class="pill" title="Área atendida">📍 BH e região</span>
-
-        <button class="btn primary" id="goFormBtn" type="button" title="Ir para orçamento">
-          Pedir orçamento <span class="badge">→</span>
-        </button>
+        <span class="pill">📍 BH e região</span>
+        <button class="btn primary" id="goFormBtn" type="button">Pedir orçamento <span class="badge">→</span></button>
       </div>
     </div>
   </div>
@@ -280,12 +292,12 @@
         <div class="row">
           <div>
             <div style="font-weight:900;font-size:18px;letter-spacing:.2px">Metal sob medida com acabamento profissional</div>
-            <div class="mini" style="margin-top:6px">Envie fotos/medidas e receba <b style="color:var(--silver2)">valor + prazo</b>. Atendimento residencial, comercial e obras médias.</div>
+            <div class="mini" style="margin-top:6px">
+              Envie fotos/medidas e receba <b>valor + prazo</b>. Residencial, comercial e obras médias.
+            </div>
           </div>
-
           <div class="tabs" id="tabs"></div>
         </div>
-
         <div class="mini" id="miniInfo"></div>
       </div>
     </section>
@@ -295,17 +307,8 @@
         <div class="card">
           <h2 style="margin:0 0 10px;font-size:15px">Serviços</h2>
           <div class="list" id="services"></div>
-
           <div class="mini" style="margin-top:10px">
-            📸 Para o portfólio com fotos: envie imagens no repositório com os nomes indicados (ex: <b>obra-01.jpg</b>).
-          </div>
-        </div>
-
-        <div class="card">
-          <h2 style="margin:0 0 10px;font-size:15px">Portfólio (obras reais)</h2>
-          <div class="list" id="portfolio"></div>
-          <div class="mini" style="margin-top:10px">
-            Dica real: fotos boas fecham contrato. Suba 6 a 12 fotos leves (JPG ~ 1200px).
+            Obs: se alguma imagem não aparecer, o nome do arquivo no GitHub tem que ser igual ao <b>thumb</b> do código.
           </div>
         </div>
       </div>
@@ -363,13 +366,11 @@
             <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, etc."></textarea>
           </div>
 
-          <button class="btn primary" id="sendBtn" type="button">
-            Enviar orçamento no WhatsApp
-          </button>
+          <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
 
           <div class="footer">
-            <span><b style="color:var(--silver2)">WhatsApp:</b> (31) 98391-3499</span>
-            <span><b style="color:var(--silver2)">Cidade:</b> Belo Horizonte - MG</span>
+            <span><b>WhatsApp:</b> (31) 98391-3499</span>
+            <span><b>Cidade:</b> Belo Horizonte - MG</span>
           </div>
         </div>
       </aside>
@@ -380,7 +381,7 @@
   <div class="stickyOrder" id="stickyOrder">
     <div class="bar">
       <div class="left">
-        <b id="stickyTitle">Pedir orçamento</b>
+        <b>Pedir orçamento</b>
         <span id="stickySub">Escolha um serviço e envie as informações</span>
       </div>
       <button class="btn primary" id="stickyBtn" type="button">Pedir orçamento</button>
@@ -388,9 +389,6 @@
   </div>
 
 <script>
-/** =========================
- *  CONFIG
- *  ========================= */
 const CONFIG = {
   company: "AS Andrade Serralheria & Caldeiraria",
   cityLine: "Belo Horizonte - MG",
@@ -398,72 +396,31 @@ const CONFIG = {
   logoFile: "LOGO.png",
 };
 
-/** =========================
- *  SERVIÇOS (TABS)
- *  ========================= */
+/* ✅ SOMENTE OS ITENS QUE VOCÊ TEM (pelo que aparece na sua lista) */
 const SERVICES = [
-  {
-    cat: "Portões",
-    items: [
-      { id:"s1", name:"Portão de correr", desc:"Fabricação e instalação sob medida.", thumb:"serv-portao.jpg" },
-      { id:"s2", name:"Portão basculante", desc:"Reforço, alinhamento e acabamento.", thumb:"serv-basculante.jpg" },
-      { id:"s3", name:"Portão social", desc:"Entrada social com visual limpo.", thumb:"serv-social.jpg" },
-    ]
-  },
-  {
-    cat: "Grades",
-    items: [
-      { id:"s4", name:"Grades residenciais", desc:"Proteção para janelas e portas.", thumb:"serv-grade.jpg" },
-      { id:"s5", name:"Grades comerciais", desc:"Segurança para lojas e empresas.", thumb:"serv-grade-comercial.jpg" },
-    ]
-  },
-  {
-    cat: "Estruturas",
-    items: [
-      { id:"s6", name:"Estruturas metálicas", desc:"Obras médias, reforços e montagem.", thumb:"serv-estrutura.jpg" },
-      { id:"s7", name:"Mezanino / reforço", desc:"Estrutura sob medida para ampliação.", thumb:"serv-mezanino.jpg" },
-    ]
-  },
-  {
-    cat: "Caldeiraria",
-    items: [
-      { id:"s8", name:"Caldeiraria sob medida", desc:"Peças, suportes e soluções metálicas.", thumb:"serv-caldeiraria.jpg" },
-      { id:"s9", name:"Solda e reparos", desc:"Reparo, reforço e conserto.", thumb:"serv-solda.jpg" },
-    ]
-  },
-  {
-    cat: "Coberturas",
-    items: [
-      { id:"s10", name:"Cobertura garagem", desc:"Estrutura metálica para cobertura.", thumb:"serv-cobertura.jpg" },
-      { id:"s11", name:"Cobertura área externa", desc:"Sob medida para sua necessidade.", thumb:"serv-cobertura2.jpg" },
-    ]
-  },
-  {
-    cat: "Sob medida",
-    items: [
-      { id:"s12", name:"Projeto personalizado", desc:"Você manda referência/foto e a gente executa.", thumb:"serv-personalizado.jpg" },
-    ]
-  },
-];
-
-/** =========================
- *  PORTFÓLIO (fotos reais)
- *  Suba no repo: obra-01.jpg, obra-02.jpg...
- *  ========================= */
-const PORTFOLIO = [
-  { src:"obra-01.jpg", title:"Portão de correr" },
-  { src:"obra-02.jpg", title:"Grade residencial" },
-  { src:"obra-03.jpg", title:"Estrutura metálica" },
-  { src:"obra-04.jpg", title:"Cobertura" },
-  { src:"obra-05.jpg", title:"Caldeiraria sob medida" },
-  { src:"obra-06.jpg", title:"Corrimão / guarda-corpo" },
+  { cat: "Portões", items: [
+    { id:"p1", name:"Portão", desc:"Fabricação e instalação sob medida.", thumb:"serv-portao.jpg" },
+    { id:"p2", name:"Portão social", desc:"Entrada social com acabamento profissional.", thumb:"serv-social.jpg" },
+  ]},
+  { cat: "Grades", items: [
+    { id:"g1", name:"Grade", desc:"Proteção residencial e comercial.", thumb:"serv-grade.jpg" },
+    { id:"g2", name:"Grade comercial", desc:"Segurança para lojas e empresas.", thumb:"serv-grade-comercial.jpg" },
+  ]},
+  { cat: "Estruturas", items: [
+    { id:"e1", name:"Estrutura metálica", desc:"Obras médias, reforços e montagem.", thumb:"serv-estrutura.jpg" },
+    { id:"e2", name:"Escada / guarda-corpo", desc:"Escadas metálicas, corrimão e guarda-corpo.", thumb:"serv-escada.jpg" },
+  ]},
+  { cat: "Coberturas", items: [
+    { id:"c1", name:"Cobertura", desc:"Estrutura metálica para cobertura.", thumb:"serv-cobertura.jpg" },
+    { id:"c2", name:"Cobertura (variação)", desc:"Modelo alternativo conforme necessidade.", thumb:"serv-cobertura2.jpg" },
+  ]},
+  { cat: "Sob medida", items: [
+    { id:"s1", name:"Serviço personalizado", desc:"Você manda referência/foto e a gente executa.", thumb:"serv-personalizado.jpg" },
+  ]},
 ];
 
 const el = (id)=>document.getElementById(id);
-
-const state = {
-  cat: "Todos",
-};
+const state = { cat: "Todos" };
 
 function getAllCats(){ return ["Todos", ...SERVICES.map(s=>s.cat)]; }
 
@@ -483,41 +440,33 @@ function filteredServices(){
   let sections = SERVICES;
   if(state.cat !== "Todos") sections = SERVICES.filter(s=>s.cat===state.cat);
   const out = [];
-  sections.forEach(sec=>{
-    sec.items.forEach(it=>{
-      out.push({ ...it, cat: sec.cat });
-    });
-  });
+  sections.forEach(sec=> sec.items.forEach(it=> out.push({ ...it, cat: sec.cat })));
   return out;
 }
 
 function renderServices(){
   const container = el("services");
   container.innerHTML = "";
-
   const items = filteredServices();
+
   items.forEach(it=>{
     const row = document.createElement("div");
     row.className = "service";
 
     const thumb = document.createElement("div");
     thumb.className = "thumb";
-    if(it.thumb){
-      const img = document.createElement("img");
-      img.src = it.thumb;
-      img.alt = it.name;
-      img.onerror = ()=>{ thumb.innerHTML = `<div class="ph">⚙️</div>`; };
-      thumb.appendChild(img);
-    }else{
-      thumb.innerHTML = `<div class="ph">⚙️</div>`;
-    }
+    const img = document.createElement("img");
+    img.src = it.thumb;
+    img.alt = it.name;
+    img.onerror = ()=>{ thumb.innerHTML = `<div class="ph">⚙️</div>`; };
+    thumb.appendChild(img);
 
     const info = document.createElement("div");
     info.className = "info";
     info.innerHTML = `
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
         <h3>${it.name}</h3>
-        <span class="pill" style="padding:6px 10px"> ${it.cat} </span>
+        <span class="pill" style="padding:6px 10px">${it.cat}</span>
       </div>
       <p>${it.desc}</p>
     `;
@@ -526,8 +475,8 @@ function renderServices(){
     right.className = "right";
 
     const tag = document.createElement("div");
-    tag.className = "priceTag";
-    tag.innerHTML = `Resposta rápida<br><span style="color:var(--muted);font-weight:800">WhatsApp</span>`;
+    tag.className = "tagRight";
+    tag.innerHTML = `Resposta rápida<br><span style="color:var(--muted);font-weight:900">WhatsApp</span>`;
 
     const btn = document.createElement("button");
     btn.className = "btn primary";
@@ -535,131 +484,14 @@ function renderServices(){
     btn.textContent = "Orçar";
     btn.onclick = ()=>{
       el("serviceSelect").value = it.cat + " — " + it.name;
+      updateSticky();
       scrollToForm();
     };
 
     right.append(tag, btn);
-
     row.append(thumb, info, right);
     container.appendChild(row);
   });
-}
-
-function renderPortfolio(){
-  const container = el("portfolio");
-  container.innerHTML = "";
-
-  PORTFOLIO.forEach(p=>{
-    const row = document.createElement("div");
-    row.className = "service";
-    row.style.gridTemplateColumns = "86px 1fr auto";
-
-    const thumb = document.createElement("div");
-    thumb.className = "thumb";
-    const img = document.createElement("img");
-    img.src = p.src;
-    img.alt = p.title;
-    img.onerror = ()=>{ thumb.innerHTML = `<div class="ph">📸</div>`; };
-    thumb.appendChild(img);
-
-    const info = document.createElement("div");
-    info.className = "info";
-    info.innerHTML = `
-      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-        <h3>${p.title}</h3>
-        <span class="pill" style="padding:6px 10px">Portfólio</span>
-      </div>
-      <p>Envie uma foto parecida para orçamento mais preciso.</p>
-    `;
-
-    const right = document.createElement("div");
-    right.className = "right";
-
-    const btn = document.createElement("button");
-    btn.className = "btn";
-    btn.type = "button";
-    btn.textContent = "Usar como referência";
-    btn.onclick = ()=>{
-      el("details").value = `Referência do portfólio: ${p.title}. `;
-      scrollToForm();
-    };
-
-    right.append(btn);
-
-    row.append(thumb, info, right);
-    container.appendChild(row);
-  });
-}
-
-function setMiniInfo(){
-  el("miniInfo").textContent = `${CONFIG.cityLine} • Orçamento via WhatsApp • Portões, grades, estruturas e caldeiraria`;
-}
-
-function tryLoadLogo(){
-  const img = el("logoImg");
-  img.src = CONFIG.logoFile + "?v=" + Date.now();
-  img.onload = ()=>{
-    img.style.display = "block";
-    el("logoBox").querySelector("span").style.display = "none";
-  };
-}
-
-function scrollToForm(){
-  el("formPanel").scrollIntoView({behavior:"smooth", block:"start"});
-}
-
-function buildWhatsAppMessage(){
-  const name = el("name").value.trim();
-  const phone = el("phone").value.trim();
-  const service = el("serviceSelect").value;
-  const place = el("place").value.trim();
-  const measures = el("measures").value.trim();
-  const deadline = el("deadline").value;
-  const details = el("details").value.trim();
-
-  const msg =
-`*ORÇAMENTO - ${CONFIG.company}*
-*Nome:* ${name || "(não informado)"}
-*Telefone:* ${phone || "(não informado)"}
-*Serviço:* ${service || "(não informado)"}
-*Local:* ${place || "(não informado)"}
-*Medidas:* ${measures || "(não informado)"}
-*Prazo:* ${deadline}
-*Detalhes:* ${details || "(não informado)"}
-
-*Obs:* Vou enviar fotos/projeto na sequência aqui no WhatsApp.`;
-
-  return msg;
-}
-
-function sendWhatsApp(){
-  const message = buildWhatsAppMessage();
-  const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
-}
-
-function updateSticky(){
-  const svc = el("serviceSelect").value;
-  el("stickySub").textContent = svc ? `Serviço selecionado: ${svc}` : "Escolha um serviço e envie as informações";
-}
-
-/** Events */
-el("sendBtn").onclick = sendWhatsApp;
-el("stickyBtn").onclick = ()=>{ scrollToForm(); };
-el("goFormBtn").onclick = scrollToForm;
-el("serviceSelect").addEventListener("change", updateSticky);
-
-/** Start */
-tryLoadLogo();
-render();
-
-function render(){
-  renderTabs();
-  renderServices();
-  renderPortfolio();
-  setMiniInfo();
-  renderServiceSelect();
-  updateSticky();
 }
 
 function renderServiceSelect(){
@@ -682,6 +514,75 @@ function renderServiceSelect(){
   });
 
   if(current) sel.value = current;
+}
+
+function setMiniInfo(){
+  el("miniInfo").textContent =
+    `${CONFIG.cityLine} • Orçamento via WhatsApp • Portões, grades, estruturas e coberturas`;
+}
+
+function tryLoadLogo(){
+  const img = el("logoImg");
+  img.src = CONFIG.logoFile + "?v=" + Date.now();
+  img.onload = ()=>{
+    img.style.display = "block";
+    el("logoText").style.display = "none";
+  };
+}
+
+function scrollToForm(){
+  el("formPanel").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function buildWhatsAppMessage(){
+  const name = el("name").value.trim();
+  const phone = el("phone").value.trim();
+  const service = el("serviceSelect").value;
+  const place = el("place").value.trim();
+  const measures = el("measures").value.trim();
+  const deadline = el("deadline").value;
+  const details = el("details").value.trim();
+
+  return `*ORÇAMENTO - ${CONFIG.company}*
+*Nome:* ${name || "(não informado)"}
+*Telefone:* ${phone || "(não informado)"}
+*Serviço:* ${service || "(não informado)"}
+*Local:* ${place || "(não informado)"}
+*Medidas:* ${measures || "(não informado)"}
+*Prazo:* ${deadline}
+*Detalhes:* ${details || "(não informado)"}
+
+*Obs:* Vou enviar fotos/projeto na sequência aqui no WhatsApp.`;
+}
+
+function sendWhatsApp(){
+  const msg = buildWhatsAppMessage();
+  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+
+function updateSticky(){
+  const svc = el("serviceSelect").value;
+  el("stickySub").textContent = svc
+    ? `Serviço selecionado: ${svc}`
+    : "Escolha um serviço e envie as informações";
+}
+
+/* Eventos */
+el("sendBtn").onclick = sendWhatsApp;
+el("stickyBtn").onclick = scrollToForm;
+el("goFormBtn").onclick = scrollToForm;
+el("serviceSelect").addEventListener("change", updateSticky);
+
+/* Start */
+tryLoadLogo();
+render();
+
+function render(){
+  renderTabs();
+  renderServices();
+  renderServiceSelect();
+  setMiniInfo();
+  updateSticky();
 }
 </script>
 </body>
