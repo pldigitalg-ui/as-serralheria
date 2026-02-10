@@ -4,163 +4,264 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#f6f7f9" />
-  <title>AS Andrade Serralheria — Orçamentos</title>
+  <title>AS Andrade Serralheria & Caldeiraria — Belo Horizonte</title>
+  <meta name="description" content="Serralheria e caldeiraria sob medida em Belo Horizonte e região. Projetos residenciais e obras: portões, grades, escadas, coberturas e estruturas metálicas. Orçamento rápido no WhatsApp." />
 
   <style>
     :root{
       --bg:#f6f7f9;
-      --card: rgba(255,255,255,.92);
-      --card2: rgba(255,255,255,.78);
-
-      --text:#101114;
+      --card:#ffffff;
+      --card2: rgba(255,255,255,.82);
+      --text:#18181b;
       --muted:#5b616a;
       --line: rgba(0,0,0,.10);
-
-      --brandRed:#d11b22;
-      --brandRed2:#ff2a32;
-      --silver:#c7c7c7;
-      --silver2:#efefef;
-
       --shadow: 0 18px 42px rgba(0,0,0,.10);
       --radius: 18px;
-    }
 
+      --red:#ef4444;
+      --red2:#d11b22;
+      --metal:#e4e4e7;
+      --metal2:#a1a1aa;
+      --darkmetal:#52525b;
+
+      --ok:#16a34a;
+      --warn:#f59e0b;
+    }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--text);
       background: var(--bg);
-      position:relative;
+      color: var(--text);
       overflow-x:hidden;
     }
 
-    /* FUNDO mockup.png BEM SUAVE */
+    /* fundo com mockup claro (leve) */
     body::before{
       content:"";
-      position:fixed;
-      inset:0;
+      position:fixed; inset:0;
       background:
-        radial-gradient(1200px 700px at 10% -10%, rgba(209,27,34,.10), transparent 60%),
+        radial-gradient(1200px 700px at 10% -10%, rgba(239,68,68,.12), transparent 60%),
         radial-gradient(900px 600px at 110% 10%, rgba(0,0,0,.05), transparent 60%),
         url("mockup.png") center/cover no-repeat;
-      opacity:.10; /* <<< ajuste: 0.05 mais suave | 0.14 mais forte */
-      filter: saturate(.9) contrast(.95) brightness(1.05);
+      opacity:.08;
+      filter: saturate(.95) contrast(.96) brightness(1.06);
       pointer-events:none;
-      z-index:-1;
+      z-index:-2;
     }
 
-    .wrap{max-width:1120px;margin:0 auto;padding:18px 16px 110px}
-
+    .wrap{max-width:1120px;margin:0 auto;padding:0 16px 110px}
     .topbar{
-      position:sticky; top:0; z-index:20;
+      position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: rgba(246,247,249,.72);
-      border-bottom: 1px solid var(--line);
+      background: rgba(246,247,249,.75);
+      border-bottom:1px solid var(--line);
     }
     .topbar .inner{
       max-width:1120px;margin:0 auto;padding:14px 16px;
-      display:flex;gap:12px;align-items:center;justify-content:space-between
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
     }
 
-    .brand{display:flex;gap:12px;align-items:center;min-width:0}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
     .logo{
-      width:44px;height:44px;border-radius:14px;
-      display:grid;place-items:center;
-      background: rgba(255,255,255,.75);
+      width:44px;height:44px;border-radius:14px;overflow:hidden;
       border:1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
       box-shadow: 0 12px 26px rgba(0,0,0,.10);
-      overflow:hidden;
+      display:grid;place-items:center;
       flex:0 0 auto;
     }
     .logo img{width:100%;height:100%;object-fit:cover;display:none}
+    .logo span{
+      font-weight:1000;letter-spacing:.8px;
+      background: linear-gradient(135deg,var(--red),var(--red2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      font-size:15px;
+    }
     .brand h1{
-      margin:0;font-size:16px;line-height:1.1;letter-spacing:.2px;
+      margin:0;font-size:14.5px;line-height:1.15;font-weight:1000;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
-    .brand p{margin:2px 0 0;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand p{
+      margin:2px 0 0;font-size:12px;color:var(--muted);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
 
+    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
       padding:8px 10px;border-radius:999px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.78);
       color:var(--muted);
       font-size:12px;
       white-space:nowrap;
     }
 
-    .actions{display:flex;gap:10px;align-items:center}
     .btn{
       border:1px solid var(--line);
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.95);
       color:var(--text);
       padding:10px 12px;border-radius:14px;
-      font-weight:900;
+      font-weight:1000;
       cursor:pointer;
       transition:.15s ease;
       display:inline-flex;align-items:center;gap:10px;
       box-shadow: 0 10px 20px rgba(0,0,0,.06);
+      text-decoration:none;
     }
     .btn:hover{transform: translateY(-1px)}
     .btn.primary{
-      background: linear-gradient(135deg, rgba(255,42,50,.98), rgba(209,27,34,.85));
+      background: linear-gradient(135deg, rgba(239,68,68,.98), rgba(209,27,34,.86));
       border-color: rgba(209,27,34,.35);
-      color: #fff;
+      color:#fff;
       box-shadow: 0 16px 34px rgba(209,27,34,.18);
     }
     .btn.ghost{background:transparent;box-shadow:none}
 
-    .badge{
-      min-width:20px;height:20px;padding:0 6px;border-radius:999px;
-      background: rgba(255,255,255,.20);
-      display:inline-grid;place-items:center;
-      font-size:12px;font-weight:900;
-    }
-
-    .hero{padding:18px 0 8px;display:grid;gap:14px}
-    .heroCard{
-      background: var(--card);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:16px;
+    /* HERO empresa grande */
+    .hero{
+      margin-top:16px;
+      border-radius: 26px;
+      border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      display:grid;gap:12px;
+      overflow:hidden;
+      position:relative;
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(239,68,68,.14), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(0,0,0,.06), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
+    }
+    .heroMedia{
+      position:absolute; inset:0;
+      background: url("hero.jpg") center/cover no-repeat;
+      filter: saturate(.9) contrast(.95) brightness(1.02);
+      opacity:.22;           /* deixa premium sem pesar */
+    }
+    .heroOverlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.70) 45%, rgba(255,255,255,.25) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.02));
+    }
+    .heroInner{
+      position:relative;
+      padding:22px 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .heroInner{grid-template-columns:1fr}
     }
 
-    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-    .tabs{display:flex;gap:10px;flex-wrap:wrap}
-    .tab{
-      padding:10px 12px;border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.78);
+    .heroTitle{
+      margin:0;
+      font-size:26px;
+      line-height:1.08;
+      letter-spacing:-.3px;
+      font-weight:1100;
+    }
+    .heroSub{
+      margin:10px 0 0;
       color:var(--muted);
-      font-weight:900;font-size:13px;
-      cursor:pointer;
-      user-select:none;
-    }
-    .tab.active{
-      color:var(--text);
-      border-color: rgba(209,27,34,.35);
-      background: rgba(209,27,34,.10);
+      font-size:14px;
+      line-height:1.45;
+      max-width: 62ch;
     }
 
-    .mini{font-size:12px;color:var(--muted)}
+    .heroBadges{
+      margin-top:14px;
+      display:flex;flex-wrap:wrap;gap:10px;
+    }
+    .badgeMetal{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(0,0,0,.10);
+      background: linear-gradient(135deg, rgba(228,228,231,.85), rgba(255,255,255,.65));
+      color:#27272a;
+      font-size:12px;
+      font-weight:900;
+    }
 
-    .grid{display:grid;grid-template-columns: 1.2fr .8fr;gap:16px;margin-top:12px}
-    @media (max-width: 980px){ .grid{grid-template-columns:1fr} .rightPanel{position:relative;top:0} }
+    .heroCTAs{
+      margin-top:14px;
+      display:flex;gap:10px;flex-wrap:wrap;
+      align-items:center;
+    }
+    .micro{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      display:flex;gap:10px;flex-wrap:wrap;
+    }
+    .micro b{color:#111827}
 
-    .list{display:grid;gap:12px}
+    .heroCard{
+      background: rgba(255,255,255,.84);
+      border:1px solid var(--line);
+      border-radius: 18px;
+      padding:14px;
+      box-shadow: 0 16px 34px rgba(0,0,0,.08);
+    }
+    .heroCard h3{margin:0;font-size:14px;font-weight:1100;letter-spacing:.2px}
+    .heroCard .line{
+      margin-top:10px;
+      display:flex;justify-content:space-between;gap:12px;
+      font-size:13px;color:var(--muted);
+      padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .heroCard .line:last-child{border-bottom:0}
+    .heroCard .line strong{color:var(--text)}
+    .alertSmall{
+      margin-top:12px;
+      padding:10px 12px;border-radius:16px;
+      border:1px solid rgba(239,68,68,.20);
+      background: rgba(239,68,68,.08);
+      color: var(--text);
+      font-size:13px;
+      display:flex;gap:10px;align-items:flex-start;
+    }
+    .alertSmall b{color:var(--red2)}
+    .alertSmall small{color:var(--muted)}
+
+    /* SEÇÕES */
+    .section{margin-top:16px}
+    .grid2{display:grid;grid-template-columns: 1.2fr .8fr;gap:16px}
+    @media (max-width:980px){.grid2{grid-template-columns:1fr}}
     .card{
-      background: var(--card);
+      background: rgba(255,255,255,.92);
       border:1px solid var(--line);
       border-radius: var(--radius);
       padding:14px;
       box-shadow: var(--shadow);
     }
+    .card h2{margin:0;font-size:15px;font-weight:1100}
+    .subline{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.4;
+    }
+    .divider{height:1px;background:rgba(0,0,0,.08);margin:12px 0}
 
-    /* BLOCO DE SERVIÇO */
+    /* TABS */
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .tab{
+      padding:10px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      color:var(--muted);
+      font-weight:1000;font-size:13px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .tab.active{color:var(--text);border-color: rgba(209,27,34,.35);background: rgba(209,27,34,.10)}
+
+    /* SERVIÇOS */
+    .list{display:grid;gap:12px;margin-top:12px}
     .service{
       display:grid;
       grid-template-columns: 86px 1fr auto;
@@ -169,173 +270,382 @@
       padding:12px;
       border-radius:16px;
       border:1px solid var(--line);
-      background: var(--card2);
+      background: rgba(255,255,255,.82);
     }
-    @media (max-width: 520px){
-      .service{grid-template-columns: 78px 1fr; grid-template-areas:
-        "img info"
-        "ctrl ctrl";
-      }
+    @media (max-width:520px){
+      .service{grid-template-columns:78px 1fr;grid-template-areas:"img info" "ctrl ctrl";}
       .service .thumb{grid-area:img}
       .service .info{grid-area:info}
-      .service .right{grid-area:ctrl; justify-items:stretch}
+      .service .right{grid-area:ctrl;justify-items:stretch}
     }
-
     .thumb{
-      width:86px;height:86px;border-radius:16px; overflow:hidden;
-      border:1px solid var(--line);
+      width:86px;height:86px;border-radius:16px;overflow:hidden;
+      border:1px solid rgba(0,0,0,.10);
       background: rgba(0,0,0,.04);
       display:grid;place-items:center;
     }
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
     .thumb .ph{font-size:22px;opacity:.85}
 
-    .service h3{margin:0;font-size:15px}
+    .service h3{margin:0;font-size:15px;font-weight:1100}
     .service p{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.35}
-
     .right{display:grid;gap:10px;justify-items:end}
-    .tagRight{font-weight:900;color:var(--text);font-size:12.5px;text-align:right}
+    .tagRight{font-weight:1000;font-size:12.5px;text-align:right;color:#111827}
 
-    /* CHECKLIST */
+    /* CHECKLIST + FORM */
     .checkWrap{
       border:1px solid var(--line);
       border-radius:14px;
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.92);
       padding:10px;
-      max-height: 220px;
+      max-height: 240px;
       overflow:auto;
       display:grid;
       gap:8px;
     }
     .chk{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding:8px 10px;
-      border-radius:12px;
+      display:flex; gap:10px; align-items:flex-start;
+      padding:8px 10px;border-radius:12px;
       border:1px solid rgba(0,0,0,.07);
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.90);
       cursor:pointer;
     }
     .chk input{margin-top:2px;transform: scale(1.08)}
     .chk b{font-size:13px}
     .chk small{display:block;color:var(--muted);margin-top:2px;line-height:1.25}
 
-    /* PAINEL DIREITO */
-    .rightPanel{position:sticky;top:78px;height:fit-content}
     .form{display:grid;gap:10px;margin-top:12px}
     .field{display:grid;gap:6px}
-    .field label{font-size:12px;color:var(--muted);font-weight:900}
+    .field label{font-size:12px;color:var(--muted);font-weight:1000}
     .field input, .field textarea, .field select{
       border-radius:14px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.96);
       color:var(--text);
       padding:10px 12px;
-      outline: none;
+      outline:none;
       font-size:14px;
     }
-    textarea{min-height:74px;resize:vertical}
-    .two{display:grid;grid-template-columns: 1fr 1fr;gap:10px}
+    textarea{min-height:84px;resize:vertical}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     @media (max-width:560px){.two{grid-template-columns:1fr}}
 
-    .notice{
+    .hint{font-size:12px;color:var(--muted)}
+    .errorBox{
+      display:none;
       padding:10px 12px;border-radius:16px;
-      border:1px solid var(--line);
-      background: rgba(209,27,34,.08);
+      border:1px solid rgba(239,68,68,.22);
+      background: rgba(239,68,68,.08);
       color: var(--text);
       font-size:13px;
-      display:flex;gap:10px;align-items:flex-start;
+      gap:10px;
+      align-items:flex-start;
     }
-    .notice b{color:var(--brandRed)}
-    .notice small{color:var(--muted)}
+    .errorBox.show{display:flex}
+    .errorBox b{color:var(--red2)}
+    .successBox{
+      display:none;
+      padding:10px 12px;border-radius:16px;
+      border:1px solid rgba(22,163,74,.22);
+      background: rgba(22,163,74,.08);
+      color: var(--text);
+      font-size:13px;
+      gap:10px;
+      align-items:flex-start;
+    }
 
-    .footer{
-      margin-top:16px;color:var(--muted);font-size:12px;
-      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
+    /* PORTFÓLIO */
+    .gallery{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
     }
-    .divider{height:1px;background:rgba(0,0,0,.08);margin:12px 0}
-
-    /* BOTÃO FIXO NO CELULAR */
-    .stickyOrder{
-      position:fixed; left:12px; right:12px; bottom:12px;
-      z-index:50; display:none;
-    }
-    .stickyOrder .bar{
-      max-width:1120px;
-      margin:0 auto;
-      border-radius: 18px;
+    @media (max-width:820px){.gallery{grid-template-columns: repeat(2, 1fr)}}
+    .gItem{
+      border-radius:16px; overflow:hidden;
       border:1px solid var(--line);
       background: rgba(255,255,255,.86);
+      cursor:pointer;
+      position:relative;
+      min-height:140px;
+    }
+    .gItem img{width:100%;height:100%;object-fit:cover;display:block;opacity:.98}
+    .gCap{
+      position:absolute;left:10px;right:10px;bottom:10px;
+      padding:8px 10px;border-radius:14px;
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(0,0,0,.08);
+      font-weight:1000;
+      font-size:12px;
+      color:#111827;
+      display:flex;justify-content:space-between;gap:10px;align-items:center;
+    }
+    .gCap span{color:var(--muted);font-weight:900}
+
+    /* MODAL */
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center; justify-content:center;
+      background: rgba(0,0,0,.55);
+      z-index:100;
+      padding:16px;
+    }
+    .modal.show{display:flex}
+    .modalCard{
+      width:min(980px, 100%);
+      border-radius: 18px;
+      background: rgba(255,255,255,.96);
+      border:1px solid rgba(255,255,255,.22);
+      box-shadow: 0 22px 60px rgba(0,0,0,.35);
+      overflow:hidden;
+    }
+    .modalTop{
+      padding:12px 12px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border-bottom:1px solid rgba(0,0,0,.08);
+    }
+    .modalTop b{font-weight:1100}
+    .modalImg{width:100%;max-height:70vh;object-fit:cover;display:block}
+    .modalActions{display:flex;gap:10px;flex-wrap:wrap}
+    .xBtn{
+      border:1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.92);
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:1100;
+      cursor:pointer;
+    }
+
+    /* DEPOIMENTOS */
+    .tGrid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width:900px){.tGrid{grid-template-columns:1fr}}
+    .tCard{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background: rgba(255,255,255,.90);
+      padding:12px;
+    }
+    .stars{letter-spacing:1px;color:#f59e0b;font-weight:1100}
+    .tCard p{margin:8px 0 0;color:#111827;line-height:1.45;font-size:13px}
+    .tCard .who{margin-top:10px;color:var(--muted);font-size:12px;font-weight:900}
+
+    /* FAQ */
+    details{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background: rgba(255,255,255,.90);
+      padding:12px 12px;
+    }
+    summary{cursor:pointer;font-weight:1100}
+    details p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+
+    /* Sticky CTA mobile + WhatsApp flutuante */
+    .stickyCta{
+      position:fixed;left:12px;right:12px;bottom:12px;
+      z-index:60;
+      display:none;
+    }
+    .stickyCta .bar{
+      max-width:1120px;margin:0 auto;
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.88);
       backdrop-filter: blur(10px);
       box-shadow: 0 18px 40px rgba(0,0,0,.12);
-      display:flex; gap:10px; align-items:center; justify-content:space-between;
+      display:flex;gap:10px;align-items:center;justify-content:space-between;
       padding:10px;
     }
-    .stickyOrder .left{display:grid; gap:2px; min-width:0;}
-    .stickyOrder .left b{font-size:13px}
-    .stickyOrder .left span{
-      font-size:12px;color:var(--muted);
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw
+    .stickyCta .left{display:grid;gap:2px;min-width:0}
+    .stickyCta .left b{font-size:13px}
+    .stickyCta .left span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw}
+    @media (max-width: 980px){.stickyCta{display:block;}}
+
+    .waFloat{
+      position:fixed;
+      right:14px;
+      bottom:88px;
+      z-index:70;
+      display:flex;
     }
-    @media (max-width: 980px){ .stickyOrder{display:block;} }
+    @media (max-width: 980px){.waFloat{bottom:148px}}
+    .waFloat a{
+      width:52px;height:52px;border-radius:18px;
+      display:grid;place-items:center;
+      background: linear-gradient(135deg, rgba(22,163,74,.98), rgba(22,163,74,.78));
+      color:#fff;
+      border:1px solid rgba(22,163,74,.40);
+      box-shadow: 0 18px 36px rgba(22,163,74,.18);
+      text-decoration:none;
+      font-size:22px;
+      font-weight:1100;
+    }
+
+    .footerBar{
+      margin-top:16px;
+      display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;
+      color:var(--muted);font-size:12px;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Topbar -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
         <div class="logo" id="logoBox" title="AS Andrade Serralheria">
-          <span id="logoText" style="font-weight:900;letter-spacing:.8px;background:linear-gradient(135deg,var(--brandRed2),var(--brandRed));-webkit-background-clip:text;background-clip:text;color:transparent;">AS</span>
-          <img id="logoImg" alt="AS logo" />
+          <span id="logoText">AS</span>
+          <img id="logoImg" alt="Logo AS" />
         </div>
-        <div>
+        <div style="min-width:0">
           <h1>AS Andrade Serralheria & Caldeiraria</h1>
-          <p>Belo Horizonte - MG • Orçamento rápido no WhatsApp</p>
+          <p id="topSub">Belo Horizonte - MG • Residencial + Obra</p>
         </div>
       </div>
 
       <div class="actions">
         <span class="pill">📍 BH e região</span>
-        <button class="btn primary" id="goFormBtn" type="button">Pedir orçamento <span class="badge">→</span></button>
+        <a class="btn primary" href="#orcamento" id="ctaTop">Pedir orçamento</a>
       </div>
     </div>
   </div>
 
   <div class="wrap">
-    <section class="hero">
-      <div class="heroCard">
-        <div class="row">
-          <div>
-            <div style="font-weight:900;font-size:18px;letter-spacing:.2px">Metal sob medida com acabamento profissional</div>
-            <div class="mini" style="margin-top:6px">
-              Marque os serviços que precisa, preencha as informações e envie no WhatsApp.
+    <!-- HERO -->
+    <section class="hero" aria-label="Apresentação">
+      <div class="heroMedia"></div>
+      <div class="heroOverlay"></div>
+
+      <div class="heroInner">
+        <div>
+          <h2 class="heroTitle">Metal sob medida com acabamento profissional</h2>
+          <p class="heroSub">
+            Projetos para <b>residências</b> e <b>obras</b>: portões, grades, escadas, coberturas e estruturas metálicas.
+            Você envia foto/medida → a gente responde com <b>valor + prazo</b>.
+          </p>
+
+          <div class="heroBadges">
+            <div class="badgeMetal">⚙️ Sob medida</div>
+            <div class="badgeMetal">🧱 Residencial + Obra</div>
+            <div class="badgeMetal">🧰 Instalação profissional</div>
+            <div class="badgeMetal">📍 BH e região</div>
+          </div>
+
+          <div class="heroCTAs">
+            <a class="btn primary" href="#orcamento" id="ctaHero">Pedir orçamento agora</a>
+            <a class="btn" href="#portfolio">Ver portfólio</a>
+          </div>
+
+          <div class="micro">
+            <span>📞 <b>(31) 98391-3499</b></span>
+            <span>🕒 <b>Seg a Sáb:</b> 11:00 às 15:00</span>
+          </div>
+        </div>
+
+        <div class="heroCard">
+          <h3>Empresa grande na prática</h3>
+          <div class="line"><span>Atendimento</span> <strong>Residencial + Comercial</strong></div>
+          <div class="line"><span>Entrega</span> <strong>Prazo + alinhamento</strong></div>
+          <div class="line"><span>Execução</span> <strong>Solda + reforço</strong></div>
+          <div class="line"><span>Suporte</span> <strong>WhatsApp direto</strong></div>
+
+          <div class="alertSmall">
+            <div>⚠️</div>
+            <div>
+              <b>Agenda semanal limitada</b><br>
+              <small>Para instalação e visitas. Peça orçamento com antecedência.</small>
             </div>
           </div>
-          <div class="tabs" id="tabs"></div>
         </div>
-        <div class="mini" id="miniInfo"></div>
       </div>
     </section>
 
-    <section class="grid">
-      <div class="list">
-        <div class="card">
-          <h2 style="margin:0 0 10px;font-size:15px">Serviços</h2>
-          <div class="list" id="services"></div>
-          <div class="mini" style="margin-top:10px">
-            Obs: se alguma imagem não aparecer, o nome do arquivo no GitHub tem que ser igual ao <b>thumb</b> do código.
+    <!-- PROVAS / CONFIANÇA -->
+    <section class="section grid2" aria-label="Confiança e diferenciais">
+      <div class="card">
+        <h2>Por que escolher a AS</h2>
+        <p class="subline">Posicionamento misto: forte pra obra, bonito pra casa.</p>
+        <div class="divider"></div>
+        <div class="list" style="margin-top:0">
+          <div class="service" style="grid-template-columns: 1fr;">
+            <div>
+              <h3>Acabamento + reforço</h3>
+              <p>Metal com alinhamento, reforço e estética — sem gambiarra e sem “cara de serralheria fraca”.</p>
+            </div>
+          </div>
+          <div class="service" style="grid-template-columns: 1fr;">
+            <div>
+              <h3>Resposta rápida no WhatsApp</h3>
+              <p>Você manda foto/medida e recebe valor + prazo. Quanto mais detalhes, mais preciso fica.</p>
+            </div>
+          </div>
+          <div class="service" style="grid-template-columns: 1fr;">
+            <div>
+              <h3>Residencial + obras</h3>
+              <p>Atendemos desde portões e escadas até estruturas e coberturas para empresas e obras.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <aside class="card rightPanel" id="formPanel">
-        <div class="notice">
-          <div>⚙️</div>
+      <div class="card">
+        <h2>Prova social</h2>
+        <p class="subline">Coloque números reais quando você quiser (eu deixei como placeholders).</p>
+        <div class="divider"></div>
+        <div class="list" style="margin-top:0">
+          <div class="service">
+            <div class="info" style="grid-column:1/-1">
+              <h3>+100 projetos entregues</h3>
+              <p>Atualize esse número quando quiser — passa autoridade na hora.</p>
+            </div>
+          </div>
+          <div class="service">
+            <div class="info" style="grid-column:1/-1">
+              <h3>BH e região</h3>
+              <p>Atendimento residencial e comercial — com instalação.</p>
+            </div>
+          </div>
+          <div class="service">
+            <div class="info" style="grid-column:1/-1">
+              <h3>Atendimento direto</h3>
+              <p>Sem enrolação: conversa com quem executa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS + ORÇAMENTO -->
+    <section class="section grid2" aria-label="Serviços e orçamento">
+      <div class="card">
+        <h2>Serviços</h2>
+        <p class="subline">Marque serviços no formulário e descreva o que precisa. (Você pode marcar mais de um)</p>
+
+        <div class="tabs" id="tabs"></div>
+        <div class="list" id="services"></div>
+
+        <p class="subline">
+          📸 Para as fotos aparecerem, suba no repositório com estes nomes (exatos):<br>
+          <b>serv-portao.jpg</b>, <b>serv-social.jpg</b>, <b>serv-grade.jpg</b>, <b>serv-grade-comercial.jpg</b>, <b>serv-estrutura.jpg</b>, <b>serv-escada.jpg</b>, <b>serv-cobertura.jpg</b>, <b>serv-cobertura2.jpg</b>, <b>serv-personalizado.jpg</b>
+        </p>
+      </div>
+
+      <aside class="card" id="orcamento">
+        <h2>Orçamento (obrigatório preencher)</h2>
+        <p class="subline">Só abre o WhatsApp quando estiver completo. Sem campos vazios.</p>
+
+        <div class="errorBox" id="errorBox">
+          <div>⛔</div>
           <div>
-            <b>Orçamento em 3 passos</b><br />
-            <small>1) marque serviços + mande foto/medida • 2) enviamos valor + prazo • 3) agendamos produção/instalação</small>
+            <b>Falta preencher:</b>
+            <div id="errorList" class="hint" style="margin-top:6px"></div>
           </div>
         </div>
 
@@ -343,22 +653,23 @@
           <div class="field">
             <label>Selecione os serviços (pode marcar mais de um)</label>
             <div class="checkWrap" id="serviceCheckList"></div>
+            <div class="hint">Dica: marque tudo que você quer no mesmo orçamento (portão + grade + escada, etc.).</div>
           </div>
 
           <div class="two">
             <div class="field">
-              <label>Seu nome</label>
-              <input id="name" placeholder="Ex: Paulo" />
+              <label>Seu nome *</label>
+              <input id="name" placeholder="Ex: Paulo" autocomplete="name" />
             </div>
             <div class="field">
-              <label>Telefone</label>
-              <input id="phone" placeholder="(31) 9xxxx-xxxx" />
+              <label>Telefone / WhatsApp *</label>
+              <input id="phone" placeholder="(31) 9xxxx-xxxx" inputmode="tel" autocomplete="tel" />
             </div>
           </div>
 
           <div class="two">
             <div class="field">
-              <label>Cidade / Bairro</label>
+              <label>Cidade / Bairro *</label>
               <input id="place" placeholder="Ex: BH - Barreiro" />
             </div>
             <div class="field">
@@ -369,8 +680,9 @@
 
           <div class="two">
             <div class="field">
-              <label>Prazo</label>
+              <label>Prazo *</label>
               <select id="deadline">
+                <option value="">Selecione…</option>
                 <option value="Sem urgência">Sem urgência</option>
                 <option value="Até 7 dias">Até 7 dias</option>
                 <option value="Até 15 dias">Até 15 dias</option>
@@ -378,8 +690,9 @@
               </select>
             </div>
             <div class="field">
-              <label>Tenho foto do projeto?</label>
+              <label>Tenho foto do projeto? *</label>
               <select id="hasPhoto">
+                <option value="">Selecione…</option>
                 <option value="Sim">Sim</option>
                 <option value="Não">Não</option>
               </select>
@@ -387,221 +700,350 @@
           </div>
 
           <div class="field">
-            <label>Detalhes do serviço</label>
-            <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, etc."></textarea>
+            <label>Detalhes do serviço *</label>
+            <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, e o que você quer (quanto mais detalhes, melhor o orçamento)."></textarea>
           </div>
 
-          <div class="two">
-                       <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
-          </div>
+          <button class="btn primary" id="sendBtn" type="button">Enviar orçamento no WhatsApp</button>
 
-          <div class="footer">
+          <div class="footerBar">
             <span><b>WhatsApp:</b> (31) 98391-3499</span>
-            <span><b>Cidade:</b> Belo Horizonte - MG</span>
+            <span><b>Atendimento:</b> BH e região</span>
           </div>
 
           <div class="divider"></div>
-
-          <button class="btn ghost" id="clearSaved" type="button" title="Limpar dados salvos">
-            Limpar dados salvos deste aparelho
-          </button>
+          <button class="btn ghost" id="clearSaved" type="button">Limpar dados salvos deste aparelho</button>
+          <div class="hint">*Salvamos automaticamente só para não perder seu preenchimento. Você pode limpar quando quiser.</div>
         </div>
       </aside>
     </section>
+
+    <!-- PORTFÓLIO -->
+    <section class="section card" id="portfolio" aria-label="Portfólio">
+      <h2>Portfólio</h2>
+      <p class="subline">Misturado (obra + casa) — isso é o que passa “empresa grande” no seu posicionamento.</p>
+      <div class="gallery" id="gallery"></div>
+      <p class="subline">📌 Suba suas fotos como: <b>obra-01.jpg</b> até <b>obra-09.jpg</b> (ou ajuste no JS).</p>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="section card" aria-label="Depoimentos">
+      <h2>Depoimentos</h2>
+      <p class="subline">Quando você tiver depoimentos reais, eu coloco no lugar (não invente).</p>
+
+      <div class="tGrid">
+        <div class="tCard">
+          <div class="stars">★★★★★</div>
+          <p>“Acabamento excelente e alinhamento perfeito. Entregou no prazo.”</p>
+          <div class="who">Cliente residencial • BH</div>
+        </div>
+        <div class="tCard">
+          <div class="stars">★★★★★</div>
+          <p>“Fez a estrutura e instalação com profissionalismo. Recomendo.”</p>
+          <div class="who">Cliente comercial • Região BH</div>
+        </div>
+        <div class="tCard">
+          <div class="stars">★★★★★</div>
+          <p>“Portão e grade ficaram top. Atendimento rápido no WhatsApp.”</p>
+          <div class="who">Cliente residencial • BH</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section card" aria-label="Perguntas frequentes">
+      <h2>Perguntas frequentes</h2>
+      <p class="subline">Respostas curtas e objetivas (empresa grande).</p>
+      <div class="list">
+        <details>
+          <summary>Como faço para orçamento ficar mais preciso?</summary>
+          <p>Envie <b>foto do local</b>, <b>medidas</b> e diga se precisa de <b>instalação</b>. Se tiver referência do que quer, melhor ainda.</p>
+        </details>
+
+        <details>
+          <summary>Atende somente Belo Horizonte?</summary>
+          <p>Atendemos <b>BH e região</b>. Dependendo do serviço e distância, avaliamos logística e instalação.</p>
+        </details>
+
+        <details>
+          <summary>Vocês fazem serviço sob medida?</summary>
+          <p>Sim. Projetos sob medida para residências e obras: portões, grades, escadas, coberturas e estruturas metálicas.</p>
+        </details>
+      </div>
+
+      <div class="divider"></div>
+      <div class="footerBar">
+        <span>© <span id="year"></span> AS Andrade Serralheria & Caldeiraria</span>
+        <span>Feito para conversão (WhatsApp)</span>
+      </div>
+    </section>
   </div>
 
-  <!-- BOTÃO FIXO NO CELULAR -->
-  <div class="stickyOrder" id="stickyOrder">
+  <!-- WhatsApp flutuante (somente atalho) -->
+  <div class="waFloat" aria-label="Atalho WhatsApp">
+    <a id="waQuick" href="#" title="Abrir WhatsApp">💬</a>
+  </div>
+
+  <!-- Sticky CTA mobile -->
+  <div class="stickyCta" id="stickyCta">
     <div class="bar">
       <div class="left">
         <b>Pedir orçamento</b>
-        <span id="stickySub">Marque os serviços e envie as informações</span>
+        <span id="stickySub">Marque os serviços e preencha para enviar</span>
       </div>
-      <button class="btn primary" id="stickyBtn" type="button">Pedir orçamento</button>
+      <a class="btn primary" href="#orcamento">Orçar</a>
     </div>
   </div>
 
-<script>
-const CONFIG = {
-  company: "AS Andrade Serralheria & Caldeiraria",
-  cityLine: "Belo Horizonte - MG",
-  whatsappNumber: "553183913499",
-  logoFile: "LOGO.png",
-};
-
-/* SOMENTE OS ITENS */
-const SERVICES = [
-  { cat: "Portões", items: [
-    { id:"p1", name:"Portão", desc:"Fabricação e instalação sob medida.", thumb:"serv-portao.jpg" },
-    { id:"p2", name:"Portão social", desc:"Entrada social com acabamento profissional.", thumb:"serv-social.jpg" },
-  ]},
-  { cat: "Grades", items: [
-    { id:"g1", name:"Grade", desc:"Proteção residencial e comercial.", thumb:"serv-grade.jpg" },
-    { id:"g2", name:"Grade comercial", desc:"Segurança para lojas e empresas.", thumb:"serv-grade-comercial.jpg" },
-  ]},
-  { cat: "Estruturas", items: [
-    { id:"e1", name:"Estrutura metálica", desc:"Obras médias, reforços e montagem.", thumb:"serv-estrutura.jpg" },
-    { id:"e2", name:"Escada / guarda-corpo", desc:"Escadas metálicas, corrimão e guarda-corpo.", thumb:"serv-escada.jpg" },
-  ]},
-  { cat: "Coberturas", items: [
-    { id:"c1", name:"Cobertura", desc:"Estrutura metálica para cobertura.", thumb:"serv-cobertura.jpg" },
-    { id:"c2", name:"Cobertura (variação)", desc:"Modelo alternativo conforme necessidade.", thumb:"serv-cobertura2.jpg" },
-  ]},
-  { cat: "Sob medida", items: [
-    { id:"s1", name:"Serviço personalizado", desc:"Você manda referência/foto e a gente executa.", thumb:"serv-personalizado.jpg" },
-  ]},
-];
-
-const el = (id)=>document.getElementById(id);
-const LS_KEY = "as_serralheria_form_v1";
-
-const state = { cat: "Todos" };
-
-function getAllCats(){ return ["Todos", ...SERVICES.map(s=>s.cat)]; }
-
-function renderTabs(){
-  const tabs = el("tabs");
-  tabs.innerHTML = "";
-  getAllCats().forEach(c=>{
-    const b = document.createElement("div");
-    b.className = "tab" + (state.cat===c ? " active" : "");
-    b.textContent = c;
-    b.onclick = ()=>{ state.cat=c; renderServices(); };
-    tabs.appendChild(b);
-  });
-}
-
-function filteredServices(){
-  let sections = SERVICES;
-  if(state.cat !== "Todos") sections = SERVICES.filter(s=>s.cat===state.cat);
-  const out = [];
-  sections.forEach(sec=> sec.items.forEach(it=> out.push({ ...it, cat: sec.cat })));
-  return out;
-}
-
-function renderServices(){
-  const container = el("services");
-  container.innerHTML = "";
-  const items = filteredServices();
-
-  items.forEach(it=>{
-    const row = document.createElement("div");
-    row.className = "service";
-
-    const thumb = document.createElement("div");
-    thumb.className = "thumb";
-    const img = document.createElement("img");
-    img.src = it.thumb;
-    img.alt = it.name;
-    img.onerror = ()=>{ thumb.innerHTML = `<div class="ph">⚙️</div>`; };
-    thumb.appendChild(img);
-
-    const info = document.createElement("div");
-    info.className = "info";
-    info.innerHTML = `
-      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-        <h3>${it.name}</h3>
-        <span class="pill" style="padding:6px 10px">${it.cat}</span>
+  <!-- Modal do portfólio -->
+  <div class="modal" id="modal">
+    <div class="modalCard">
+      <div class="modalTop">
+        <b id="modalTitle">Foto</b>
+        <div class="modalActions">
+          <button class="xBtn" id="useAsRef" type="button">Usar como referência</button>
+          <button class="xBtn" id="closeModal" type="button">Fechar</button>
+        </div>
       </div>
-      <p>${it.desc}</p>
-    `;
+      <img class="modalImg" id="modalImg" alt="Foto do portfólio" />
+    </div>
+  </div>
 
-    const right = document.createElement("div");
-    right.className = "right";
-
-    const tag = document.createElement("div");
-    tag.className = "tagRight";
-    tag.innerHTML = `Resposta rápida<br><span style="color:var(--muted);font-weight:900">WhatsApp</span>`;
-
-    const btn = document.createElement("button");
-    btn.className = "btn primary";
-    btn.type = "button";
-    btn.textContent = "Marcar";
-    btn.onclick = ()=>{
-      const checkbox = document.querySelector(`#serviceCheckList input[value="${cssEscape(it.cat + " — " + it.name)}"]`);
-      if(checkbox){
-        checkbox.checked = true;
-        persistForm();
-        updateSticky();
-        scrollToForm();
-      }
+  <script>
+    const CONFIG = {
+      company: "AS Andrade Serralheria & Caldeiraria",
+      cityLine: "Belo Horizonte - MG",
+      whatsappNumber: "553183913499",
+      logoFile: "LOGO.png",
+      storageKey: "as_site_empresa_grande_v1"
     };
 
-    right.append(tag, btn);
-    row.append(thumb, info, right);
-    container.appendChild(row);
-  });
-}
+    /* Somente seus itens */
+    const SERVICES = [
+      { cat: "Portões", items: [
+        { id:"p1", name:"Portão", desc:"Fabricação e instalação sob medida.", thumb:"serv-portao.jpg" },
+        { id:"p2", name:"Portão social", desc:"Entrada social com acabamento profissional.", thumb:"serv-social.jpg" },
+      ]},
+      { cat: "Grades", items: [
+        { id:"g1", name:"Grade", desc:"Proteção residencial e comercial.", thumb:"serv-grade.jpg" },
+        { id:"g2", name:"Grade comercial", desc:"Segurança para lojas e empresas.", thumb:"serv-grade-comercial.jpg" },
+      ]},
+      { cat: "Estruturas", items: [
+        { id:"e1", name:"Estrutura metálica", desc:"Obras médias, reforços e montagem.", thumb:"serv-estrutura.jpg" },
+        { id:"e2", name:"Escada / guarda-corpo", desc:"Escadas metálicas, corrimão e guarda-corpo.", thumb:"serv-escada.jpg" },
+      ]},
+      { cat: "Coberturas", items: [
+        { id:"c1", name:"Cobertura", desc:"Estrutura metálica para cobertura.", thumb:"serv-cobertura.jpg" },
+        { id:"c2", name:"Cobertura (variação)", desc:"Conforme necessidade e projeto.", thumb:"serv-cobertura2.jpg" },
+      ]},
+      { cat: "Sob medida", items: [
+        { id:"s1", name:"Serviço personalizado", desc:"Você manda referência/foto e a gente executa.", thumb:"serv-personalizado.jpg" },
+      ]},
+    ];
 
-function renderChecklist(){
-  const box = el("serviceCheckList");
-  box.innerHTML = "";
+    /* Portfólio (ajuste conforme você subir mais fotos) */
+    const PORTFOLIO = [
+      { src:"obra-01.jpg", title:"Portão premium (residencial)" },
+      { src:"obra-02.jpg", title:"Grade (residencial)" },
+      { src:"obra-03.jpg", title:"Escada / guarda-corpo" },
+      { src:"obra-04.jpg", title:"Cobertura" },
+      { src:"obra-05.jpg", title:"Estrutura metálica (obra)" },
+      { src:"obra-06.jpg", title:"Grade comercial" },
+      { src:"obra-07.jpg", title:"Portão social" },
+      { src:"obra-08.jpg", title:"Estrutura / reforço" },
+      { src:"obra-09.jpg", title:"Projeto sob medida" },
+    ];
 
-  SERVICES.forEach(sec=>{
-    sec.items.forEach(it=>{
-      const value = sec.cat + " — " + it.name;
-      const id = "chk_" + it.id;
+    const el = (id)=>document.getElementById(id);
+    const state = { cat: "Todos", modalIndex: null };
 
-      const label = document.createElement("label");
-      label.className = "chk";
-      label.setAttribute("for", id);
+    function getAllCats(){ return ["Todos", ...SERVICES.map(s=>s.cat)]; }
 
-      label.innerHTML = `
-        <input type="checkbox" id="${id}" value="${escapeHtml(value)}">
-        <div>
-          <b>${escapeHtml(value)}</b>
-          <small>${escapeHtml(it.desc)}</small>
-        </div>
-      `;
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, s => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[s]));
+    }
 
-      const input = label.querySelector("input");
-      input.addEventListener("change", ()=>{ persistForm(); updateSticky(); });
+    function tryLoadLogo(){
+      const img = el("logoImg");
+      img.src = CONFIG.logoFile + "?v=" + Date.now();
+      img.onload = ()=>{
+        img.style.display = "block";
+        el("logoText").style.display = "none";
+      };
+      // se falhar, fica "AS"
+    }
 
-      box.appendChild(label);
-    });
-  });
-}
+    function renderTabs(){
+      const tabs = el("tabs");
+      tabs.innerHTML = "";
+      getAllCats().forEach(c=>{
+        const b = document.createElement("div");
+        b.className = "tab" + (state.cat===c ? " active" : "");
+        b.textContent = c;
+        b.onclick = ()=>{ state.cat=c; renderServices(); };
+        tabs.appendChild(b);
+      });
+    }
 
-function getSelectedServices(){
-  return Array.from(document.querySelectorAll("#serviceCheckList input:checked")).map(i=>i.value);
-}
+    function filteredServices(){
+      let sections = SERVICES;
+      if(state.cat !== "Todos") sections = SERVICES.filter(s=>s.cat===state.cat);
+      const out = [];
+      sections.forEach(sec=> sec.items.forEach(it=> out.push({ ...it, cat: sec.cat })));
+      return out;
+    }
 
-function setMiniInfo(){
-  el("miniInfo").textContent = `${CONFIG.cityLine} • Orçamento via WhatsApp • Marque 1 ou mais serviços`;
-}
+    function renderServices(){
+      const container = el("services");
+      container.innerHTML = "";
+      const items = filteredServices();
 
-function tryLoadLogo(){
-  const img = el("logoImg");
-  img.src = CONFIG.logoFile + "?v=" + Date.now();
-  img.onload = ()=>{
-    img.style.display = "block";
-    el("logoText").style.display = "none";
-  };
-}
+      items.forEach(it=>{
+        const row = document.createElement("div");
+        row.className = "service";
 
-function scrollToForm(){
-  el("formPanel").scrollIntoView({behavior:"smooth", block:"start"});
-}
+        const thumb = document.createElement("div");
+        thumb.className = "thumb";
+        const img = document.createElement("img");
+        img.src = it.thumb;
+        img.alt = it.name;
+        img.onerror = ()=>{ thumb.innerHTML = `<div class="ph">⚙️</div>`; };
+        thumb.appendChild(img);
 
-function buildWhatsAppMessage(includePhotosRequest){
-  const name = el("name").value.trim();
-  const phone = el("phone").value.trim();
-  const place = el("place").value.trim();
-  const measures = el("measures").value.trim();
-  const deadline = el("deadline").value;
-  const hasPhoto = el("hasPhoto").value;
-  const details = el("details").value.trim();
-  const selected = getSelectedServices();
+        const info = document.createElement("div");
+        info.className = "info";
+        info.innerHTML = `
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <h3>${escapeHtml(it.name)}</h3>
+            <span class="pill" style="padding:6px 10px">${escapeHtml(it.cat)}</span>
+          </div>
+          <p>${escapeHtml(it.desc)}</p>
+        `;
 
-  const servicesBlock = selected.length
-    ? selected.map(s=>"• " + s).join("\n")
-    : "(nenhum marcado)";
+        const right = document.createElement("div");
+        right.className = "right";
 
-  let msg =
-`*ORÇAMENTO - ${CONFIG.company}*
-*Nome:* ${name || "(não informado)"}
-*Telefone:* ${phone || "(não informado)"}
-*Local:* ${place || "(não informado)"}
+        const tag = document.createElement("div");
+        tag.className = "tagRight";
+        tag.innerHTML = `Resposta rápida<br><span style="color:var(--muted);font-weight:1000">WhatsApp</span>`;
+
+        const btn = document.createElement("button");
+        btn.className = "btn primary";
+        btn.type = "button";
+        btn.textContent = "Marcar";
+        btn.onclick = ()=>{
+          const value = it.cat + " — " + it.name;
+          const cb = Array.from(document.querySelectorAll("#serviceCheckList input")).find(x=>x.value===value);
+          if(cb){
+            cb.checked = true;
+            persistFormDebounced();
+            updateSticky();
+            document.querySelector("#orcamento").scrollIntoView({behavior:"smooth", block:"start"});
+          }
+        };
+
+        right.append(tag, btn);
+        row.append(thumb, info, right);
+        container.appendChild(row);
+      });
+    }
+
+    function renderChecklist(){
+      const box = el("serviceCheckList");
+      box.innerHTML = "";
+      SERVICES.forEach(sec=>{
+        sec.items.forEach(it=>{
+          const value = sec.cat + " — " + it.name;
+          const id = "chk_" + it.id;
+
+          const label = document.createElement("label");
+          label.className = "chk";
+          label.setAttribute("for", id);
+
+          label.innerHTML = `
+            <input type="checkbox" id="${id}" value="${escapeHtml(value)}">
+            <div>
+              <b>${escapeHtml(value)}</b>
+              <small>${escapeHtml(it.desc)}</small>
+            </div>
+          `;
+
+          const input = label.querySelector("input");
+          input.addEventListener("change", ()=>{ persistFormDebounced(); updateSticky(); });
+
+          box.appendChild(label);
+        });
+      });
+    }
+
+    function getSelectedServices(){
+      return Array.from(document.querySelectorAll("#serviceCheckList input:checked")).map(i=>i.value);
+    }
+
+    function renderGallery(){
+      const g = el("gallery");
+      g.innerHTML = "";
+
+      PORTFOLIO.forEach((p, idx)=>{
+        const item = document.createElement("div");
+        item.className = "gItem";
+        item.onclick = ()=> openModal(idx);
+
+        const img = document.createElement("img");
+        img.src = p.src;
+        img.alt = p.title;
+        img.onerror = ()=>{ img.style.display="none"; item.style.minHeight="120px"; item.style.display="grid"; item.style.placeItems="center"; item.textContent="📸 Envie a foto: " + p.src; };
+
+        const cap = document.createElement("div");
+        cap.className = "gCap";
+        cap.innerHTML = `<div>${escapeHtml(p.title)}</div><span>Ver</span>`;
+
+        item.appendChild(img);
+        item.appendChild(cap);
+        g.appendChild(item);
+      });
+    }
+
+    function openModal(idx){
+      state.modalIndex = idx;
+      const p = PORTFOLIO[idx];
+      el("modalTitle").textContent = p.title;
+      el("modalImg").src = p.src;
+      el("modal").classList.add("show");
+    }
+    function closeModal(){ el("modal").classList.remove("show"); }
+
+    function useAsReference(){
+      const idx = state.modalIndex;
+      if(idx === null) return;
+      const p = PORTFOLIO[idx];
+      const ta = el("details");
+      const prefix = `Referência do portfólio: ${p.title}. `;
+      ta.value = ta.value ? (prefix + ta.value) : prefix;
+      persistFormDebounced();
+      closeModal();
+      document.querySelector("#orcamento").scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    /* WhatsApp */
+    function buildWhatsAppMessage(){
+      const name = el("name").value.trim();
+      const phone = el("phone").value.trim();
+      const place = el("place").value.trim();
+      const measures = el("measures").value.trim();
+      const deadline = el("deadline").value;
+      const hasPhoto = el("hasPhoto").value;
+      const details = el("details").value.trim();
+      const selected = getSelectedServices();
+
+      const servicesBlock = selected.map(s=>"• " + s).join("\n");
+
+      return `*ORÇAMENTO - ${CONFIG.company}*
+*Nome:* ${name}
+*Telefone:* ${phone}
+*Local:* ${place}
 *Medidas:* ${measures || "(não informado)"}
 *Prazo:* ${deadline}
 *Tenho foto do projeto?* ${hasPhoto}
@@ -609,157 +1051,163 @@ function buildWhatsAppMessage(includePhotosRequest){
 *Serviços:*
 ${servicesBlock}
 
-*Detalhes:* ${details || "(não informado)"}`;
+*Detalhes:* ${details}
 
-  if(includePhotosRequest){
-    msg += `\n\n*Agora vou enviar as fotos do projeto aqui no WhatsApp.*`;
-  } else {
-    msg += `\n\n*Obs:* Vou enviar fotos/projeto na sequência aqui no WhatsApp.`;
-  }
+*Obs:* Se tiver fotos, envie aqui no WhatsApp na sequência.`;
+    }
 
-  return msg;
-}
+    function validateForm(){
+      const missing = [];
+      if(getSelectedServices().length === 0) missing.push("Selecione pelo menos 1 serviço");
+      if(!el("name").value.trim()) missing.push("Nome");
+      if(!el("phone").value.trim()) missing.push("Telefone/WhatsApp");
+      if(!el("place").value.trim()) missing.push("Cidade/Bairro");
+      if(!el("deadline").value) missing.push("Prazo");
+      if(!el("hasPhoto").value) missing.push("Tenho foto do projeto?");
+      if(!el("details").value.trim()) missing.push("Detalhes do serviço");
+      return missing;
+    }
 
-function sendWhatsApp(){
+    function showErrors(list){
+      const box = el("errorBox");
+      const ul = el("errorList");
+      if(list.length === 0){
+        box.classList.remove("show");
+        ul.innerHTML = "";
+        return;
+      }
+      box.classList.add("show");
+      ul.innerHTML = list.map(x=>`• ${escapeHtml(x)}`).join("<br>");
+      document.querySelector("#orcamento").scrollIntoView({behavior:"smooth", block:"start"});
+    }
 
-  const name = el("name").value.trim();
-  const phone = el("phone").value.trim();
-  const place = el("place").value.trim();
-  const details = el("details").value.trim();
-  const selected = getSelectedServices();
+    function sendWhatsApp(){
+      const missing = validateForm();
+      if(missing.length){
+        showErrors(missing);
+        return;
+      }
+      showErrors([]);
+      const msg = buildWhatsAppMessage();
+      const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank");
+    }
 
-  // 🔒 VALIDAÇÃO
-  if(selected.length === 0){
-    alert("Selecione pelo menos um serviço.");
-    return;
-  }
+    /* WhatsApp rápido (atalho) */
+    function waQuick(){
+      const msg = `Olá! Quero um orçamento com a AS. Vou enviar fotos/medidas e detalhes.`;
+      return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    }
 
-  if(!name){
-    alert("Preencha seu nome.");
-    return;
-  }
+    /* localStorage (salvar sem travar: debounce) */
+    let saveTimer = null;
+    function persistForm(){
+      const data = {
+        name: el("name").value,
+        phone: el("phone").value,
+        place: el("place").value,
+        measures: el("measures").value,
+        deadline: el("deadline").value,
+        hasPhoto: el("hasPhoto").value,
+        details: el("details").value,
+        checked: getSelectedServices()
+      };
+      localStorage.setItem(CONFIG.storageKey, JSON.stringify(data));
+    }
+    function persistFormDebounced(){
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(persistForm, 350);
+    }
 
-  if(!phone){
-    alert("Preencha o telefone.");
-    return;
-  }
+    function restoreForm(){
+      try{
+        const raw = localStorage.getItem(CONFIG.storageKey);
+        if(!raw) return;
+        const data = JSON.parse(raw);
 
-  if(!place){
-    alert("Preencha cidade / bairro.");
-    return;
-  }
+        el("name").value = data.name || "";
+        el("phone").value = data.phone || "";
+        el("place").value = data.place || "";
+        el("measures").value = data.measures || "";
+        el("deadline").value = data.deadline || "";
+        el("hasPhoto").value = data.hasPhoto || "";
+        el("details").value = data.details || "";
 
-  if(!details){
-    alert("Descreva o serviço.");
-    return;
-  }
+        const checked = new Set(data.checked || []);
+        document.querySelectorAll("#serviceCheckList input").forEach(i=>{
+          i.checked = checked.has(i.value);
+        });
+      } catch {}
+    }
 
-  // ✅ Se passou na validação → envia
-  const msg = buildWhatsAppMessage(false);
-  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
-}
+    function clearSaved(){
+      localStorage.removeItem(CONFIG.storageKey);
+      el("name").value = "";
+      el("phone").value = "";
+      el("place").value = "";
+      el("measures").value = "";
+      el("deadline").value = "";
+      el("hasPhoto").value = "";
+      el("details").value = "";
+      document.querySelectorAll("#serviceCheckList input").forEach(i=> i.checked=false);
+      showErrors([]);
+      updateSticky();
+    }
 
-  const selected = getSelectedServices();
-  if(selected.length === 0){
-    if(!confirm("Você não marcou nenhum serviço. Deseja enviar mesmo assim?")) return;
-  }
-  const msg = buildWhatsAppMessage(false);
-  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
-}
+    function updateSticky(){
+      const count = getSelectedServices().length;
+      el("stickySub").textContent = count === 0
+        ? "Marque os serviços e preencha para enviar"
+        : `${count} serviço(s) selecionado(s) — preencha e envie`;
+    }
 
-function sendPhotosNow(){
-  const msg = buildWhatsAppMessage(true);
-  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
-}
+    function wireAutosave(){
+      const ids = ["name","phone","place","measures","deadline","hasPhoto","details"];
+      ids.forEach(id=>{
+        const node = el(id);
+        node.addEventListener("input", persistFormDebounced);
+        node.addEventListener("change", persistFormDebounced);
+      });
+    }
 
-/* ====== localStorage ====== */
-function persistForm(){
-  const data = {
-    name: el("name").value,
-    phone: el("phone").value,
-    place: el("place").value,
-    measures: el("measures").value,
-    deadline: el("deadline").value,
-    hasPhoto: el("hasPhoto").value,
-    details: el("details").value,
-    checked: getSelectedServices(),
-  };
-  localStorage.setItem(LS_KEY, JSON.stringify(data));
-}
+    function init(){
+      el("year").textContent = String(new Date().getFullYear());
+      el("waQuick").href = waQuick();
 
-function restoreForm(){
-  try{
-    const raw = localStorage.getItem(LS_KEY);
-    if(!raw) return;
-    const data = JSON.parse(raw);
+      tryLoadLogo();
+      renderTabs();
+      renderServices();
+      renderChecklist();
+      renderGallery();
 
-    el("name").value = data.name || "";
-    el("phone").value = data.phone || "";
-    el("place").value = data.place || "";
-    el("measures").value = data.measures || "";
-    el("deadline").value = data.deadline || "Sem urgência";
-    el("hasPhoto").value = data.hasPhoto || "Sim";
-    el("details").value = data.details || "";
+      restoreForm();
+      updateSticky();
+      wireAutosave();
 
-    const checked = new Set(data.checked || []);
-    document.querySelectorAll("#serviceCheckList input").forEach(i=>{
-      i.checked = checked.has(i.value);
-    });
-  } catch {}
-}
+      /* eventos */
+      el("sendBtn").addEventListener("click", sendWhatsApp);
+      el("clearSaved").addEventListener("click", clearSaved);
 
-function clearSaved(){
-  localStorage.removeItem(LS_KEY);
-  // limpa UI
-  el("name").value = "";
-  el("phone").value = "";
-  el("place").value = "";
-  el("measures").value = "";
-  el("deadline").value = "Sem urgência";
-  el("hasPhoto").value = "Sim";
-  el("details").value = "";
-  document.querySelectorAll("#serviceCheckList input").forEach(i=> i.checked = false);
-  updateSticky();
-}
+      el("closeModal").addEventListener("click", closeModal);
+      el("useAsRef").addEventListener("click", useAsReference);
+      el("modal").addEventListener("click", (e)=>{ if(e.target.id==="modal") closeModal(); });
 
-/* Sticky */
-function updateSticky(){
-  const count = getSelectedServices().length;
-  el("stickySub").textContent = count === 0
-    ? "Marque os serviços e envie as informações"
-    : `${count} serviço(s) selecionado(s)`;
-}
+      document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeModal(); });
 
-/* Helpers */
-function escapeHtml(str){
-  return String(str).replace(/[&<>"']/g, s => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[s]));
-}
-function cssEscape(str){
-  // para achar checkbox pelo value sem quebrar selector
-  return String(str).replace(/\\/g,"\\\\").replace(/"/g,'\\"');
-}
+      /* Atualiza sticky quando marca/desmarca */
+      document.querySelectorAll("#serviceCheckList input").forEach(i=>{
+        i.addEventListener("change", updateSticky);
+      });
 
-/* Eventos: salvar sempre que digitar */
-["name","phone","place","measures","deadline","hasPhoto","details"].forEach(id=>{
-  el(id).addEventListener("input", persistForm);
-  el(id).addEventListener("change", persistForm);
-});
+      /* Se usuário mexer em tabs antes do checklist render, atualiza novamente */
+      setMiniTop();
+    }
 
-el("sendBtn").onclick = sendWhatsApp;
-el("stickyBtn").onclick = scrollToForm;
-el("goFormBtn").onclick = scrollToForm;
-el("clearSaved").onclick = clearSaved;
+    function setMiniTop(){
+      el("topSub").textContent = `${CONFIG.cityLine} • Residencial + Obra`;
+    }
 
-/* Start */
-tryLoadLogo();
-renderTabs();
-renderChecklist();
-restoreForm();
-renderServices();
-setMiniInfo();
-updateSticky();
-</script>
+    init();
+  </script>
 </body>
 </html>
