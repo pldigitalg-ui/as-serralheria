@@ -764,32 +764,25 @@
     </section>
   </div>
 
-  <!-- WhatsApp flutuante (melhoria: leva pro formulário, não abre chat genérico) -->
-  <div class="waFloat" aria-label="Atalho WhatsApp">
-    <a id="waQuick" href="#orcamento" title="Pedir orçamento">💬</a>
-  </div>
+  <!-- WhatsApp flutuante (abre WhatsApp direto) -->
+<div class="wFloat" aria-label="Atalho WhatsApp">
+  <a id="waQuick"
+     href="https://wa.me/5531998064556?text=Olá!%20Quero%20um%20orçamento."
+     target="_blank"
+     rel="noopener"
+     title="Chamar no WhatsApp">💬</a>
+</div>
 
   <!-- Sticky CTA mobile -->
-  <a href="https://wa.me/5531998064556" 
-   target="_blank"
-   style="
-   position: fixed;
-   bottom: 20px;
-   right: 20px;
-   background: #25D366;
-   color: white;
-   width: 60px;
-   height: 60px;
-   border-radius: 50%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-size: 28px;
-   text-decoration: none;
-   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-   z-index: 999;">
-   💬
-</a>
+<div class="stickyCta" id="stickyCta">
+  <div class="bar">
+    <div class="left">
+      <b>Pedir orçamento</b>
+      <span id="stickySub">Marque os serviços e preencha para enviar</span>
+    </div>
+    <a class="btn primary" href="#orcamento">Orçar</a>
+  </div>
+</div>
 
   <!-- Modal do portfólio -->
   <div class="modal" id="modal">
