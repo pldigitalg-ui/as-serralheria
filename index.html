@@ -133,94 +133,23 @@
       </div>
     </section>
 
-    <section class="section grid2" aria-label="Serviços e orçamento">
-      <div class="card">
+<section class="section" aria-label="Serviços">
+  <div class="card fullServicesCard">
+    <div class="servicesHeader">
+      <div>
         <h2>Serviços</h2>
         <p class="subline">Marque serviços no formulário e descreva o que precisa.</p>
-
-        <div class="tabs" id="tabs"></div>
-        <div class="list" id="services"></div>
       </div>
 
-      <aside class="card" id="orcamento">
-        <h2>Orçamento</h2>
-        <p class="subline">O WhatsApp abre somente quando estiver preenchido.</p>
+      <button class="btn primary" id="openBudgetModal" type="button">
+        Pedir orçamento
+      </button>
+    </div>
 
-        <div class="errorBox" id="errorBox">
-          <div>⛔</div>
-          <div>
-            <b>Falta preencher:</b>
-            <div id="errorList" class="hint" style="margin-top:6px"></div>
-          </div>
-        </div>
-
-        <div class="form">
-          <div class="field">
-            <label>Selecione os serviços (pode marcar mais de um)</label>
-            <div class="checkWrap" id="serviceCheckList"></div>
-            <div class="hint">Marque tudo que você quer no mesmo orçamento.</div>
-          </div>
-
-          <div class="two">
-            <div class="field">
-              <label>Seu nome *</label>
-              <input id="name" placeholder="Ex: Paulo" autocomplete="name" />
-            </div>
-            <div class="field">
-              <label>Telefone / WhatsApp *</label>
-              <input id="phone" placeholder="(31) 9xxxx-xxxx" inputmode="tel" autocomplete="tel" />
-            </div>
-          </div>
-
-          <div class="two">
-            <div class="field">
-              <label>Cidade / Bairro *</label>
-              <input id="place" placeholder="Ex: BH - Barreiro" />
-            </div>
-            <div class="field">
-              <label>Medidas (se tiver)</label>
-              <input id="measures" placeholder="Ex: 2,40m x 1,80m" />
-            </div>
-          </div>
-
-          <div class="two">
-            <div class="field">
-              <label>Prazo *</label>
-              <select id="deadline">
-                <option value="">Selecione…</option>
-                <option value="Sem urgência">Sem urgência</option>
-                <option value="Até 7 dias">Até 7 dias</option>
-                <option value="Até 15 dias">Até 15 dias</option>
-                <option value="Urgente (explicar)">Urgente (explicar)</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Tenho foto do projeto? *</label>
-              <select id="hasPhoto">
-                <option value="">Selecione…</option>
-                <option value="Sim">Sim</option>
-                <option value="Não">Não</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Detalhes do serviço *</label>
-            <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, e o que você quer."></textarea>
-          </div>
-
-          <button class="btn whats" id="sendBtn" type="button">Solicitar orçamento</button>
-
-          <div class="footerBar">
-            <span><b>WhatsApp:</b> (31) 98391-3499</span>
-            <span><b>Atendimento:</b> BH e região</span>
-          </div>
-
-          <div class="divider"></div>
-          <button class="btn ghost" id="clearSaved" type="button">Limpar dados salvos deste aparelho</button>
-        </div>
-      </aside>
-    </section>
+    <div class="tabs" id="tabs"></div>
+    <div class="list" id="services"></div>
+  </div>
+</section>
 
     <section class="section card" id="portfolio" aria-label="Portfólio">
       <h2>Portfólio</h2>
