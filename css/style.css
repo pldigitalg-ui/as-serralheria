@@ -241,7 +241,7 @@ img{max-width:100%}
 .heroMedia{
   position:absolute;
   inset:0;
-  background:url("hero.jpg") center/cover no-repeat;
+  background:url("heróis.jpg") center/cover no-repeat;
   opacity:.24;
   transform:scale(1.02);
   filter:contrast(1.02) saturate(.95) brightness(.72);
