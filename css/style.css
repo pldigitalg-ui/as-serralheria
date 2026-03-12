@@ -389,12 +389,12 @@ a{
 
 .heroTitle{
   margin:0;
-  font-size:clamp(50px, 5.8vw, 80px);
-  line-height:.94;
-  letter-spacing:-2.2px;
+  font-size:clamp(38px, 4.4vw, 60px);
+  line-height:.98;
+  letter-spacing:-1.2px;
   font-weight:1000;
   color:#fff;
-  max-width:10ch;
+  max-width:12ch;
   text-wrap:balance;
 }
 
