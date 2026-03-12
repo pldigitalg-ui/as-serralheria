@@ -7,496 +7,9 @@
   <meta name="theme-color" content="#f6f7f9" />
   <title>AS Andrade Serralheria & Caldeiraria — Belo Horizonte</title>
   <meta name="description" content="Serralheria e caldeiraria sob medida em Belo Horizonte e região. Projetos residenciais e obras: portões, grades, escadas, coberturas e estruturas metálicas. Orçamento rápido no WhatsApp." />
-
-  <style>
-    :root{
-      --bg:#f6f7f9;
-      --card:#ffffff;
-      --card2: rgba(255,255,255,.82);
-      --text:#18181b;
-      --muted:#5b616a;
-      --line: rgba(0,0,0,.10);
-      --shadow: 0 18px 42px rgba(0,0,0,.10);
-      --radius: 18px;
-
-      --red:#ef4444;
-      --red2:#d11b22;
-      --metal:#e4e4e7;
-      --metal2:#a1a1aa;
-      --darkmetal:#52525b;
-
-      --ok:#16a34a;
-      --warn:#f59e0b;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x:hidden;
-    }
-
-    /* fundo com mockup claro (leve) */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      background:
-        radial-gradient(1200px 700px at 10% -10%, rgba(239,68,68,.12), transparent 60%),
-        radial-gradient(900px 600px at 110% 10%, rgba(0,0,0,.05), transparent 60%),
-        url("mockup.png") center/cover no-repeat;
-      opacity:.08;
-      filter: saturate(.95) contrast(.96) brightness(1.06);
-      pointer-events:none;
-      z-index:-2;
-    }
-
-    .wrap{max-width:1120px;margin:0 auto;padding:0 16px 110px}
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(246,247,249,.75);
-      border-bottom:1px solid var(--line);
-    }
-    .topbar .inner{
-      max-width:1120px;margin:0 auto;padding:14px 16px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-    }
-
-    .brand{display:flex;align-items:center;gap:12px;min-width:0}
-    .logo{
-      width:44px;height:44px;border-radius:14px;overflow:hidden;
-      border:1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
-      box-shadow: 0 12px 26px rgba(0,0,0,.10);
-      display:grid;place-items:center;
-      flex:0 0 auto;
-    }
-    .logo img{width:100%;height:100%;object-fit:cover;display:none}
-    .logo span{
-      font-weight:1000;letter-spacing:.8px;
-      background: linear-gradient(135deg,var(--red),var(--red2));
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-      font-size:15px;
-    }
-    .brand h1{
-      margin:0;font-size:14.5px;line-height:1.15;font-weight:1000;
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    }
-    .brand p{
-      margin:2px 0 0;font-size:12px;color:var(--muted);
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    }
-
-    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 10px;border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.78);
-      color:var(--muted);
-      font-size:12px;
-      white-space:nowrap;
-    }
-
-    .btn{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.95);
-      color:var(--text);
-      padding:10px 12px;border-radius:14px;
-      font-weight:1000;
-      cursor:pointer;
-      transition:.15s ease;
-      display:inline-flex;align-items:center;gap:10px;
-      box-shadow: 0 10px 20px rgba(0,0,0,.06);
-      text-decoration:none;
-    }
-    .btn:hover{transform: translateY(-1px)}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(239,68,68,.98), rgba(209,27,34,.86));
-      border-color: rgba(209,27,34,.35);
-      color:#fff;
-      box-shadow: 0 16px 34px rgba(209,27,34,.18);
-    }
-    .btn.ghost{background:transparent;box-shadow:none}
-
-    /* ✅ ALTERADO: botão verde de orçamento */
-    .btn.whats{
-      background: linear-gradient(135deg, rgba(22,163,74,.98), rgba(22,163,74,.78));
-      border-color: rgba(22,163,74,.40);
-      color:#fff;
-      box-shadow: 0 18px 36px rgba(22,163,74,.18);
-    }
-
-    /* HERO empresa grande */
-    .hero{
-      margin-top:16px;
-      border-radius: 26px;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-      background:
-        radial-gradient(900px 500px at 10% 0%, rgba(239,68,68,.14), transparent 55%),
-        radial-gradient(900px 500px at 90% 10%, rgba(0,0,0,.06), transparent 55%),
-        linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
-    }
-    .heroMedia{
-      position:absolute; inset:0;
-      background: url("hero.jpg") center/cover no-repeat;
-      filter: saturate(.9) contrast(.95) brightness(1.02);
-      opacity:.22;
-    }
-    .heroOverlay{
-      position:absolute; inset:0;
-      background:
-        linear-gradient(120deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.70) 45%, rgba(255,255,255,.25) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.02));
-    }
-    .heroInner{
-      position:relative;
-      padding:22px 18px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    @media (max-width: 980px){
-      .heroInner{grid-template-columns:1fr}
-    }
-
-    .heroTitle{
-      margin:0;
-      font-size:26px;
-      line-height:1.08;
-      letter-spacing:-.3px;
-      font-weight:1100;
-    }
-    .heroSub{
-      margin:10px 0 0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.45;
-      max-width: 62ch;
-    }
-
-    .heroBadges{
-      margin-top:14px;
-      display:flex;flex-wrap:wrap;gap:10px;
-    }
-    .badgeMetal{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius:999px;
-      border:1px solid rgba(0,0,0,.10);
-      background: linear-gradient(135deg, rgba(228,228,231,.85), rgba(255,255,255,.65));
-      color:#27272a;
-      font-size:12px;
-      font-weight:900;
-    }
-
-    .heroCTAs{
-      margin-top:14px;
-      display:flex;gap:10px;flex-wrap:wrap;
-      align-items:center;
-    }
-    .micro{
-      margin-top:10px;
-      font-size:12px;
-      color:var(--muted);
-      display:flex;gap:10px;flex-wrap:wrap;
-    }
-    .micro b{color:#111827}
-
-    .heroCard{
-      background: rgba(255,255,255,.84);
-      border:1px solid var(--line);
-      border-radius: 18px;
-      padding:14px;
-      box-shadow: 0 16px 34px rgba(0,0,0,.08);
-    }
-    .heroCard h3{margin:0;font-size:14px;font-weight:1100;letter-spacing:.2px}
-    .heroCard .line{
-      margin-top:10px;
-      display:flex;justify-content:space-between;gap:12px;
-      font-size:13px;color:var(--muted);
-      padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06);
-    }
-    .heroCard .line:last-child{border-bottom:0}
-    .heroCard .line strong{color:var(--text)}
-    .alertSmall{
-      margin-top:12px;
-      padding:10px 12px;border-radius:16px;
-      border:1px solid rgba(239,68,68,.20);
-      background: rgba(239,68,68,.08);
-      color: var(--text);
-      font-size:13px;
-      display:flex;gap:10px;align-items:flex-start;
-    }
-    .alertSmall b{color:var(--red2)}
-    .alertSmall small{color:var(--muted)}
-
-    /* SEÇÕES */
-    .section{margin-top:16px}
-    .grid2{display:grid;grid-template-columns: 1.2fr .8fr;gap:16px}
-    @media (max-width:980px){.grid2{grid-template-columns:1fr}}
-    .card{
-      background: rgba(255,255,255,.92);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:14px;
-      box-shadow: var(--shadow);
-    }
-    .card h2{margin:0;font-size:15px;font-weight:1100}
-    .subline{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:12.5px;
-      line-height:1.4;
-    }
-    .divider{height:1px;background:rgba(0,0,0,.08);margin:12px 0}
-
-    /* TABS */
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .tab{
-      padding:10px 12px;border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.78);
-      color:var(--muted);
-      font-weight:1000;font-size:13px;
-      cursor:pointer;
-      user-select:none;
-    }
-    .tab.active{color:var(--text);border-color: rgba(209,27,34,.35);background: rgba(209,27,34,.10)}
-
-    /* SERVIÇOS */
-    .list{display:grid;gap:12px;margin-top:12px}
-    .service{
-      display:grid;
-      grid-template-columns: 86px 1fr auto;
-      gap:12px;
-      align-items:center;
-      padding:12px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.82);
-    }
-    @media (max-width:520px){
-      .service{grid-template-columns:78px 1fr;grid-template-areas:"img info" "ctrl ctrl";}
-      .service .thumb{grid-area:img}
-      .service .info{grid-area:info}
-      .service .right{grid-area:ctrl;justify-items:stretch}
-    }
-    .thumb{
-      width:86px;height:86px;border-radius:16px;overflow:hidden;
-      border:1px solid rgba(0,0,0,.10);
-      background: rgba(0,0,0,.04);
-      display:grid;place-items:center;
-    }
-    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-    .thumb .ph{font-size:22px;opacity:.85}
-
-    .service h3{margin:0;font-size:15px;font-weight:1100}
-    .service p{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.35}
-    .right{display:grid;gap:10px;justify-items:end}
-    .tagRight{font-weight:1000;font-size:12.5px;text-align:right;color:#111827}
-
-    /* CHECKLIST + FORM */
-    .checkWrap{
-      border:1px solid var(--line);
-      border-radius:14px;
-      background: rgba(255,255,255,.92);
-      padding:10px;
-      max-height: 240px;
-      overflow:auto;
-      display:grid;
-      gap:8px;
-    }
-    .chk{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:8px 10px;border-radius:12px;
-      border:1px solid rgba(0,0,0,.07);
-      background: rgba(255,255,255,.90);
-      cursor:pointer;
-    }
-    .chk input{margin-top:2px;transform: scale(1.08)}
-    .chk b{font-size:13px}
-    .chk small{display:block;color:var(--muted);margin-top:2px;line-height:1.25}
-
-    .form{display:grid;gap:10px;margin-top:12px}
-    .field{display:grid;gap:6px}
-    .field label{font-size:12px;color:var(--muted);font-weight:1000}
-    .field input, .field textarea, .field select{
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.96);
-      color:var(--text);
-      padding:10px 12px;
-      outline:none;
-      font-size:14px;
-    }
-    textarea{min-height:84px;resize:vertical}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width:560px){.two{grid-template-columns:1fr}}
-
-    .hint{font-size:12px;color:var(--muted)}
-    .errorBox{
-      display:none;
-      padding:10px 12px;border-radius:16px;
-      border:1px solid rgba(239,68,68,.22);
-      background: rgba(239,68,68,.08);
-      color: var(--text);
-      font-size:13px;
-      gap:10px;
-      align-items:flex-start;
-    }
-    .errorBox.show{display:flex}
-    .errorBox b{color:var(--red2)}
-
-    /* PORTFÓLIO */
-    .gallery{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-    }
-    @media (max-width:820px){.gallery{grid-template-columns: repeat(2, 1fr)}}
-    .gItem{
-      border-radius:16px; overflow:hidden;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.86);
-      cursor:pointer;
-      position:relative;
-      min-height:140px;
-    }
-    .gItem img{width:100%;height:100%;object-fit:cover;display:block;opacity:.98}
-    .gCap{
-      position:absolute;left:10px;right:10px;bottom:10px;
-      padding:8px 10px;border-radius:14px;
-      background: rgba(255,255,255,.86);
-      border:1px solid rgba(0,0,0,.08);
-      font-weight:1000;
-      font-size:12px;
-      color:#111827;
-      display:flex;justify-content:space-between;gap:10px;align-items:center;
-    }
-    .gCap span{color:var(--muted);font-weight:900}
-
-    /* MODAL */
-    .modal{
-      position:fixed; inset:0;
-      display:none;
-      align-items:center; justify-content:center;
-      background: rgba(0,0,0,.55);
-      z-index:100;
-      padding:16px;
-    }
-    .modal.show{display:flex}
-    .modalCard{
-      width:min(980px, 100%);
-      border-radius: 18px;
-      background: rgba(255,255,255,.96);
-      border:1px solid rgba(255,255,255,.22);
-      box-shadow: 0 22px 60px rgba(0,0,0,.35);
-      overflow:hidden;
-    }
-    .modalTop{
-      padding:12px 12px;
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      border-bottom:1px solid rgba(0,0,0,.08);
-    }
-    .modalTop b{font-weight:1100}
-    .modalImg{width:100%;max-height:70vh;object-fit:cover;display:block}
-    .modalActions{display:flex;gap:10px;flex-wrap:wrap}
-    .xBtn{
-      border:1px solid rgba(0,0,0,.12);
-      background: rgba(255,255,255,.92);
-      border-radius:12px;
-      padding:10px 12px;
-      font-weight:1100;
-      cursor:pointer;
-    }
-
-    /* DEPOIMENTOS */
-    .tGrid{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-    }
-    @media (max-width:900px){.tGrid{grid-template-columns:1fr}}
-    .tCard{
-      border:1px solid var(--line);
-      border-radius:16px;
-      background: rgba(255,255,255,.90);
-      padding:12px;
-    }
-    .stars{letter-spacing:1px;color:#f59e0b;font-weight:1100}
-    .tCard p{margin:8px 0 0;color:#111827;line-height:1.45;font-size:13px}
-    .tCard .who{margin-top:10px;color:var(--muted);font-size:12px;font-weight:900}
-
-    /* FAQ */
-    details{
-      border:1px solid var(--line);
-      border-radius:16px;
-      background: rgba(255,255,255,.90);
-      padding:12px 12px;
-    }
-    summary{cursor:pointer;font-weight:1100}
-    details p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
-
-    /* Sticky CTA mobile + WhatsApp flutuante */
-    .stickyCta{
-      position:fixed;left:12px;right:12px;bottom:12px;
-      z-index:60;
-      display:none;
-    }
-    .stickyCta .bar{
-      max-width:1120px;margin:0 auto;
-      border-radius: 18px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.88);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 18px 40px rgba(0,0,0,.12);
-      display:flex;gap:10px;align-items:center;justify-content:space-between;
-      padding:10px;
-    }
-    .stickyCta .left{display:grid;gap:2px;min-width:0}
-    .stickyCta .left b{font-size:13px}
-    .stickyCta .left span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52vw}
-    @media (max-width: 980px){.stickyCta{display:block;}}
-
-    /* ✅ ALTERADO: classe correta do botão flutuante (mantendo seu CSS) */
-    .waFloat{
-      position:fixed;
-      right:14px;
-      bottom:88px;
-      z-index:70;
-      display:flex;
-    }
-    @media (max-width: 980px){.waFloat{bottom:148px}}
-    .waFloat a{
-      width:52px;height:52px;border-radius:18px;
-      display:grid;place-items:center;
-      background: linear-gradient(135deg, rgba(22,163,74,.98), rgba(22,163,74,.78));
-      color:#fff;
-      border:1px solid rgba(22,163,74,.40);
-      box-shadow: 0 18px 36px rgba(22,163,74,.18);
-      text-decoration:none;
-      font-size:22px;
-      font-weight:1100;
-    }
-
-    .footerBar{
-      margin-top:16px;
-      display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;
-      color:var(--muted);font-size:12px;
-    }
-  </style>
 </head>
 
 <body>
-  <!-- Topbar -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
@@ -518,7 +31,6 @@
   </div>
 
   <div class="wrap">
-    <!-- HERO -->
     <section class="hero" aria-label="Apresentação">
       <div class="heroMedia"></div>
       <div class="heroOverlay"></div>
@@ -543,7 +55,6 @@
             <a class="btn" href="#portfolio">Ver portfólio</a>
           </div>
 
-          <!-- melhoria: área atendida com bairros -->
           <div class="micro">
             <span>📞 <b>(31) 98391-3499</b></span>
             <span>🕒 <b>Seg a Sáb:</b> 11:00 às 15:00</span>
@@ -569,7 +80,6 @@
       </div>
     </section>
 
-    <!-- PROVAS / CONFIANÇA -->
     <section class="section grid2" aria-label="Confiança e diferenciais">
       <div class="card">
         <h2>Por que escolher a AS</h2>
@@ -624,7 +134,6 @@
       </div>
     </section>
 
-    <!-- SERVIÇOS + ORÇAMENTO -->
     <section class="section grid2" aria-label="Serviços e orçamento">
       <div class="card">
         <h2>Serviços</h2>
@@ -701,7 +210,6 @@
             <textarea id="details" placeholder="Explique: tipo, material, local, se é instalação, e o que você quer."></textarea>
           </div>
 
-          <!-- ✅ ALTERADO: botão verde + travado (usa JS sendWhatsApp) -->
           <button class="btn whats" id="sendBtn" type="button">Solicitar orçamento</button>
 
           <div class="footerBar">
@@ -715,14 +223,12 @@
       </aside>
     </section>
 
-    <!-- PORTFÓLIO -->
     <section class="section card" id="portfolio" aria-label="Portfólio">
       <h2>Portfólio</h2>
       <p class="subline">Alguns trabalhos realizados.</p>
       <div class="gallery" id="gallery"></div>
     </section>
 
-    <!-- DEPOIMENTOS -->
     <section class="section card" aria-label="Depoimentos">
       <h2>Depoimentos</h2>
       <div class="tGrid">
@@ -744,7 +250,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section card" aria-label="Perguntas frequentes">
       <h2>Perguntas frequentes</h2>
       <p class="subline">Respostas diretas.</p>
@@ -773,20 +278,20 @@
     </section>
   </div>
 
-  <!-- ✅ ALTERADO: WhatsApp flutuante (canto direito) - abre direto sem formulário -->
   <div class="waFloat" aria-label="Atalho WhatsApp">
     <a
       href="https://wa.me/553183913499?text=Olá!%20Quero%20um%20orçamento."
       target="_blank"
       rel="noopener"
-      title="Chamar no WhatsApp"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
-  <path fill="currentColor" d="M19.11 17.5c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.23 5.13 4.53.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35z"/>
-  <path fill="currentColor" d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.34.67 4.51 1.83 6.35L4 29l7.83-1.77a12 12 0 0 0 4.2.75C22.67 27.98 28 22.66 28 16.02 28 9.38 22.68 3 16.04 3zm0 22.64c-1.4 0-2.78-.38-3.98-1.08l-.28-.16-4.64 1.05 1-4.52-.18-.29a9.6 9.6 0 0 1-1.44-5.1c0-5.3 4.31-9.6 9.6-9.6 5.3 0 9.6 4.31 9.6 9.6 0 5.3-4.31 9.6-9.6 9.6z"/>
-</svg>
-</a>
+      title="Chamar no WhatsApp"
+    >
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="currentColor" d="M19.11 17.5c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.23 5.13 4.53.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35z"/>
+        <path fill="currentColor" d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.34.67 4.51 1.83 6.35L4 29l7.83-1.77a12 12 0 0 0 4.2.75C22.67 27.98 28 22.66 28 16.02 28 9.38 22.68 3 16.04 3zm0 22.64c-1.4 0-2.78-.38-3.98-1.08l-.28-.16-4.64 1.05 1-4.52-.18-.29a9.6 9.6 0 0 1-1.44-5.1c0-5.3 4.31-9.6 9.6-9.6 5.3 0 9.6 4.31 9.6 9.6 0 5.3-4.31 4.31-9.6 9.6z"/>
+      </svg>
+    </a>
   </div>
 
-  <!-- Sticky CTA mobile -->
   <div class="stickyCta" id="stickyCta">
     <div class="bar">
       <div class="left">
@@ -797,7 +302,6 @@
     </div>
   </div>
 
-  <!-- Modal do portfólio -->
   <div class="modal" id="modal">
     <div class="modalCard">
       <div class="modalTop">
@@ -815,15 +319,11 @@
     const CONFIG = {
       company: "AS Andrade Serralheria & Caldeiraria",
       cityLine: "Belo Horizonte - MG",
-
-      // ✅ ALTERADO: aqui deve ser SOMENTE o número (sem URL)
       whatsappNumber: "553183913499",
-
       logoFile: "logo-as.png",
       storageKey: "as_site_empresa_grande_v1"
     };
 
-    /* Somente seus itens */
     const SERVICES = [
       { cat: "Portões", items: [
         { id:"p1", name:"Portão", desc:"Fabricação e instalação sob medida.", thumb:"serv-portao.jpg" },
@@ -846,7 +346,6 @@
       ]},
     ];
 
-    /* Portfólio (mantive a mesma estrutura; suba suas fotos e pronto) */
     const PORTFOLIO = [
       { src:"obra-01as.jpg", title:"Portão premium (residencial)" },
       { src:"obra-02as.jpg", title:"Grade (residencial)" },
@@ -995,7 +494,13 @@
         const img = document.createElement("img");
         img.src = p.src;
         img.alt = p.title;
-        img.onerror = ()=>{ img.style.display="none"; item.style.minHeight="120px"; item.style.display="grid"; item.style.placeItems="center"; item.textContent="Foto não encontrada"; };
+        img.onerror = ()=>{
+          img.style.display="none";
+          item.style.minHeight="120px";
+          item.style.display="grid";
+          item.style.placeItems="center";
+          item.textContent="Foto não encontrada";
+        };
 
         const cap = document.createElement("div");
         cap.className = "gCap";
@@ -1014,7 +519,10 @@
       el("modalImg").src = p.src;
       el("modal").classList.add("show");
     }
-    function closeModal(){ el("modal").classList.remove("show"); }
+
+    function closeModal(){
+      el("modal").classList.remove("show");
+    }
 
     function useAsReference(){
       const idx = state.modalIndex;
@@ -1028,7 +536,6 @@
       document.querySelector("#orcamento").scrollIntoView({behavior:"smooth", block:"start"});
     }
 
-    /* WhatsApp */
     function buildWhatsAppMessage(){
       const name = el("name").value.trim();
       const phone = el("phone").value.trim();
@@ -1088,14 +595,12 @@ ${servicesBlock}
       }
       showErrors([]);
       const msg = buildWhatsAppMessage();
-
-      // ✅ ALTERADO: URL correta
       const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
       window.open(url, "_blank");
     }
 
-    /* localStorage (salvar sem travar: debounce) */
     let saveTimer = null;
+
     function persistForm(){
       const data = {
         name: el("name").value,
@@ -1109,6 +614,7 @@ ${servicesBlock}
       };
       localStorage.setItem(CONFIG.storageKey, JSON.stringify(data));
     }
+
     function persistFormDebounced(){
       clearTimeout(saveTimer);
       saveTimer = setTimeout(persistForm, 350);
@@ -1178,7 +684,6 @@ ${servicesBlock}
       updateSticky();
       wireAutosave();
 
-      /* eventos */
       el("sendBtn").addEventListener("click", sendWhatsApp);
       el("clearSaved").addEventListener("click", clearSaved);
 
