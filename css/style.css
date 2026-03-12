@@ -1381,3 +1381,7 @@ details p{
 .actions .btn.primary{
     display:none;
 }
+/* remove botão solicitar orçamento do hero */
+#ctaHero{
+  display:none;
+}
