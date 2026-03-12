@@ -97,13 +97,13 @@ a{
     linear-gradient(180deg, rgba(5,20,33,.96), rgba(8,28,44,.92));
   border-bottom:1px solid rgba(255,255,255,.08);
   backdrop-filter:blur(14px);
-  box-shadow:0 12px 34px rgba(4,16,26,.22);
+  box-shadow:0 12px 34px rgba(4,16,26,.18);
 }
 
 .topbar::before{
   content:"";
   display:block;
-  height:6px;
+  height:5px;
   background:linear-gradient(90deg, var(--yellow) 0 18%, var(--green) 18% 100%);
 }
 
@@ -111,7 +111,7 @@ a{
   max-width:var(--container);
   min-height:var(--topbar-h);
   margin:0 auto;
-  padding:14px 20px;
+  padding:12px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -127,8 +127,8 @@ a{
 }
 
 .logo{
-  width:64px;
-  height:64px;
+  width:62px;
+  height:62px;
   border-radius:16px;
   overflow:hidden;
   display:grid;
@@ -140,7 +140,7 @@ a{
     linear-gradient(145deg, #1d3345, #0d1f2e);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.12),
-    0 16px 30px rgba(0,0,0,.22);
+    0 16px 30px rgba(0,0,0,.18);
 }
 
 .logo img{
@@ -163,7 +163,7 @@ a{
 
 .brand h1{
   margin:0;
-  font-size:18px;
+  font-size:16px;
   line-height:1.05;
   font-weight:1000;
   letter-spacing:.1px;
@@ -174,8 +174,8 @@ a{
 }
 
 .brand p{
-  margin:5px 0 0;
-  font-size:12.5px;
+  margin:4px 0 0;
+  font-size:12px;
   line-height:1.35;
   color:var(--muted-light);
   white-space:nowrap;
@@ -187,7 +187,7 @@ a{
   display:flex;
   align-items:center;
   justify-content:flex-end;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
 }
 
@@ -196,8 +196,8 @@ a{
   align-items:center;
   justify-content:center;
   gap:8px;
-  min-height:40px;
-  padding:9px 14px;
+  min-height:38px;
+  padding:8px 12px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.09);
   background:rgba(255,255,255,.06);
@@ -207,18 +207,17 @@ a{
   white-space:nowrap;
 }
 
-/* simula menu topo institucional */
 .topNav{
   display:flex;
   align-items:center;
-  gap:26px;
-  margin-left:24px;
+  gap:24px;
+  margin-left:22px;
   flex:1 1 auto;
 }
 
 .topNav a{
   position:relative;
-  font-size:14px;
+  font-size:15px;
   font-weight:900;
   color:rgba(255,255,255,.92);
   text-decoration:none;
@@ -274,14 +273,14 @@ a{
   color:#fff;
   background:linear-gradient(135deg, var(--green-3) 0%, var(--green) 55%, var(--green-2) 100%);
   border-color:rgba(7,117,58,.22);
-  box-shadow:0 18px 34px rgba(10,168,79,.24);
+  box-shadow:0 18px 34px rgba(10,168,79,.20);
 }
 
 .btn.whats{
   color:#fff;
   background:linear-gradient(135deg, #22c55e 0%, #15803d 100%);
   border-color:rgba(21,128,61,.28);
-  box-shadow:0 18px 36px rgba(22,163,74,.20);
+  box-shadow:0 18px 36px rgba(22,163,74,.18);
 }
 
 .btn.ghost{
@@ -296,9 +295,9 @@ a{
 .hero{
   position:relative;
   width:100%;
-  min-height:760px;
+  min-height:650px;
   margin:0;
-  border-radius:0 0 34px 34px;
+  border-radius:0 0 30px 30px;
   overflow:hidden;
   background:
     linear-gradient(180deg, #0b2233 0%, #0b2539 100%);
@@ -313,8 +312,8 @@ a{
   background-position:center center;
   background-size:cover;
   background-repeat:no-repeat;
-  transform:scale(1.05);
-  filter:brightness(.45) saturate(.95) contrast(1.05);
+  transform:scale(1.04);
+  filter:brightness(.66) saturate(1.02) contrast(1.02);
   animation:heroZoomBase 14s ease-in-out infinite alternate;
 }
 
@@ -332,22 +331,22 @@ a{
 .heroMedia::before{
   background-image:url("../img/herois-2.jpg");
   animation:heroFade1 18s infinite;
-  filter:brightness(.52) saturate(1.02);
+  filter:brightness(.70) saturate(1.02);
 }
 
 .heroMedia::after{
   background-image:url("../img/herois-3.jpg");
   animation:heroFade2 18s infinite;
-  filter:brightness(.48) saturate(.98);
+  filter:brightness(.68) saturate(1.02);
 }
 
 .heroOverlay{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(90deg, rgba(6,20,32,.92) 0%, rgba(6,20,32,.86) 28%, rgba(6,20,32,.54) 58%, rgba(6,20,32,.32) 100%),
-    linear-gradient(180deg, rgba(3,12,20,.14) 0%, rgba(3,12,20,.42) 100%),
-    radial-gradient(900px 400px at 14% 18%, rgba(10,168,79,.18), transparent 60%);
+    linear-gradient(90deg, rgba(6,20,32,.58) 0%, rgba(6,20,32,.42) 30%, rgba(6,20,32,.24) 58%, rgba(6,20,32,.18) 100%),
+    linear-gradient(180deg, rgba(3,12,20,.10) 0%, rgba(3,12,20,.34) 100%),
+    radial-gradient(900px 400px at 14% 18%, rgba(10,168,79,.10), transparent 60%);
 }
 
 .heroInner{
@@ -355,12 +354,12 @@ a{
   z-index:2;
   width:min(var(--container), calc(100% - 40px));
   margin:0 auto;
-  min-height:760px;
+  min-height:650px;
   display:grid;
-  grid-template-columns:minmax(0, 1.12fr) minmax(320px, .88fr);
-  align-items:end;
-  gap:28px;
-  padding:72px 0 56px;
+  grid-template-columns:1fr;
+  align-items:center;
+  gap:20px;
+  padding:56px 0 44px;
 }
 
 .heroContent{
@@ -372,11 +371,11 @@ a{
   display:inline-flex;
   align-items:center;
   gap:12px;
-  margin-bottom:18px;
+  margin-bottom:16px;
   color:#fff;
-  font-size:13px;
+  font-size:12px;
   font-weight:900;
-  letter-spacing:.12em;
+  letter-spacing:.14em;
   text-transform:uppercase;
 }
 
@@ -390,20 +389,20 @@ a{
 
 .heroTitle{
   margin:0;
-  font-size:clamp(42px, 5.4vw, 78px);
-  line-height:.96;
+  font-size:clamp(52px, 6vw, 84px);
+  line-height:.95;
   letter-spacing:-2px;
   font-weight:1000;
   color:#fff;
-  max-width:11.5ch;
+  max-width:9ch;
 }
 
 .heroSub{
-  margin:22px 0 0;
-  max-width:64ch;
-  font-size:18px;
-  line-height:1.7;
-  color:rgba(255,255,255,.82);
+  margin:18px 0 0;
+  max-width:32ch;
+  font-size:20px;
+  line-height:1.55;
+  color:rgba(255,255,255,.90);
 }
 
 .heroSub b{
@@ -411,7 +410,7 @@ a{
 }
 
 .heroBadges{
-  margin-top:24px;
+  margin-top:22px;
   display:flex;
   flex-wrap:wrap;
   gap:12px;
@@ -421,15 +420,19 @@ a{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  min-height:44px;
-  padding:10px 15px;
+  min-height:42px;
+  padding:9px 14px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.12);
-  background:linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
+  background:rgba(255,255,255,.10);
   color:#fff;
   font-size:12.5px;
   font-weight:900;
   backdrop-filter:blur(8px);
+}
+
+.heroBadges .badgeMetal:nth-child(n+3){
+  display:none;
 }
 
 .heroCTAs{
@@ -446,57 +449,11 @@ a{
 }
 
 .micro{
-  margin-top:22px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px 18px;
-  color:rgba(255,255,255,.76);
-  font-size:13px;
-}
-
-.micro b{
-  color:#fff;
+  display:none;
 }
 
 .heroCard{
-  align-self:end;
-  margin-left:auto;
-  width:min(420px, 100%);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:28px;
-  padding:22px;
-  box-shadow:0 24px 60px rgba(0,0,0,.22);
-  backdrop-filter:blur(12px);
-}
-
-.heroCard h3{
-  margin:0;
-  font-size:18px;
-  font-weight:1000;
-  color:#fff;
-}
-
-.heroCard .line{
-  margin-top:10px;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:14px;
-  padding:13px 0;
-  font-size:14px;
-  color:rgba(255,255,255,.76);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.heroCard .line:last-child{
-  border-bottom:0;
-}
-
-.heroCard .line strong{
-  color:#fff;
-  text-align:right;
+  display:none;
 }
 
 .alertSmall{
@@ -682,10 +639,7 @@ a{
 }
 
 .tagRight{
-  font-weight:1000;
-  font-size:13px;
-  text-align:right;
-  color:#112532;
+  display:none;
 }
 
 .tagRight span{
@@ -871,7 +825,7 @@ textarea{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, transparent 40%, rgba(5,25,38,.58) 100%);
+  background:linear-gradient(180deg, transparent 40%, rgba(5,25,38,.42) 100%);
 }
 
 .gCap{
@@ -891,7 +845,7 @@ textarea{
   justify-content:space-between;
   gap:10px;
   align-items:center;
-  box-shadow:0 10px 24px rgba(0,0,0,.12);
+  box-shadow:0 10px 24px rgba(0,0,0,.10);
 }
 
 .gCap span{
@@ -1049,7 +1003,7 @@ details p{
   margin:0 auto;
   border-radius:22px;
   border:1px solid rgba(255,255,255,.10);
-  background:rgba(7,28,44,.92);
+  background:rgba(7,28,44,.88);
   color:#fff;
   backdrop-filter:blur(12px);
   box-shadow:0 18px 40px rgba(0,0,0,.22);
@@ -1096,7 +1050,7 @@ details p{
   background:linear-gradient(135deg, #22c55e 0%, #15803d 100%);
   color:#fff;
   border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 22px 40px rgba(21,128,61,.28);
+  box-shadow:0 22px 40px rgba(21,128,61,.24);
   text-decoration:none;
   font-size:22px;
   font-weight:1000;
@@ -1153,20 +1107,20 @@ details p{
    ANIMAÇÕES HERO
 ========================= */
 @keyframes heroZoomBase{
-  0%{ transform:scale(1.04); }
-  100%{ transform:scale(1.10); }
+  0%{ transform:scale(1.02); }
+  100%{ transform:scale(1.08); }
 }
 
 @keyframes heroFade1{
-  0%, 26%{ opacity:0; transform:scale(1.02); }
-  33%, 59%{ opacity:1; transform:scale(1.08); }
-  66%, 100%{ opacity:0; transform:scale(1.12); }
+  0%, 26%{ opacity:0; transform:scale(1.01); }
+  33%, 59%{ opacity:1; transform:scale(1.06); }
+  66%, 100%{ opacity:0; transform:scale(1.09); }
 }
 
 @keyframes heroFade2{
-  0%, 59%{ opacity:0; transform:scale(1.02); }
-  66%, 92%{ opacity:1; transform:scale(1.08); }
-  100%{ opacity:0; transform:scale(1.12); }
+  0%, 59%{ opacity:0; transform:scale(1.01); }
+  66%, 92%{ opacity:1; transform:scale(1.06); }
+  100%{ opacity:0; transform:scale(1.09); }
 }
 
 /* =========================
@@ -1178,21 +1132,12 @@ details p{
     margin-left:16px;
   }
 
-  .heroInner,
   .grid2{
     grid-template-columns:1fr;
   }
 
-  .heroInner{
-    align-items:end;
-  }
-
-  .heroCard{
-    margin-left:0;
-  }
-
   .heroTitle{
-    max-width:12ch;
+    max-width:10ch;
   }
 }
 
@@ -1211,24 +1156,38 @@ details p{
   }
 
   .hero{
-    min-height:auto;
-    border-radius:0 0 26px 26px;
+    min-height:620px;
+    border-radius:0 0 24px 24px;
+  }
+
+  .heroMedia{
+    filter:brightness(.70) saturate(1.02) contrast(1.02);
+  }
+
+  .heroOverlay{
+    background:
+      linear-gradient(180deg, rgba(6,20,32,.44) 0%, rgba(6,20,32,.34) 24%, rgba(6,20,32,.48) 70%, rgba(6,20,32,.62) 100%),
+      linear-gradient(90deg, rgba(6,20,32,.24) 0%, rgba(6,20,32,.16) 46%, rgba(6,20,32,.26) 100%);
   }
 
   .heroInner{
     width:min(var(--container), calc(100% - 28px));
-    min-height:auto;
+    min-height:620px;
     padding:34px 0 28px;
     gap:18px;
+    align-items:end;
   }
 
   .heroTitle{
-    font-size:clamp(32px, 8vw, 48px);
-    max-width:13ch;
+    font-size:clamp(34px, 8vw, 50px);
+    max-width:11ch;
+    letter-spacing:-1.2px;
   }
 
   .heroSub{
     font-size:15px;
+    max-width:32ch;
+    line-height:1.6;
   }
 
   .stickyCta{
@@ -1293,31 +1252,111 @@ details p{
     padding:0 0 120px;
   }
 
+  .topbar .inner{
+    min-height:74px;
+    padding:10px 12px;
+    gap:10px;
+  }
+
   .brand h1{
-    font-size:14px;
+    font-size:13px;
+    line-height:1.05;
   }
 
   .brand p{
-    font-size:11.5px;
+    font-size:11px;
+    margin-top:3px;
   }
 
   .logo{
-    width:50px;
-    height:50px;
+    width:46px;
+    height:46px;
+    border-radius:14px;
+  }
+
+  .hero{
+    min-height:600px;
+    border-radius:0 0 22px 22px;
+  }
+
+  .heroMedia{
+    filter:brightness(.74) saturate(1.03) contrast(1.02);
+    transform:scale(1.02);
+  }
+
+  .heroOverlay{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(6,20,32,.38) 0%,
+        rgba(6,20,32,.28) 22%,
+        rgba(6,20,32,.42) 58%,
+        rgba(6,20,32,.56) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(6,20,32,.20) 0%,
+        rgba(6,20,32,.14) 45%,
+        rgba(6,20,32,.22) 100%
+      );
   }
 
   .heroInner{
     width:min(var(--container), calc(100% - 20px));
-    padding:26px 0 22px;
+    padding:24px 0 22px;
+    min-height:600px;
+    align-items:end;
+  }
+
+  .heroKicker{
+    margin-bottom:14px;
+    font-size:11px;
+    letter-spacing:.14em;
+  }
+
+  .heroKicker::before{
+    width:42px;
+    height:4px;
   }
 
   .heroTitle{
-    max-width:none;
-    font-size:32px;
+    max-width:10ch;
+    font-size:clamp(30px, 8vw, 42px);
+    line-height:1.02;
     letter-spacing:-1px;
   }
 
   .heroSub{
+    margin-top:14px;
+    font-size:14px;
+    line-height:1.55;
+    max-width:28ch;
+    color:rgba(255,255,255,.94);
+  }
+
+  .heroBadges{
+    margin-top:18px;
+    gap:10px;
+  }
+
+  .badgeMetal{
+    min-height:40px;
+    padding:8px 12px;
+    font-size:12px;
+    background:rgba(255,255,255,.10);
+  }
+
+  .heroCTAs{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .heroCTAs .btn{
+    width:100%;
+    min-height:52px;
+    padding:12px 14px;
     font-size:14px;
   }
 
