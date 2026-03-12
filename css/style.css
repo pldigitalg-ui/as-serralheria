@@ -241,7 +241,7 @@ img{max-width:100%}
 .heroMedia{
   position:absolute;
   inset:0;
-  background:url("herói.jpg") center/cover no-repeat;
+  background:url("hero.jpg") center/cover no-repeat;
   opacity:.24;
   transform:scale(1.02);
   filter:contrast(1.02) saturate(.95) brightness(.72);
@@ -1073,5 +1073,55 @@ details p{
   .badgeMetal,
   .pill{
     min-height:44px;
-  }
+    .fullServicesCard{
+  width:100%;
 }
+
+.servicesHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+
+.budgetModalCard{
+  width:min(860px, 100%);
+  max-height:92vh;
+  overflow:hidden;
+}
+
+.budgetModalBody{
+  padding:16px;
+  overflow:auto;
+  max-height:calc(92vh - 72px);
+  background:#f7f8fa;
+}
+
+.budgetCardInside{
+  margin:0;
+  box-shadow:none;
+}
+
+.budgetCardInside::before{
+  display:none;
+}
+
+#budgetModal .checkWrap{
+  max-height:220px;
+}
+
+@media (max-width: 700px){
+  .servicesHeader{
+    align-items:stretch;
+  }
+
+  .servicesHeader .btn{
+    width:100%;
+  }
+
+  .budgetModalBody{
+    padding:10px;
+  }
+}   
