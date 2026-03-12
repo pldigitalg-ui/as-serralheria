@@ -1377,3 +1377,7 @@ details p{
     min-height:44px;
   }
 }
+/* Remove botão pedir orçamento do topo */
+.actions .btn.primary{
+    display:none;
+}
