@@ -1374,4 +1374,36 @@ details p{
   .pill{
     min-height:44px;
   }
+.heroTitle{
+  margin:0;
+  font-size:clamp(50px, 5.8vw, 80px);
+  line-height:.94;
+  letter-spacing:-2.2px;
+  font-weight:1000;
+  color:#fff;
+  max-width:10ch;
+  text-wrap:balance;
 }
+
+.heroSub{
+  margin:18px 0 0;
+  max-width:34ch;
+  font-size:18px;
+  line-height:1.6;
+  color:rgba(255,255,255,.92);
+  text-wrap:pretty;
+}
+
+.heroKicker{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+   }
+}
+  
